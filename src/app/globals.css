@@ -7,6 +7,7 @@
   --color-black: #040404;
   --color-accent: #fa3644;
 
+  --font-actay: var(--font-actay), sans-serif;
   --font-montserrat: var(--font-montserrat);
 }
 
