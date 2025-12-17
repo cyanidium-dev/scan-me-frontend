@@ -8,6 +8,8 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["300", "500", "600"],
   display: "swap",
+  preload: true,
+  fallback: ["Arial", "sans-serif"],
 });
 
 const actay = localFont({
