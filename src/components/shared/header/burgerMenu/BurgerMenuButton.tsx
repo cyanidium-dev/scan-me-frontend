@@ -15,7 +15,7 @@ export default function BurgerMenuButton({
       aria-label="open menu button"
       type="button"
       onClick={toggleHeaderMenuOpen}
-      className="lg:hidden group relative z-[60] size-10 px-[6.6px] py-2.5 ml-6 outline-none"
+      className="lg:hidden group relative z-60 size-10 px-[6.6px] py-2.5 ml-6 outline-none"
     >
       <div className="w-full h-full relative">
         {/* Верхня лінія */}
@@ -29,7 +29,7 @@ export default function BurgerMenuButton({
           animate={
             isHeaderMenuOpened
               ? {
-                  top: "9px", // Переміщаємо в центр
+                  top: "10px", // Переміщаємо в центр
                   left: "0",
                   opacity: 0,
                 }
@@ -66,7 +66,7 @@ export default function BurgerMenuButton({
             isHeaderMenuOpened
               ? {
                   rotate: "-45deg",
-                  top: "9px",
+                  top: "10px",
                 }
               : {
                   rotate: "0deg",
