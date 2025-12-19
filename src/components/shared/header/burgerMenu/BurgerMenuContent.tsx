@@ -26,15 +26,15 @@ export default function BurgerMenuContent({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="lg:hidden fixed right-0 top-0 z-40 pt-[150px] w-full h-dvh max-h-dvh bg-black"
+          className="lg:hidden fixed right-0 top-0 z-40 pt-[108px] pb-[46px] w-full h-dvh max-h-dvh bg-black"
           initial="hidden"
           animate="visible"
           exit="exit"
           variants={burgerMenuVariants}
         >
           <Container
-            className="flex flex-col justify-between h-full pt-9 pb-8 overflow-y-auto scrollbar scrollbar-w-[3px] scrollbar-thumb-rounded-full 
-          scrollbar-track-rounded-full scrollbar-thumb-beige/50 scrollbar-track-transparent"
+            className="flex flex-col justify-between h-full pt-[98px] pb-20 overflow-y-auto scrollbar scrollbar-w-[3px] scrollbar-thumb-rounded-full 
+          scrollbar-track-rounded-full scrollbar-thumb-accent/50 scrollbar-track-transparent"
           >
             {/* Меню */}
             <motion.div
@@ -46,10 +46,30 @@ export default function BurgerMenuContent({
             >
               <NavMenu setIsOpenBurgerMenu={setIsOpenBurgerMenu} />
             </motion.div>
-            <motion.div className="flex flex-col gap-3">
-              <AuthButtons />
+            <motion.div
+              variants={burgerListVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="flex flex-col gap-3"
+            >
+              <AuthButtons setIsOpenBurgerMenu={setIsOpenBurgerMenu} />
             </motion.div>
           </Container>
+          <motion.div
+            variants={burgerListVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="absolute -z-10 bottom-[-169px] right-[-111px] w-[378px] h-[417px]"
+          >
+            <Image
+              src="/images/header/burgerImage.webp"
+              fill
+              className="object-cover"
+              alt="burger image"
+            />
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

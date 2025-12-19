@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@plugin 'tailwind-scrollbar' {
+  nocompatible: true;
+  preferredstrategy: "pseudoelements";
+}
 
 @theme inline {
   --breakpoint-xs: 27rem;
