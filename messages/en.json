@@ -1,5 +1,17 @@
 {
+  "header": {
+    "logo": "scan me",
+    "navMenu": {
+      "about": "хто ми",
+      "howItWorks": "як це працює",
+      "contacts": "контакти"
+    },
+    "signIn": "Увійти",
+    "signUp": "Зареєструватися"
+  },
   "homePage": {
-    "title": "Hello world! En"
+    "hero": {
+      "title": "QR-наклейка, яка може <accent>врятувати життя</accent>"
+    }
   }
 }
