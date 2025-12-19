@@ -3,9 +3,9 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { routing } from "@/i18n/routing";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { Locale } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { useLocale } from "next-intl";
-import LocaleSwitcherArrowIcon from "../icons/LocaleSwitcherArrowIcon";
+import LocaleSwitcherArrowIcon from "../icons/LocaleSwitcherArrowIcons";
 
 export default function LocaleSwitcher() {
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -62,22 +62,22 @@ export default function LocaleSwitcher() {
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="cursor-pointer flex items-center gap-[9px] outline-none xl:hover:text-beige focus-visible:text-beige transition duration-300 ease-in-out"
+        className="group cursor-pointer flex items-center gap-[9px] outline-none xl:hover:text-accent focus-visible:text-accent transition duration-300 ease-in-out"
       >
-        <span className="text-[16px] lg:text-[14px] xl:text-[16px] font-medium leading-[125%] uppercase">
+        <span className="text-[16px] font-bold leading-[125%] uppercase">
           {currentLocale === "uk" ? "UA" : currentLocale}
         </span>
         <LocaleSwitcherArrowIcon
-          className={`size-3 xl:size-4 mb-[1px] ${
+          className={`size-4 mb-[1px] ${
             isOpen ? "rotate-180" : "rotate-0"
-          } transition duration-300 ease-in-out`}
+          } xl:group-hover:text-accent group-focus-visible:text-accent transition duration-300 ease-in-out`}
         />
       </button>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="absolute right-0 mt-1 w-[65px] xl:w-[72px] bg-white shadow-md rounded-[8px] z-50"
+            className="absolute right-0 mt-2 w-[65px] xl:w-[72px] bg-white shadow-md rounded-lg z-50"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -90,9 +90,9 @@ export default function LocaleSwitcher() {
                 className={`cursor-pointer w-full flex items-center justify-center px-4 py-2`}
               >
                 <span
-                  className={`uppercase xl:hover:text-beige focus-visible:text-beige transition duration-300 ease-in-out ${
+                  className={`uppercase xl:hover:text-accent focus-visible:text-accent transition duration-300 ease-in-out ${
                     currentLocale === locale
-                      ? "text-beige text-[16px] lg:text-[14px] xl:text-[16px] font-medium"
+                      ? "text-accent text-[16px] font-bold"
                       : "text-black text-[16px] lg:text-[14px] xl:text-[16px] font-medium"
                   }`}
                 >
