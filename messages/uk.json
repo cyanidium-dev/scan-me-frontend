@@ -5,7 +5,9 @@
       "about": "хто ми",
       "howItWorks": "як це працює",
       "contacts": "контакти"
-    }
+    },
+    "signIn": "Увійти",
+    "signUp": "Зареєструватися"
   },
   "homePage": {
     "title": "Hello world Uk!"

@@ -16,7 +16,7 @@ export default function NavMenu({ className = "" }: NavMenuProps) {
 
   return (
     <nav className={className}>
-      <ul className="flex flex-col lg:flex-row gap-12 lg:gap-12.5">
+      <ul className="flex flex-col lg:flex-row gap-12 lg:gap-5 xl:gap-12.5">
         {navMenuList.map(({ title, slug }, idx) => (
           <li key={idx}>
             <Link

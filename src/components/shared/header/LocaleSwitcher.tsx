@@ -56,19 +56,16 @@ export default function LocaleSwitcher() {
   }, [isOpen, handleClickOutside, handleKeyDown]);
 
   return (
-    <div
-      className="relative ml-auto mt-1 lg:mt-0 lg:mb-[3px]"
-      ref={dropdownRef}
-    >
+    <div className="relative ml-auto" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="group cursor-pointer flex items-center gap-[9px] outline-none xl:hover:text-accent focus-visible:text-accent transition duration-300 ease-in-out"
       >
-        <span className="text-[16px] font-bold leading-[125%] uppercase">
+        <span className="text-[16px] font-bold leading-[145%] uppercase">
           {currentLocale === "uk" ? "UA" : currentLocale}
         </span>
         <LocaleSwitcherArrowIcon
-          className={`size-4 mb-[1px] ${
+          className={`size-4 ${
             isOpen ? "rotate-180" : "rotate-0"
           } xl:group-hover:text-accent group-focus-visible:text-accent transition duration-300 ease-in-out`}
         />
@@ -92,8 +89,8 @@ export default function LocaleSwitcher() {
                 <span
                   className={`uppercase xl:hover:text-accent focus-visible:text-accent transition duration-300 ease-in-out ${
                     currentLocale === locale
-                      ? "text-accent text-[16px] font-bold"
-                      : "text-black text-[16px] lg:text-[14px] xl:text-[16px] font-medium"
+                      ? "text-accent text-[16px] font-bold leading-[120%]"
+                      : "text-black text-[16px] lg:text-[14px] xl:text-[16px] font-medium leading-[120%]"
                   }`}
                 >
                   {locale === "uk" ? "UA" : locale}
