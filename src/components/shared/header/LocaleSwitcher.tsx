@@ -56,7 +56,7 @@ export default function LocaleSwitcher() {
   }, [isOpen, handleClickOutside, handleKeyDown]);
 
   return (
-    <div className="relative ml-auto" ref={dropdownRef}>
+    <div className="relative z-60 ml-auto" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="group cursor-pointer flex items-center gap-[9px] outline-none xl:hover:text-accent focus-visible:text-accent transition duration-300 ease-in-out"

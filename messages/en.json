@@ -1,5 +1,15 @@
 {
+  "header": {
+    "logo": "scan me",
+    "navMenu": {
+      "about": "хто ми",
+      "howItWorks": "як це працює",
+      "contacts": "контакти"
+    },
+    "signIn": "Увійти",
+    "signUp": "Зареєструватися"
+  },
   "homePage": {
-    "title": "Hello world! En"
+    "title": "Hello world Uk!"
   }
 }
