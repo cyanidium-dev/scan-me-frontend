@@ -1,5 +1,5 @@
 import * as motion from "motion/react-client";
-import { listItemVariants } from "@/utils/animationVariants";
+import { listItemVariantsLeft } from "@/utils/animationVariants";
 
 interface BenefitItemProps {
   benefit: { title: string; value: string };
@@ -10,7 +10,7 @@ export default function BenefitItem({ benefit }: BenefitItemProps) {
 
   return (
     <motion.li
-      variants={listItemVariants}
+      variants={listItemVariantsLeft}
       className="flex flex-col justify-center items-center w-[calc(50%-6px)] lg:w-[calc(25%-18px)] min-h-[116px] p-2 lg:p-8 rounded-[16px] bg-accent last:bg-black lg:even:bg-accent lg:odd:bg-black text-white"
     >
       <h3 className="mb-2 font-actay text-[18px] lg:text-[24px] font-bold leading-[120%] uppercase text-center">
