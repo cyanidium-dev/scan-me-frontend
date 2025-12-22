@@ -45,6 +45,19 @@ export default function MainButton({
         className
       )}
     >
+      {variant === "gradient" ? (
+        <div
+          className="absolute inset-0 rounded-full pointer-events-none"
+          style={{
+            background: "linear-gradient(90deg, #73131A 0%, #E74451 100%)",
+            padding: "1px",
+            WebkitMask:
+              "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            WebkitMaskComposite: "xor",
+            maskComposite: "exclude",
+          }}
+        />
+      ) : null}
       {isLoading ? loadingText : children}
 
       {/* {isLoading ? <LoaderIcon /> : null} */}
