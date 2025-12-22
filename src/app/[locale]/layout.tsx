@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { getTranslations, getLocale } from "next-intl/server";
+import { getDefaultMetadata } from "@/utils/getDefaultMetadata";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -29,11 +30,12 @@ const actay = localFont({
   fallback: ["Arial", "sans-serif"],
 });
 
-export const metadata: Metadata = {
-  title: "QR-наклейка ScanMe — ваш особистий рятувальний код",
-  description:
-    "У критичній ситуації кожна секунда важлива. QR-наклейка ScanMe передає медикам життєво важливу інформацію одразу після сканування.",
-};
+export async function generateMetadata() {
+  const locale = await getLocale();
+  const t = await getTranslations("metadata");
+
+  return getDefaultMetadata(t, locale);
+}
 
 export default async function LocaleLayout({
   children,
