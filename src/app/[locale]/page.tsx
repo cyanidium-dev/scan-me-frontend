@@ -2,6 +2,7 @@ import Header from "@/components/shared/header/Header";
 import Footer from "@/components/shared/footer/Footer";
 import Hero from "@/components/homePage/hero/Hero";
 import About from "@/components/homePage/about/About";
+import Mission from "@/components/homePage/mission/Mission";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <About />
+        <Mission />
       </main>
       <Footer />
     </>
