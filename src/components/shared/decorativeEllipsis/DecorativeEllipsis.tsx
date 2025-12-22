@@ -16,7 +16,7 @@ export default function DecorativeEllipsis({
   staggerDelay = 0.2,
 }: DecorativeEllipsisProps) {
   return (
-    <div className={twMerge("flex gap-2 lg:gap-3", className)}>
+    <div className={twMerge("flex gap-2", className)}>
       <motion.span
         key={`${uniqueKey}-1`}
         initial="hidden"
