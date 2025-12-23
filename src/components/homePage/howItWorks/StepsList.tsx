@@ -1,12 +1,25 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import * as motion from "motion/react-client";
+import { listVariants, listItemVariantsLeft } from "@/utils/animationVariants";
 
 export default function StepsList() {
   const t = useTranslations("homePage.howItWorks.steps");
 
   return (
-    <ul className="flex flex-col md:flex-row md:flex-wrap gap-6 mb-6 lg:mb-15 text-white">
-      <li className="relative flex items-center md:w-[calc(50%-12px)] min-h-35 lg:min-h-50 p-4 rounded-[16px] bg-black overflow-hidden">
+    <motion.ul
+      key="steps"
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={listVariants({ staggerChildren: 0.3, delayChildren: 0.4 })}
+      className="flex flex-col md:flex-row md:flex-wrap gap-6 mb-6 lg:mb-15 text-white"
+    >
+      <motion.li
+        variants={listItemVariantsLeft}
+        className="relative flex items-center md:w-[calc(50%-12px)] min-h-35 lg:min-h-50 p-4 rounded-[16px] bg-black overflow-hidden"
+      >
         <Image
           src="/images/homePage/steps/fingerprintOne.webp"
           alt="fingerprint"
@@ -25,9 +38,12 @@ export default function StepsList() {
             {t("valueOne")}
           </p>
         </div>
-      </li>
+      </motion.li>
 
-      <li className="relative flex items-center md:w-[calc(50%-12px)] min-h-35 lg:min-h-50 p-4 rounded-[16px] bg-accent overflow-hidden">
+      <motion.li
+        variants={listItemVariantsLeft}
+        className="relative flex items-center md:w-[calc(50%-12px)] min-h-35 lg:min-h-50 p-4 rounded-[16px] bg-accent overflow-hidden"
+      >
         <Image
           src="/images/homePage/steps/ellipseOne.webp"
           alt="ellipse"
@@ -53,9 +69,12 @@ export default function StepsList() {
             {t("valueTwo")}
           </p>
         </div>
-      </li>
+      </motion.li>
 
-      <li className="relative flex items-center md:w-[calc(50%-12px)] min-h-35 lg:min-h-50 p-4 rounded-[16px] bg-accent overflow-hidden">
+      <motion.li
+        variants={listItemVariantsLeft}
+        className="relative flex items-center md:w-[calc(50%-12px)] min-h-35 lg:min-h-50 p-4 rounded-[16px] bg-accent overflow-hidden"
+      >
         <Image
           src="/images/homePage/steps/ellipseTwo.webp"
           alt="ellipse"
@@ -81,9 +100,12 @@ export default function StepsList() {
             {t("valueThree")}
           </p>
         </div>
-      </li>
+      </motion.li>
 
-      <li className="relative flex items-center md:w-[calc(50%-12px)] min-h-35 lg:min-h-50 p-4 rounded-[16px] bg-black overflow-hidden">
+      <motion.li
+        variants={listItemVariantsLeft}
+        className="relative flex items-center md:w-[calc(50%-12px)] min-h-35 lg:min-h-50 p-4 rounded-[16px] bg-black overflow-hidden"
+      >
         <Image
           src="/images/homePage/steps/fingerprintTwo.webp"
           alt="fingerprint"
@@ -102,7 +124,7 @@ export default function StepsList() {
             {t("valueFour")}
           </p>
         </div>
-      </li>
-    </ul>
+      </motion.li>
+    </motion.ul>
   );
 }
