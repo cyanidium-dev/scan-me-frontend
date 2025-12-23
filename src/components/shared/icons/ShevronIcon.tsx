@@ -12,7 +12,7 @@ export default function ShevronIcon({ className }: ShevronIconProps) {
       className={className}
       aria-label="shevron icon"
     >
-      <g clip-path="url(#clip0_216_12137)">
+      <g clipPath="url(#clip0_216_12137)">
         <path
           d="M19 9L12 15L5 9"
           stroke="currentColor"
