@@ -27,7 +27,7 @@ export default function BenefitsList() {
         variants={listItemVariantsLeft}
         className="relative flex flex-col justify-center items-center w-[calc(50%-6px)] lg:w-[calc(25%-18px)] p-2 lg:p-8 rounded-[16px] bg-black overflow-hidden"
       >
-        <p className="relative z-60 font-actay text-[24px] font-bold leading-[120%] uppercase text-transparent bg-clip-text bg-[linear-gradient(273.85deg,#D32330_-30.34%,#FFFFFF_43.55%)]">
+        <p className="relative z-10 font-actay text-[24px] font-bold leading-[120%] uppercase text-transparent bg-clip-text bg-[linear-gradient(273.85deg,#D32330_-30.34%,#FFFFFF_43.55%)]">
           {t("company")}
         </p>
         <Image

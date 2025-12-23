@@ -11,7 +11,10 @@ export default function HowItWorks() {
   const t = useTranslations("homePage.howItWorks");
 
   return (
-    <section id="how-it-works" className="pt-12 lg:pt-30">
+    <section
+      id="how-it-works"
+      className="pt-12 lg:pt-30 pb-12 lg:pb-0 scroll-mt-20"
+    >
       <Container className="relative">
         <motion.div
           initial="hidden"

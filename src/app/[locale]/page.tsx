@@ -4,6 +4,7 @@ import Hero from "@/components/homePage/hero/Hero";
 import About from "@/components/homePage/about/About";
 import Mission from "@/components/homePage/mission/Mission";
 import HowItWorks from "@/components/homePage/howItWorks/HowItWorks";
+import WhyUs from "@/components/homePage/whyUs/WhyUs";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <About />
         <Mission />
         <HowItWorks />
+        <WhyUs />
       </main>
       <Footer />
     </>
