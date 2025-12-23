@@ -5,7 +5,7 @@ export default function StepsList() {
   const t = useTranslations("homePage.howItWorks.steps");
 
   return (
-    <ul className="flex flex-col md:flex-row md:flex-wrap gap-6 text-white">
+    <ul className="flex flex-col md:flex-row md:flex-wrap gap-6 mb-6 lg:mb-15 text-white">
       <li className="relative flex items-center md:w-[calc(50%-12px)] min-h-35 lg:min-h-50 p-4 rounded-[16px] bg-black overflow-hidden">
         <Image
           src="/images/homePage/steps/fingerprintOne.webp"
