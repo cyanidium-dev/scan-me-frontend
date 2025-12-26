@@ -78,7 +78,7 @@ export default function WhyUs() {
             className="hidden lg:block absolute -z-10 top-[-142px] right-[-62px] w-[583px] h-[732px]"
           >
             <Image
-              src="/images/homePage/whyUs/fingerPrintRight.webp"
+              src="/images/homePage/whyUs/fingerprintRight.webp"
               fill
               alt="image"
               className="object-contain"

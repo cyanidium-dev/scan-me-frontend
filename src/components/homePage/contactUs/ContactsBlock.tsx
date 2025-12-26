@@ -2,12 +2,18 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { EMAIL, PHONE } from "@/constants/constants";
 import { contactsPhoneRegex } from "@/regex/regex";
+import * as motion from "motion/react-client";
+import { fadeInAnimation } from "@/utils/animationVariants";
 
 export default function ContactsBlock() {
   const t = useTranslations("homePage.contactUs");
 
   return (
-    <div className="flex flex-col sm:flex-row gap-12 lg:gap-6 p-6 lg:p-8 rounded-[16px] border border-black/40">
+    <motion.div initial="hidden"
+          whileInView="visible"
+          exit="exit"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInAnimation({ scale: 0.85, y: 30 })} className="flex flex-col sm:flex-row gap-12 lg:gap-6 p-6 lg:p-8 rounded-[16px] border border-black/40">
       <div className="flex lg:flex-col gap-4 w-full lg:w-[calc(50%-12px)]">
         <div className="flex items-center justify-center size-10 rounded-[8px] bg-black">
           <Image
@@ -56,6 +62,6 @@ export default function ContactsBlock() {
           </a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
