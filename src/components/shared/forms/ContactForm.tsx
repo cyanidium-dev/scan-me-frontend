@@ -5,8 +5,6 @@ import { Form, Formik, FormikHelpers } from "formik";
 import { Dispatch, SetStateAction, useState } from "react";
 import CustomizedInput from "../formComponents/CustomizedInput";
 import { ContactValidation } from "@/schemas/ContactFormValidation";
-import * as motion from "motion/react-client";
-import { fadeInAnimation } from "@/utils/animationVariants";
 import MainButton from "../buttons/MainButton";
 import { twMerge } from "tailwind-merge";
 
@@ -112,16 +110,7 @@ export default function ContactForm({
                 fieldClassName="px-6 py-0 lg:py-0"
               />
             </div>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={fadeInAnimation({
-                scale: 0.9,
-                y: 20,
-                delay: 0.5,
-              })}
-            >
+            <div>
               <MainButton
                 type="submit"
                 disabled={!(dirty && isValid) || isLoading}
@@ -131,7 +120,7 @@ export default function ContactForm({
               >
                 {t("forms.sendMessage")}
               </MainButton>
-            </motion.div>
+            </div>
           </Form>
         )}
       </Formik>
