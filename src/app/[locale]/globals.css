@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "react-phone-number-input/style.css";
 @plugin 'tailwind-scrollbar' {
   nocompatible: true;
   preferredstrategy: "pseudoelements";
@@ -68,5 +69,67 @@
 
   .rotation {
     animation: rotation 1600ms linear infinite;
+  }
+
+  /* Phone Input Customization */
+  .PhoneInput {
+    --PhoneInputCountryFlag-aspectRatio: 1.333;
+    --PhoneInputCountryFlag-height: 24px;
+    --PhoneInputCountrySelect-marginRight: 10px;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .PhoneInputCountry {
+    border-right: 1px solid rgba(4, 4, 4, 0.4);
+    padding-right: 12px;
+  }
+
+  .PhoneInputCountryIcon {
+    width: 32px;
+    margin-right: 10px;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .PhoneInputInput {
+    outline: none !important;
+    border: none !important;
+    flex: 1;
+    background: transparent;
+  }
+
+  .PhoneInputInput:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Phone Input Dropdown Styles */
+  .PhoneInputCountrySelect {
+    background-color: var(--color-white) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    max-height: 200px !important;
+    overflow-y: auto !important;
+    z-index: 10 !important;
+  }
+
+  /* Scrollbar styling for dropdown */
+  .PhoneInputCountrySelect::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  .PhoneInputCountrySelect::-webkit-scrollbar-track {
+    background: var(--color-white);
+  }
+
+  .PhoneInputCountrySelect::-webkit-scrollbar-thumb {
+    background: rgba(250, 54, 68, 0.4);
+    border-radius: 3px;
+  }
+
+  .PhoneInputCountrySelect::-webkit-scrollbar-thumb:hover {
+    background: rgba(250, 54, 68, 0.6);
   }
 }

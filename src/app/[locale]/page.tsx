@@ -6,6 +6,7 @@ import Mission from "@/components/homePage/mission/Mission";
 import HowItWorks from "@/components/homePage/howItWorks/HowItWorks";
 import WhyUs from "@/components/homePage/whyUs/WhyUs";
 import Faq from "@/components/homePage/faq/Faq";
+import ContactUs from "@/components/homePage/contactUs/ContactUs";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <HowItWorks />
         <WhyUs />
         <Faq />
+        <ContactUs />
       </main>
       <Footer />
     </>
