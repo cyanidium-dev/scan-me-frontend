@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Field,
   ErrorMessage,
@@ -47,7 +49,7 @@ export default function CustomizedInput({
       <span
         className={twMerge(
           clsx(
-            "mb-1 lg:mb-3 text-[14px] font-light leading-[121.4%]",
+            "mb-2 text-[12px] lg:text-[14px] font-medium leading-[120%]",
             isLabelHidden && "sr-only"
           )
         )}
@@ -66,11 +68,9 @@ export default function CustomizedInput({
             const commonProps = {
               id: inputId,
               className: twMerge(
-                "relative w-full outline-none resize-none border transition duration-300 ease-out",
+                "relative w-full px-4 py-3 lg:p-4 h-[39px] lg:h-[49px] rounded-full text-[12px] lg:text-[14px] leading-[120%] font-normal placeholder:text-black/40 outline-none resize-none border transition duration-300 ease-out",
                 fieldClassName,
-                meta.touched && meta.error
-                  ? "border-red-error"
-                  : "border-white/60"
+                meta.touched && meta.error ? "border-accent" : "border-black/40"
               ),
             };
 
@@ -80,7 +80,7 @@ export default function CustomizedInput({
                   international
                   countryCallingCodeEditable={false}
                   country="DK"
-                  defaultCountry="DK"
+                  defaultCountry="UA"
                   autoComplete="on"
                   {...field}
                   {...commonProps}
@@ -89,9 +89,7 @@ export default function CustomizedInput({
                     setFieldTouched(fieldName, true, false);
                   }}
                   countrySelectProps={{
-                    arrowComponent: () => (
-                      <ShevronIcon className="size-6 text-white rotate-180" />
-                    ),
+                    arrowComponent: () => <ShevronIcon className="size-6" />,
                   }}
                 />
               );

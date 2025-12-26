@@ -14,13 +14,11 @@
     "signUp": "Зареєструватися"
   },
   "forms": {
-    "forms": {
-      "name": "Ім’я*",
-      "namePlaceholder": "Ваше ім’я",
-      "phone": "Номер телефону*",
-      "sendMessage": "Залишити повідомлення",
-      "loading": "Надсилання..."
-    }
+    "name": "Ім’я*",
+    "namePlaceholder": "Ваше ім’я",
+    "phone": "Номер телефону*",
+    "sendMessage": "Залишити повідомлення",
+    "loading": "Надсилання..."
   },
   "homePage": {
     "hero": {
