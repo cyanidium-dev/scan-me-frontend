@@ -1,11 +1,17 @@
 "use client";
 
 import ContactForm from "@/components/shared/forms/ContactForm";
+import NotificationPopUp from "@/components/shared/notifications/NotificationPopUp";
+import Backdrop from "@/components/shared/backdrop/Backdrop";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function ContactFormWithNotifications() {
   const [isNotificationShown, setIsNotificationShown] = useState(false);
   const [isError, setIsError] = useState(false);
+
+  const t = useTranslations("notifications");
+
   return (
     <>
       <ContactForm
@@ -13,23 +19,18 @@ export default function ContactFormWithNotifications() {
         setIsNotificationShown={setIsNotificationShown}
         className="lg:max-w-[360px] xl:max-w-[420px]"
       />
-      {/* <NotificationPopUp
-        title={isError ? "На жаль, щось пішло не так" : "Дякуємо за звернення!"}
-        description={
-          isError
-            ? "Спробуйте відправити форму ще раз"
-            : "Наш менеджер скоро зв'яжеться з вами"
-        }
+      <NotificationPopUp
+        title={isError ? t("errorTitle") : t("successTitle")}
+        description={isError ? t("errorDescription") : t("successDescription")}
         isPopUpShown={isNotificationShown}
         setIsPopUpShown={setIsNotificationShown}
-      /> */}
-      {/* <Backdrop
-        isVisible={isModalShown || isNotificationShown}
+      />
+      <Backdrop
+        isVisible={isNotificationShown}
         onClick={() => {
-          setIsModalShown(false);
           setIsNotificationShown(false);
         }}
-      /> */}
+      />
     </>
   );
 }
