@@ -11,6 +11,7 @@ export default function ContactFormWithNotifications() {
       <ContactForm
         setIsError={setIsError}
         setIsNotificationShown={setIsNotificationShown}
+        className="lg:max-w-[360px] xl:max-w-[420px]"
       />
       {/* <NotificationPopUp
         title={isError ? "На жаль, щось пішло не так" : "Дякуємо за звернення!"}

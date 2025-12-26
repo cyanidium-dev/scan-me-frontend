@@ -7,6 +7,7 @@ import { ContactValidation } from "@/schemas/ContactFormValidation";
 import * as motion from "motion/react-client";
 import { fadeInAnimation } from "@/utils/animationVariants";
 import MainButton from "../buttons/MainButton";
+import { twMerge } from "tailwind-merge";
 
 interface ContactFormValues {
   name: string;
@@ -17,12 +18,14 @@ interface ContactFormProps {
   setIsError: Dispatch<SetStateAction<boolean>>;
   setIsNotificationShown: Dispatch<SetStateAction<boolean>>;
   setIsModalShown?: Dispatch<SetStateAction<boolean>>;
+  className?: string;
 }
 
 export default function ContactForm({
   setIsError,
   setIsNotificationShown,
   setIsModalShown,
+  className = "",
 }: ContactFormProps) {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -62,7 +65,12 @@ export default function ContactForm({
   };
 
   return (
-    <div className="px-6 py-8 rounded-[16px] bg-white shadow-[0_4px_14px_rgba(0,0,0,0.05)]">
+    <div
+      className={twMerge(
+        "px-6 lg:px-8 py-8 lg:py-12 rounded-[16px] bg-white shadow-[0_4px_14px_rgba(0,0,0,0.05)]",
+        className
+      )}
+    >
       <h2 className="mb-4 lg:mb-6 font-actay text-[24px] lg:text-[32px] font-bold leading-[120%] uppercase text-center">
         {t("homePage.contactUs.title")}
       </h2>
