@@ -20,7 +20,7 @@ export default function Header() {
       exit="exit"
       viewport={{ once: true, amount: 0.1 }}
       variants={fadeInAnimation({})}
-      className="fixed z-20 top-0 left-0 w-full py-6 lg:py-11 bg-black rounded-b-2xl text-white"
+      className="fixed z-30 top-0 left-0 w-full py-6 lg:py-11 bg-black rounded-b-2xl text-white"
     >
       <div className="absolute z-50 top-0 left-0 h-full w-full overflow-hidden rounded-b-2xl">
         <div
