@@ -13,6 +13,11 @@
     "signIn": "Увійти",
     "signUp": "Зареєструватися"
   },
+  "footer": {
+    "title": "QR-наклейка, яка може <accent>врятувати життя</accent>",
+    "callUs": "Зателефонуйте",
+    "writeUs": "Або напишіть нам:"
+  },
   "forms": {
     "name": "Ім’я*",
     "namePlaceholder": "Ваше ім’я",

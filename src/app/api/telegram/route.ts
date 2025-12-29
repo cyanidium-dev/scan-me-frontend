@@ -6,7 +6,6 @@ const BOT_ID = process.env.TELEGRAM_BOT_ID || "";
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 export async function POST(request: NextRequest) {
-  console.log(BOT_ID, CHAT_ID);
   if (request.method === "POST") {
     try {
       const data = await request.json();
