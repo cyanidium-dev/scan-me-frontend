@@ -7,7 +7,7 @@ import { fadeInAnimation } from "@/utils/animationVariants";
 
 export default function ContactUs() {
   return (
-    <section className="py-12 lg:py-30">
+    <section id="contacts" className="py-12 lg:py-30 scroll-mt-20">
       <Container className="flex flex-col lg:flex-row-reverse gap-6">
         <motion.div
           initial="hidden"

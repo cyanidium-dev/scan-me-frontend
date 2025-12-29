@@ -9,3 +9,5 @@ export const INSTAGRAM_URL = "";
 export const TELEGRAM_URL = "";
 
 export const TIKTOK_URL = "";
+
+export const CODE_SITE_URL = "https://www.code-site.art/";

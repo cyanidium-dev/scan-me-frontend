@@ -8,8 +8,13 @@ import InstagramIcon from "../icons/InstagramIcon";
 import LinkedinIcon from "../icons/LinkedinIcon";
 import TelegramIcon from "../icons/TelegramIcon";
 import TikTokIcon from "../icons/TikTokIcon";
+import { twMerge } from "tailwind-merge";
 
-export default function Socials() {
+interface SocialsProps {
+  className?: string;
+}
+
+export default function Socials({className=''}: SocialsProps) {
   const socialsList = [
     { icon: <LinkedinIcon />, url: INSTAGRAM_URL },
     { icon: <InstagramIcon />, url: LINKEDIN_URL },
@@ -17,7 +22,7 @@ export default function Socials() {
     { icon: <TikTokIcon />, url: TIKTOK_URL },
   ];
   return (
-    <ul className="flex gap-6">
+    <ul className={twMerge("flex gap-6", className)}>
       {socialsList.map(({ icon, url }, idx) => (
         <li key={idx}>
           <a

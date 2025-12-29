@@ -3,7 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 interface LogoProps {
-  setIsOpenBurgerMenu: Dispatch<SetStateAction<boolean>>;
+  setIsOpenBurgerMenu?: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function Logo({ setIsOpenBurgerMenu }: LogoProps) {
