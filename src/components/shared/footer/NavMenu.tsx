@@ -1,6 +1,7 @@
-import { Dispatch, SetStateAction } from "react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import * as motion from "motion/react-client";
+import { fadeInAnimation } from "@/utils/animationVariants";
 
 interface NavMenuProps {
   className?: string;
@@ -16,7 +17,14 @@ export default function NavMenu({ className = "" }: NavMenuProps) {
   ];
 
   return (
-    <nav className={className}>
+    <motion.nav
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={fadeInAnimation({ scale: 0.85, y: 30, delay: 0.3 })}
+      className={className}
+    >
       <ul className="flex flex-col gap-6">
         {navMenuList.map(({ title, slug }, idx) => (
           <li key={idx}>
@@ -29,6 +37,6 @@ export default function NavMenu({ className = "" }: NavMenuProps) {
           </li>
         ))}
       </ul>
-    </nav>
+    </motion.nav>
   );
 }
