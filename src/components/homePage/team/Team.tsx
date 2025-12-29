@@ -3,13 +3,22 @@ import DecorativeEllipsis from "@/components/shared/decorativeEllipsis/Decorativ
 import SectionTitle from "@/components/shared/titles/SectionTitle";
 import { useTranslations } from "next-intl";
 import FoundersList from "./FoundersList";
+import Image from "next/image";
 
 export default function Team() {
   const t = useTranslations("homePage.team");
 
   return (
     <section className="pt-12 lg:pt-30">
-      <Container>
+      <Container className="relative">
+        <div className="hidden lg:block absolute -z-10 top-[-78px] right-[38px]">
+          <Image
+            src="/images/homePage/team/fingerprint.webp"
+            width={703}
+            height={712}
+            alt="fingerprint"
+          />
+        </div>
         <div className="relative mb-8 xl:mb-6">
           <SectionTitle className="max-w-[360px] md:max-w-full xl:text-[70px]">
             {t.rich("title", {
