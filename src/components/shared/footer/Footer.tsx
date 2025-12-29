@@ -13,7 +13,7 @@ export default function Footer() {
   const t = useTranslations("footer");
 
   return (
-    <footer className="w-full py-12 rounded-t-[16px] bg-black overflow-hidden">
+    <footer className="w-full py-12 rounded-t-[16px] bg-black overflow-visible">
       <Container className="relative z-10">
         <motion.div
           initial="hidden"
@@ -32,11 +32,13 @@ export default function Footer() {
           />
         </motion.div>
         <div className="flex flex-col gap-12 sm:gap-6 sm:flex-row sm:justify-between">
-          <motion.div  initial="hidden"
-                    whileInView="visible"
-                    exit="exit"
-                    viewport={{ once: true, amount: 0.3 }}
-                    variants={fadeInAnimation({ scale: 0.85, y: 30 })}>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            exit="exit"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeInAnimation({ scale: 0.85, y: 30 })}
+          >
             <Logo />
             <h2 className="max-w-52 mt-6 mb-6 lg:mb-0 text-[14px] lg:text-[14px] xl:text-[14px] font-semibold leading-[120%] text-white uppercase">
               {t.rich("title", {

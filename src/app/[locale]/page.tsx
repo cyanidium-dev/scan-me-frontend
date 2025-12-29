@@ -7,12 +7,13 @@ import HowItWorks from "@/components/homePage/howItWorks/HowItWorks";
 import WhyUs from "@/components/homePage/whyUs/WhyUs";
 import Faq from "@/components/homePage/faq/Faq";
 import ContactUs from "@/components/homePage/contactUs/ContactUs";
+import Cta from "@/components/homePage/cta/Cta";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1 overflow-hidden">
+      <main className="flex-1">
         <Hero />
         <About />
         <Mission />
@@ -20,6 +21,7 @@ export default function Home() {
         <WhyUs />
         <Faq />
         <ContactUs />
+        <Cta />
       </main>
       <Footer />
     </>
