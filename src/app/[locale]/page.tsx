@@ -8,6 +8,7 @@ import WhyUs from "@/components/homePage/whyUs/WhyUs";
 import Faq from "@/components/homePage/faq/Faq";
 import ContactUs from "@/components/homePage/contactUs/ContactUs";
 import Cta from "@/components/homePage/cta/Cta";
+import Team from "@/components/homePage/team/Team";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <About />
+        <Team />
         <Mission />
         <HowItWorks />
         <WhyUs />
