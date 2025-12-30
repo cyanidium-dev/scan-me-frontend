@@ -42,13 +42,14 @@ export default function FoundersList() {
             fill
             className="-z-10 object-cover object-top"
           />
-          {/* TODO update when new design is ready */}
-          {/* <div className="w-[77%] p-3 bg-white/10 shadow-[inset_0px_4px_12.6px_0px_rgba(255,255,255,0.25)] backdrop-blur-[10px] rounded-[8px]">
+          <div className="w-full p-3 bg-black/32 shadow-[inset_0px_4px_12.6px_0px_rgba(255,255,255,0.25)] backdrop-blur-[10px] rounded-[8px]">
             <h3 className="mb-1 font-actay text-[18px] font-bold leading-[120%] uppercase">
               {name}
             </h3>
-            <p>{role}</p>
-          </div> */}
+            <p>
+              {role}, {description}
+            </p>
+          </div>
         </motion.li>
       ))}
     </motion.ul>
