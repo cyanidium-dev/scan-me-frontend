@@ -105,7 +105,6 @@ export default function ContactForm({
               <CustomizedInput
                 fieldName="phone"
                 label={t("forms.phone")}
-                // placeholder={t("forms.phonePlaceholder")}
                 inputType="tel"
                 fieldClassName="px-6 py-0 lg:py-0"
               />

@@ -1,19 +1,15 @@
-import SignInForm from "@/components/shared/auth/SignInForm";
-import Container from "@/components/shared/container/Container";
+import SignIn from "@/components/signInPage/SignIn";
+import Header from "@/components/shared/header/Header";
+import Footer from "@/components/shared/footer/Footer";
 
 export default function SignInPage() {
   return (
-    <Container>
-      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold">
-              Вхід в систему
-            </h2>
-          </div>
-          <SignInForm />
-        </div>
-      </div>
-    </Container>
+    <>
+      <Header />
+      <main className="flex-1">
+        <SignIn />
+      </main>
+      <Footer />
+    </>
   );
 }
