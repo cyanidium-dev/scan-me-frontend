@@ -17,12 +17,12 @@ export default function PersonIcon({ className }: PersonIconProps) {
         cy="4.99984"
         r="3.33333"
         stroke="#040404"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
       <path
         d="M16.6668 14.5835C16.6668 16.6546 16.6668 18.3335 10.0002 18.3335C3.3335 18.3335 3.3335 16.6546 3.3335 14.5835C3.3335 12.5124 6.31826 10.8335 10.0002 10.8335C13.6821 10.8335 16.6668 12.5124 16.6668 14.5835Z"
         stroke="#040404"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
     </svg>
   );
