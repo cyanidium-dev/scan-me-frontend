@@ -61,7 +61,6 @@ export default function CustomizedInput({
         </span>
       ) : null}
       <div className="relative w-full">
-        {icon ? <div className="absolute top-3 left-4 z-10">{icon}</div> : null}
         <Field name={fieldName}>
           {({
             field,
@@ -70,58 +69,72 @@ export default function CustomizedInput({
             field: FieldInputProps<string>;
             meta: FieldMetaProps<string>;
           }) => {
+            const hasError = meta.touched && meta.error;
+
             const commonProps = {
               id: inputId,
               className: twMerge(
-                "relative w-full px-4 py-3 lg:p-4 h-[39px] lg:h-[49px] rounded-full text-[12px] lg:text-[14px] leading-[120%] font-normal placeholder:text-black/40 outline-none resize-none border transition duration-300 ease-out",
+                "relative w-full px-4 py-3 lg:p-4 h-[39px] lg:h-[49px] rounded-full text-[12px] lg:text-[14px] leading-[120%] font-normal outline-none resize-none border transition duration-300 ease-out",
                 fieldClassName,
-                meta.touched && meta.error
-                  ? "border-accent"
-                  : "border-black/40",
-                `${icon ? "pl-[50px] lg:pl-[50px]" : ""}`
+                hasError
+                  ? "border-accent text-accent placeholder:text-accent/40"
+                  : "border-black/40 text-black placeholder:text-black/40",
+                icon ? "pl-[50px] lg:pl-[50px]" : ""
               ),
             };
 
-            if (inputType === "tel") {
-              return (
-                <PhoneInput
-                  international
-                  countryCallingCodeEditable={false}
-                  country="DK"
-                  defaultCountry="UA"
-                  autoComplete="on"
-                  {...field}
-                  {...commonProps}
-                  onChange={(value) => {
-                    setFieldValue(fieldName, value || "");
-                    setFieldTouched(fieldName, true, false);
-                  }}
-                  countrySelectProps={{
-                    arrowComponent: () => <ShevronIcon className="size-6" />,
-                  }}
-                />
-              );
-            }
-
-            if (as === "textarea") {
-              return (
-                <textarea
-                  {...field}
-                  {...commonProps}
-                  autoComplete="on"
-                  placeholder={placeholder}
-                />
-              );
-            }
-
             return (
-              <input
-                {...field}
-                {...commonProps}
-                type={inputType}
-                autoComplete="on"
-                placeholder={placeholder}
-              />
+              <>
+                {icon && (
+                  <div
+                    className={clsx(
+                      "absolute top-3 left-4 z-10 transition-colors",
+                      hasError ? "text-accent" : "text-black"
+                    )}
+                  >
+                    {icon}
+                  </div>
+                )}
+
+                {inputType === "tel" ? (
+                  <PhoneInput
+                    international
+                    countryCallingCodeEditable={false}
+                    country="DK"
+                    defaultCountry="UA"
+                    autoComplete="on"
+                    {...field}
+                    {...commonProps}
+                    onChange={(value) => {
+                      setFieldValue(fieldName, value || "");
+                      setFieldTouched(fieldName, true, false);
+                    }}
+                    countrySelectProps={{
+                      arrowComponent: () => (
+                        <ShevronIcon
+                          className={clsx(
+                            "size-6",
+                            hasError ? "text-accent" : "text-black"
+                          )}
+                        />
+                      ),
+                    }}
+                  />
+                ) : as === "textarea" ? (
+                  <textarea
+                    {...field}
+                    {...commonProps}
+                    placeholder={placeholder}
+                  />
+                ) : (
+                  <input
+                    {...field}
+                    {...commonProps}
+                    type={inputType}
+                    placeholder={placeholder}
+                  />
+                )}
+              </>
             );
           }}
         </Field>

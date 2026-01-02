@@ -1,16 +1,12 @@
-import { User } from "firebase/auth";
-
-export interface AuthUser extends User {
-  // Додаткові поля користувача, якщо потрібно
-}
+import { User, UserCredential } from "firebase/auth";
 
 export interface AuthContextType {
-  user: AuthUser | null;
+  user: User | null;
   loading: boolean;
-  signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string) => Promise<void>;
+
+  signIn: (email: string, password: string) => Promise<UserCredential>;
+  signUp: (email: string, password: string) => Promise<UserCredential>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   updateProfile: (displayName?: string, photoURL?: string) => Promise<void>;
 }
-

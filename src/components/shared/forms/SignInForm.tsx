@@ -30,7 +30,7 @@ export default function SignInForm() {
       exit="exit"
       viewport={{ once: true, amount: 0.3 }}
       variants={fadeInAnimation({ scale: 0.85, delay: 0.3 })}
-      className="lg:w-100 px-4 lg:px-8 py-6 lg:pt-12 lg:pb-8 bg-white rounded-[16px] shrink-0"
+      className="relative z-10 lg:w-100 px-4 lg:px-8 py-6 lg:pt-12 lg:pb-8 bg-white rounded-[16px] shrink-0"
     >
       <h2 className="mb-4 lg:mb-6 font-actay text-[24px] lg:text-[32px] font-bold leading-[120%] uppercase text-center">
         {t("signInPage.title")}
