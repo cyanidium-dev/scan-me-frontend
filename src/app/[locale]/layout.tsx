@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getTranslations, getLocale } from "next-intl/server";
 import { getDefaultMetadata } from "@/utils/getDefaultMetadata";
+import { AuthProvider } from "@/contexts/AuthContext";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -54,7 +55,9 @@ export default async function LocaleLayout({
       <body
         className={`${montserrat.variable} ${actay.variable} flex min-h-dvh flex-col text-[12px] lg:text-[14px] font-light leading-[120%] antialiased`}
       >
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <AuthProvider>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        </AuthProvider>
       </body>
     </html>
   );
