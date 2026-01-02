@@ -4,12 +4,12 @@ import Footer from "@/components/shared/footer/Footer";
 
 export default function SignInPage() {
   return (
-    <>
+    <div className="bg-black">
       <Header />
       <main className="flex-1">
         <SignIn />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

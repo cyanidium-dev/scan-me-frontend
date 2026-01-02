@@ -7,7 +7,7 @@ import {
   FieldInputProps,
   FieldMetaProps,
 } from "formik";
-import { useId } from "react";
+import { useId, ReactNode } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 import PhoneInput from "react-phone-number-input";
@@ -19,13 +19,14 @@ interface Values {
 
 interface CustomizedInputProps {
   fieldName: string;
-  label: string;
+  label?: string;
   labelClassName?: string;
   fieldClassName?: string;
   inputType?: string;
   placeholder?: string;
   isLabelHidden?: boolean;
   as?: string;
+  icon?: ReactNode;
 }
 
 export default function CustomizedInput({
@@ -37,6 +38,7 @@ export default function CustomizedInput({
   placeholder = "",
   isLabelHidden = false,
   as,
+  icon,
 }: CustomizedInputProps) {
   const { setFieldValue, setFieldTouched } = useFormikContext<Values>();
   const inputId = useId();
@@ -46,17 +48,20 @@ export default function CustomizedInput({
       htmlFor={inputId}
       className={`relative flex flex-col w-full ${labelClassName}`}
     >
-      <span
-        className={twMerge(
-          clsx(
-            "mb-2 text-[12px] lg:text-[14px] font-medium leading-[120%]",
-            isLabelHidden && "sr-only"
-          )
-        )}
-      >
-        {label}
-      </span>
+      {label ? (
+        <span
+          className={twMerge(
+            clsx(
+              "mb-2 text-[12px] lg:text-[14px] font-medium leading-[120%]",
+              isLabelHidden && "sr-only"
+            )
+          )}
+        >
+          {label}
+        </span>
+      ) : null}
       <div className="relative w-full">
+        {icon ? <div className="absolute top-3 left-4 z-10">{icon}</div> : null}
         <Field name={fieldName}>
           {({
             field,
@@ -70,7 +75,10 @@ export default function CustomizedInput({
               className: twMerge(
                 "relative w-full px-4 py-3 lg:p-4 h-[39px] lg:h-[49px] rounded-full text-[12px] lg:text-[14px] leading-[120%] font-normal placeholder:text-black/40 outline-none resize-none border transition duration-300 ease-out",
                 fieldClassName,
-                meta.touched && meta.error ? "border-accent" : "border-black/40"
+                meta.touched && meta.error
+                  ? "border-accent"
+                  : "border-black/40",
+                `${icon ? "pl-[50px] lg:pl-[50px]" : ""}`
               ),
             };
 
