@@ -5,7 +5,7 @@ interface MainButtonProps {
   children: React.ReactNode;
   type?: "button" | "submit";
   className?: string;
-  variant?: "gradient" | "white" | "outline";
+  variant?: "gradient" | "white" | "outline" | "outlineBlack";
   disabled?: boolean;
   isLoading?: boolean;
   onClick?: () => void;
@@ -27,8 +27,10 @@ export default function MainButton({
       "bg-[linear-gradient(90deg,_#EC4754_0%,_#A01B24_50%,_#6D1219_100%)] text-white enabled:xl:hover:brightness-125 enabled:focus-visible:brightness-125",
     white:
       "bg-white text-black enabled:xl:hover:bg-accent enabled:focus-visible:bg-accent",
-    outline:
-      "bg-transparent text-white border border-white enabled:xl:hover:bg-white/20 enabled:focus-visible:bg-white/20",
+      outline:
+        "bg-transparent text-white border border-white enabled:xl:hover:bg-white/20 enabled:focus-visible:bg-white/20",
+    outlineBlack:
+      "bg-transparent text-black border border-black enabled:xl:hover:bg-black/20 enabled:focus-visible:bg-black/20",
   };
 
   return (
