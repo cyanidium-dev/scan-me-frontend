@@ -27,12 +27,13 @@
     "loading": "Надсилання...",
     "emailPlaceholder": "Введіть пошту",
     "passwordPlaceholder": "Введіть пароль",
-    "newPasswordPlaceholder": "Введіть новий пароль",
+    "newPasswordPlaceholder": "Wprowadź nowe hasło",
     "errors": {
       "required": "Дане поле є обов'язковим до заповнення",
       "wrongEmail": "Введіть валідний email",
       "wrongPhone": "Введіть валідний номер телефону",
       "wrongPassword": "Пароль має бути мінімум 6 символів",
+      "passwordsDoNotMatch": "Паролі не співпадають",
       "nameMinMaxSymbols": "Повинно містити від 2 до 30 символів",
       "nameAllowedSymbols": "Допустимі літери та дефіс, апостроф, лапки",
       "max200Symbols": "Повинно містити не більше 200 символів"
@@ -185,8 +186,22 @@
     }
   },
   "resetPasswordPage": {
-    "title": "Створіть новий пароль",
-    "description": "Введіть новий пароль, який бажаєте встановити для свого акаунта.",
-    "login": "Увійти"
+    "title": "Utwórz nowe hasło",
+    "description": "Wprowadź nowe hasło, które chcesz ustawić dla swojego konta.",
+    "verifying": "Weryfikowanie kodu...",
+    "confirmPasswordPlaceholder": "Potwierdź hasło",
+    "submit": "Ustaw nowe hasło",
+    "login": "Zaloguj się",
+    "success": "Hasło zostało pomyślnie zmienione! Przekierowywanie do strony logowania...",
+    "passwordSetSuccess": "Hasło zostało pomyślnie ustawione! Przekierowywanie...",
+    "errors": {
+      "noCode": "Kod resetowania hasła jest brakujący lub nieprawidłowy",
+      "expiredCode": "Kod resetowania hasła wygasł. Poproś o nowy e-mail",
+      "invalidCode": "Nieprawidłowy kod resetowania hasła",
+      "weakPassword": "Hasło jest zbyt słabe. Minimum 6 znaków",
+      "verifyError": "Błąd weryfikacji kodu. Spróbuj ponownie",
+      "resetError": "Błąd ustawiania hasła: ",
+      "unknownError": "Nieznany błąd. Spróbuj ponownie później"
+    }
   }
 }

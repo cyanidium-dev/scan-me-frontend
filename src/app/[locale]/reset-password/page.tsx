@@ -1,3 +1,15 @@
+import Header from "@/components/shared/header/Header";
+import Footer from "@/components/shared/footer/Footer";
+import ResetPassword from "@/components/resetPasswordPage/ResetPassword";
+
 export default function ResetPasswordPage() {
-  return <></>;
+  return (
+    <div className="bg-black overflow-hidden">
+      <Header />
+      <main className="flex-1">
+        <ResetPassword />
+      </main>
+      <Footer />
+    </div>
+  );
 }

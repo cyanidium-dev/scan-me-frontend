@@ -27,12 +27,13 @@
     "loading": "Надсилання...",
     "emailPlaceholder": "Введіть пошту",
     "passwordPlaceholder": "Введіть пароль",
-    "newPasswordPlaceholder": "Введіть новий пароль",
+    "newPasswordPlaceholder": "Enter new password",
     "errors": {
       "required": "Дане поле є обов'язковим до заповнення",
       "wrongEmail": "Введіть валідний email",
       "wrongPhone": "Введіть валідний номер телефону",
       "wrongPassword": "Пароль має бути мінімум 6 символів",
+      "passwordsDoNotMatch": "Паролі не співпадають",
       "nameMinMaxSymbols": "Повинно містити від 2 до 30 символів",
       "nameAllowedSymbols": "Допустимі літери та дефіс, апостроф, лапки",
       "max200Symbols": "Повинно містити не більше 200 символів"
@@ -185,8 +186,22 @@
     }
   },
   "resetPasswordPage": {
-    "title": "Створіть новий пароль",
-    "description": "Введіть новий пароль, який бажаєте встановити для свого акаунта.",
-    "login": "Увійти"
+    "title": "Create new password",
+    "description": "Enter a new password that you want to set for your account.",
+    "verifying": "Verifying code...",
+    "confirmPasswordPlaceholder": "Confirm password",
+    "submit": "Set new password",
+    "login": "Sign in",
+    "success": "Password successfully changed! Redirecting to sign in page...",
+    "passwordSetSuccess": "Password successfully set! Redirecting...",
+    "errors": {
+      "noCode": "Password reset code is missing or invalid",
+      "expiredCode": "Password reset code has expired. Please request a new email",
+      "invalidCode": "Invalid password reset code",
+      "weakPassword": "Password is too weak. Minimum 6 characters",
+      "verifyError": "Error verifying code. Please try again",
+      "resetError": "Error setting password: ",
+      "unknownError": "Unknown error. Please try again later"
+    }
   }
 }
