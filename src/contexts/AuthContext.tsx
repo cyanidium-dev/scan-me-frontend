@@ -15,6 +15,8 @@ import {
   onAuthStateChanged,
   sendPasswordResetEmail,
   updateProfile as firebaseUpdateProfile,
+  verifyPasswordResetCode,
+  confirmPasswordReset,
 } from "firebase/auth";
 import { auth } from "@/lib/firebase/config";
 import { AuthContextType } from "@/types/auth";
@@ -57,6 +59,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return sendPasswordResetEmail(auth, email);
   };
 
+  const verifyResetCode = (code: string) => {
+    return verifyPasswordResetCode(auth, code);
+  };
+
+  const confirmResetPassword = (code: string, newPassword: string) => {
+    return confirmPasswordReset(auth, code, newPassword);
+  };
+
   const updateProfile = async (displayName?: string, photoURL?: string) => {
     if (!auth.currentUser) {
       throw new Error("Користувач не авторизований");
@@ -75,6 +85,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
     signUp,
     signOut,
     resetPassword,
+    verifyResetCode,
+    confirmResetPassword,
     updateProfile,
   };
 

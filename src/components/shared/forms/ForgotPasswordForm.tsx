@@ -4,21 +4,20 @@ import { useState } from "react";
 import { Formik, Form } from "formik";
 import { useAuth } from "@/hooks/useAuth";
 import { FirebaseError } from "firebase/app";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import CustomizedInput from "../formComponents/CustomizedInput";
 import MainButton from "../buttons/MainButton";
 import EnvelopeIcon from "../icons/Envelope";
-import KeyIcon from "../icons/KeyIcon";
 import { ForgotPasswordValidation } from "@/schemas/ForgotPasswordFormValidation";
 import * as motion from "motion/react-client";
 import { fadeInAnimation } from "@/utils/animationVariants";
 
 export default function ForgotPasswordForm() {
-    const { signIn } = useAuth();
-    const router = useRouter();
+    const { resetPassword } = useAuth();
     const t = useTranslations();
     const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
     const validationSchema = ForgotPasswordValidation();
@@ -41,49 +40,42 @@ export default function ForgotPasswordForm() {
             <Formik
                 initialValues={{
                     email: "",
-                    password: "",
                 }}
                 validationSchema={validationSchema}
                 onSubmit={async (values) => {
                     setError(null);
+                    setSuccess(null);
                     setLoading(true);
                     try {
-                        await signIn(values.email, values.password);
-                        router.push("/dashboard");
+                        await resetPassword(values.email);
+                        setSuccess(t("forgotPasswordPage.success"));
                     } catch (err) {
                         if (err instanceof FirebaseError) {
                             switch (err.code) {
-                                case "auth/invalid-credential":
-                                case "auth/user-not-found":
-                                case "auth/wrong-password":
-                                    setError(t("signInPage.errors.wrongCredentials"));
-                                    break;
-
                                 case "auth/invalid-email":
-                                    setError(t("signInPage.errors.invalidEmail"));
+                                    setError(t("forgotPasswordPage.errors.invalidEmail"));
                                     break;
 
                                 case "auth/user-disabled":
-                                    setError(t("signInPage.errors.accountDisabled"));
+                                    setError(t("forgotPasswordPage.errors.accountDisabled"));
                                     break;
 
                                 case "auth/network-request-failed":
-                                    setError(t("signInPage.errors.networkError"));
+                                    setError(t("forgotPasswordPage.errors.networkError"));
                                     break;
 
                                 case "auth/too-many-requests":
-                                    setError(t("signInPage.errors.manyRequests"));
+                                    setError(t("forgotPasswordPage.errors.manyRequests"));
                                     break;
 
                                 default:
                                     setError(
-                                        `${t("signInPage.errors.signInError")}${err.message || err.code
-                                        }`
+                                        `${t("forgotPasswordPage.errors.resetError")}${err.message || err.code}`
                                     );
                             }
                         } else {
                             // fallback на випадок не-Firebase помилки
-                            setError(t("signInPage.errors.unknownError"));
+                            setError(t("forgotPasswordPage.errors.unknownError"));
                         }
                     } finally {
                         setLoading(false);
@@ -92,8 +84,13 @@ export default function ForgotPasswordForm() {
             >
                 <Form className="flex flex-col">
                     {error && (
-                        <div className="bg-accent/15 border border-accent text-accent px-4 py-3 rounded">
+                        <div className="bg-accent/15 border border-accent text-accent px-4 py-3 rounded mb-4">
                             {error}
+                        </div>
+                    )}
+                    {success && (
+                        <div className="bg-green-50 border border-green-500 text-green-700 px-4 py-3 rounded mb-4">
+                            {success}
                         </div>
                     )}
 
