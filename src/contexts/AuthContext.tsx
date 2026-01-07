@@ -55,7 +55,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return firebaseSignOut(auth);
   };
 
-  const resetPassword = (email: string) => {
+  const resetPassword = (email: string, languageCode?: string) => {
+    // Встановлюємо мову для Firebase Auth
+    // Firebase використає шаблон email для цієї мови, якщо він налаштований в Console
+    if (languageCode) {
+      auth.languageCode = languageCode;
+    }
+    
     return sendPasswordResetEmail(auth, email);
   };
 
