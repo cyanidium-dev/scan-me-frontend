@@ -5,7 +5,7 @@ import { Formik, Form } from "formik";
 import { useAuth } from "@/hooks/useAuth";
 import { FirebaseError } from "firebase/app";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import CustomizedInput from "../formComponents/CustomizedInput";
 import MainButton from "../buttons/MainButton";
 import EnvelopeIcon from "../icons/Envelope";
@@ -16,6 +16,7 @@ import { fadeInAnimation } from "@/utils/animationVariants";
 export default function ForgotPasswordForm() {
     const { resetPassword } = useAuth();
     const t = useTranslations();
+    const locale = useLocale();
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
@@ -47,7 +48,9 @@ export default function ForgotPasswordForm() {
                     setSuccess(null);
                     setLoading(true);
                     try {
-                        await resetPassword(values.email);
+                        // Передаємо поточну мову користувача в Firebase
+                        // Firebase використає шаблон email для цієї мови
+                        await resetPassword(values.email, locale);
                         setSuccess(t("forgotPasswordPage.success"));
                     } catch (err) {
                         if (err instanceof FirebaseError) {

@@ -7,7 +7,7 @@ export interface AuthContextType {
   signIn: (email: string, password: string) => Promise<UserCredential>;
   signUp: (email: string, password: string) => Promise<UserCredential>;
   signOut: () => Promise<void>;
-  resetPassword: (email: string) => Promise<void>;
+  resetPassword: (email: string, languageCode?: string) => Promise<void>;
   verifyResetCode: (code: string) => Promise<string>;
   confirmResetPassword: (code: string, newPassword: string) => Promise<void>;
   updateProfile: (displayName?: string, photoURL?: string) => Promise<void>;

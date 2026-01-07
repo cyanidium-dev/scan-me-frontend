@@ -1,186 +1,208 @@
 {
   "metadata": {
-    "title": "QR-наклейка ScanMe — ваш особистий рятувальний код",
-    "description": "У критичній ситуації кожна секунда важлива. QR-наклейка ScanMe передає медикам життєво важливу інформацію одразу після сканування."
+    "title": "ScanMe QR Sticker — Your Personal Lifesaving Code",
+    "description": "In a critical situation, every second matters. The ScanMe QR sticker provides medics with vital information immediately after scanning."
   },
   "header": {
     "logo": "scan me",
     "navMenu": {
-      "about": "хто ми",
-      "howItWorks": "як це працює",
-      "contacts": "контакти"
+      "about": "about us",
+      "howItWorks": "how it works",
+      "contacts": "contacts"
     },
-    "signIn": "Увійти",
-    "signUp": "Зареєструватися",
-    "dashboard": "Мої дані"
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "dashboard": "My data"
   },
   "footer": {
-    "title": "QR-наклейка, яка може <accent>врятувати життя</accent>",
-    "callUs": "Зателефонуйте",
-    "writeUs": "Або напишіть нам:"
+    "title": "QR sticker that can <accent>save lives</accent>",
+    "callUs": "Call us",
+    "writeUs": "Or write to us:"
   },
   "forms": {
-    "name": "Ім’я*",
-    "namePlaceholder": "Ваше ім’я",
-    "phone": "Номер телефону*",
-    "sendMessage": "Залишити повідомлення",
-    "loading": "Надсилання...",
-    "emailPlaceholder": "Введіть пошту",
-    "passwordPlaceholder": "Введіть пароль",
+    "name": "Name*",
+    "namePlaceholder": "Your name",
+    "phone": "Phone number*",
+    "sendMessage": "Leave a message",
+    "loading": "Sending...",
+    "emailPlaceholder": "Enter email",
+    "passwordPlaceholder": "Enter password",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPasswordPlaceholder": "Confirm password",
     "errors": {
-      "required": "Дане поле є обов'язковим до заповнення",
-      "wrongEmail": "Введіть валідний email",
-      "wrongPhone": "Введіть валідний номер телефону",
-      "wrongPassword": "Пароль має бути мінімум 6 символів",
-      "nameMinMaxSymbols": "Повинно містити від 2 до 30 символів",
-      "nameAllowedSymbols": "Допустимі літери та дефіс, апостроф, лапки",
-      "max200Symbols": "Повинно містити не більше 200 символів"
+      "required": "This field is required",
+      "wrongEmail": "Enter a valid email",
+      "wrongPhone": "Enter a valid phone number",
+      "wrongPassword": "Password must be at least 6 characters",
+      "passwordsDoNotMatch": "Passwords do not match",
+      "nameMinMaxSymbols": "Must contain 2 to 30 characters",
+      "nameAllowedSymbols": "Allowed letters, hyphen, apostrophe, quotes",
+      "max200Symbols": "Must contain no more than 200 characters"
     }
   },
   "notifications": {
-    "successTitle": "Дякуємо за повідомлення",
-    "successDescription": "Наш менеджер зв’яжеться з вами найближчим часом для уточнення інформації",
-    "errorTitle": "На жаль, щось пішло не так",
-    "errorDescription": "Спробуйте відправити форму ще раз або зателефонуйте нам."
+    "successTitle": "Thank you for your message",
+    "successDescription": "Our manager will contact you soon to clarify the information",
+    "errorTitle": "Unfortunately, something went wrong",
+    "errorDescription": "Please try submitting the form again or call us."
   },
   "homePage": {
     "hero": {
-      "title": "QR-наклейка, яка може <accent>врятувати життя</accent>",
-      "descriptionOne": "У критичний момент кожна секунда має значення — ScanMe допомагає медикам діяти швидше.",
-      "descriptionTwo": "Медична QR-наклейка — це ваш особистий рятувальний код. Вона миттєво передає медикам або рятувальникам важливу інформацію: групу крові, алергії, хронічні захворювання чи контакти для зв’язку",
-      "button": "Замовте свою QR-наклейку"
+      "title": "QR sticker that can <accent>save lives</accent>",
+      "descriptionOne": "In a critical moment, every second matters — ScanMe helps medics act faster.",
+      "descriptionTwo": "Medical QR sticker is your personal lifesaving code. It instantly provides medics or rescuers with important information: blood type, allergies, chronic conditions, or emergency contacts",
+      "button": "Order your QR sticker"
     },
     "about": {
-      "title": "що таке <accent>scan me</accent>, та яка наша ідея",
-      "descriptionOne": "ScanMe — це ініціатива, що об’єднує людей, небайдужих до чужої долі. Мета проєкту — допомагати тоді, коли кожна секунда має значення.",
-      "descriptionTwo": "QR-код ScanMe миттєво передає медикам або рятувальникам ключову інформацію про людину — навіть якщо вона не може говорити.",
+      "title": "what is <accent>scan me</accent> and our idea",
+      "descriptionOne": "ScanMe is an initiative that unites people who care about others' fate. The project's goal is to help when every second matters.",
+      "descriptionTwo": "The ScanMe QR code instantly provides medics or rescuers with key information about a person — even if they cannot speak.",
       "company": "scan me",
       "benefits": {
-        "titleOne": "Без додатків",
-        "valueOne": "Без складних налаштувань",
+        "titleOne": "No apps",
+        "valueOne": "No complex setup",
         "titleTwo": "100%",
-        "valueTwo": "Захист персональних даних",
-        "titleThree": "лише QR",
-        "valueThree": "Який може врятувати життя"
+        "valueTwo": "Personal data protection",
+        "titleThree": "just QR",
+        "valueThree": "That can save lives"
       }
     },
     "team": {
-      "title": "<accent>команда</accent> Нашого проєкту",
-      "description": "Нас об’єднує одна мета — зробити світ безпечнішим. Кожен із нас вкладає частинку себе у створення системи, яка може врятувати життя.",
+      "title": "<accent>team</accent> of our project",
+      "description": "We are united by one goal — to make the world safer. Each of us contributes to creating a system that can save lives.",
       "personOne": {
-        "name": "Андрій",
-        "role": "засновник і CEO проєкту",
-        "description": "визначає стратегію та напрям розвитку"
+        "name": "Andrii",
+        "role": "founder and CEO of the project",
+        "description": "defines strategy and development direction"
       },
       "personTwo": {
-        "name": "Вікторія",
+        "name": "Victoria",
         "role": "CCO",
-        "description": "відповідає за комунікації та формування бренду"
+        "description": "responsible for communications and brand building"
       }
     },
     "mission": {
-      "title": "Ми прагнемо, щоб кожен — спортсмен, дитина чи людина літнього віку — почувався у безпеці в будь-яких умовах.",
-      "description": "Рятуємо життя, надаючи швидкий доступ до інформації, коли це найважливіше."
+      "title": "We strive for everyone — athletes, children, or elderly people — to feel safe in any conditions.",
+      "description": "Saving lives by providing quick access to information when it matters most."
     },
     "howItWorks": {
-      "title": "Як працює система <accent>Scan Me</accent>",
-      "descriptionOne": "Простий алгоритм, який може врятувати життя.",
+      "title": "How the <accent>Scan Me</accent> system works",
+      "descriptionOne": "A simple algorithm that can save lives.",
       "steps": {
-        "titleOne": "Зареєструйся",
-        "valueOne": "Створи особистий профіль і заповни коротку медичну анкету. Це займає менше двох хвилин.",
-        "titleTwo": "Отримай свій QR",
-        "valueTwo": "Ми підготуємо для тебе унікальну наліпку або браслет із персональним кодом.",
-        "titleThree": "Розмісти QR",
-        "valueThree": "Прикріпи його на шолом, захисний одяг, браслет або інше помітне місце — щоб рятувальники могли легко знайти його.",
-        "titleFour": "Отримай допомогу вчасно",
-        "valueFour": "Під час сканування система миттєво відобразить твої медичні дані і повідомить контакт, вказаний для екстрених випадків."
+        "titleOne": "Sign up",
+        "valueOne": "Create a personal profile and fill out a short medical questionnaire. It takes less than two minutes.",
+        "titleTwo": "Get your QR",
+        "valueTwo": "We will prepare a unique sticker or bracelet with your personal code for you.",
+        "titleThree": "Place QR",
+        "valueThree": "Attach it to a helmet, protective clothing, bracelet, or other visible place — so rescuers can easily find it.",
+        "titleFour": "Get help on time",
+        "valueFour": "When scanned, the system will instantly display your medical data and notify the contact specified for emergencies."
       },
-      "subtitle": "Готовий подбати про власну безпеку?",
-      "descriptionTwo": "Твоя безпека — у твоїх руках. Маленька наліпка може врятувати безцінне життя.",
-      "button": "Зареєструватися"
+      "subtitle": "Ready to take care of your safety?",
+      "descriptionTwo": "Your safety is in your hands. A small sticker can save a priceless life.",
+      "button": "Sign up"
     },
     "whyUs": {
-      "title": "Чому варто обрати <accent>Scan Me</accent>",
-      "description": "Ми створили ScanMe, щоб зробити допомогу швидшою, а життя — безпечнішим. Це просте рішення, яке може врятувати у критичний момент.",
+      "title": "Why choose <accent>Scan Me</accent>",
+      "description": "We created ScanMe to make help faster and life safer. It's a simple solution that can save in a critical moment.",
       "advantages": {
-        "titleOne": "Миттєвий доступ до інформації",
-        "descriptionOne": "Усе, що потрібно знати про вас — у QR-коді: контакти, медичні дані, алергії, група крові. Рятувальники отримають потрібну інформацію за кілька секунд.",
-        "titleTwo": "Працює без додатків",
-        "descriptionTwo": "Достатньо просто відсканувати QR через камеру смартфона.\n\nЖодних реєстрацій, завантажень чи налаштувань.",
-        "titleThree": "Захист конфіденційності",
-        "descriptionThree": "Ваші дані зберігаються у безпечному середовищі. Доступ — лише за QR-кодом.\n\nВи вирішуєте, що показувати.",
-        "titleFour": "Зручний формат",
-        "descriptionFour": "ScanMe доступний у вигляді браслетів та наліпок — виберіть те, що підходить саме вам.",
-        "titleFive": "Надійно та довговічно",
-        "descriptionFive": "Стійкі до води, бруду та ультрафіолету.\n\nНе стираються навіть після активних тренувань чи дощу.",
-        "titleSix": "Підходить для всіх",
-        "descriptionSix": "Спортсмени, діти, літні люди — будь-хто може носити ScanMe і почуватися впевнено у своїй безпеці."
+        "titleOne": "Instant access to information",
+        "descriptionOne": "Everything you need to know about yourself — in a QR code: contacts, medical data, allergies, blood type. Rescuers will get the needed information in seconds.",
+        "titleTwo": "Works without apps",
+        "descriptionTwo": "Just scan the QR with your smartphone camera.\n\nNo registrations, downloads, or setup.",
+        "titleThree": "Privacy protection",
+        "descriptionThree": "Your data is stored in a secure environment. Access is only via QR code.\n\nYou decide what to show.",
+        "titleFour": "Convenient format",
+        "descriptionFour": "ScanMe is available as bracelets and stickers — choose what suits you best.",
+        "titleFive": "Reliable and durable",
+        "descriptionFive": "Resistant to water, dirt, and UV.\n\nWon't fade even after active training or rain.",
+        "titleSix": "Suitable for everyone",
+        "descriptionSix": "Athletes, children, elderly people — anyone can wear ScanMe and feel confident about their safety."
       }
     },
     "faq": {
-      "title": "поширені \n<accent>запитання</accent>",
-      "description": "Ми зібрали відповіді на найчастіші запитання, щоб допомогти вам краще зрозуміти, як працює ScanMe.",
+      "title": "frequently asked \n<accent>questions</accent>",
+      "description": "We've collected answers to the most common questions to help you better understand how ScanMe works.",
       "list": {
-        "questionOne": "Як працює Scan Me?",
-        "answerOne": "Після реєстрації ви отримуєте персональний QR-код, який містить основну медичну інформацію.\nУ разі надзвичайної ситуації рятувальники можуть відсканувати код і миттєво отримати дані, необхідні для надання допомоги.",
-        "questionTwo": "Чи потрібно встановлювати додаток?",
-        "answerTwo": "Ні. Для роботи ScanMe не потрібно завантажувати жодних додатків.\nДостатньо камери смартфона, щоб відсканувати код.",
-        "questionThree": "Чи безпечно зберігати мої дані?",
-        "answerThree": "Так. Усі ваші дані зберігаються у захищеному середовищі.\nДоступ до них можливий лише через ваш унікальний QR-код.",
-        "questionFour": "Де можна розмістити наклейку чи браслет?",
-        "answerFour": "Ви можете закріпити QR на шоломі, одязі, телефоні, браслеті або іншому зручному місці, де його легко помітять рятувальники.",
-        "questionFive": "Кому підходить Scan Me?",
-        "answerFive": "ScanMe підходить для всіх: спортсменів, дітей, літніх людей — кожен може користуватись ним для власної безпеки.",
-        "questionSix": "Як замовити Scan Me?",
-        "answerSix": "Просто натисніть кнопку «Замовити» на нашому сайті, заповніть коротку форму, і ми виготовимо ваш персональний QR-набір."
+        "questionOne": "How does Scan Me work?",
+        "answerOne": "After registration, you receive a personal QR code containing essential medical information.\nIn case of an emergency, rescuers can scan the code and instantly get the data needed to provide assistance.",
+        "questionTwo": "Do I need to install an app?",
+        "answerTwo": "No. ScanMe doesn't require downloading any apps.\nA smartphone camera is enough to scan the code.",
+        "questionThree": "Is it safe to store my data?",
+        "answerThree": "Yes. All your data is stored in a secure environment.\nAccess is only possible through your unique QR code.",
+        "questionFour": "Where can I place the sticker or bracelet?",
+        "answerFour": "You can attach the QR to a helmet, clothing, phone, bracelet, or other convenient place where rescuers can easily spot it.",
+        "questionFive": "Who is Scan Me suitable for?",
+        "answerFive": "ScanMe is suitable for everyone: athletes, children, elderly people — anyone can use it for their safety.",
+        "questionSix": "How to order Scan Me?",
+        "answerSix": "Simply click the \"Order\" button on our website, fill out a short form, and we will make your personal QR set."
       }
     },
     "contactUs": {
-      "title": "Зв’яжіться з нами",
-      "description": "Наша команда буде рада зателефонувати вам найближчим часом та відповісти на ваші запитання.",
-      "writeUs": "Напишіть нам",
-      "email": "Наш email для зв’язку",
-      "callUs": "Зателефонуйте",
-      "schedule": "Пн–Пт, 9:00–18:00"
+      "title": "Contact us",
+      "description": "Our team will be happy to call you soon and answer your questions.",
+      "writeUs": "Write to us",
+      "email": "Our contact email",
+      "callUs": "Call us",
+      "schedule": "Mon–Fri, 9:00–18:00"
     },
     "cta": {
-      "title": "Готові подбати про <accent>свою безпеку?</accent>",
-      "description": "Долучайтеся до спільноти ScanMe — рішення, що дбає про вас і ваших близьких.\nМаленький QR може зробити велику справу — врятувати життя.",
-      "button": "Замовити наліпку"
+      "title": "Ready to take care of <accent>your safety?</accent>",
+      "description": "Join the ScanMe community — a solution that cares for you and your loved ones.\nA small QR can make a big difference — save a life.",
+      "button": "Order sticker"
     }
   },
   "signInPage": {
-    "title": "Вхід до акаунту",
-    "description": "Увійдіть до свого облікового запису Scan Me за допомогою електронної пошти.",
-    "forgotPassword": "Забули пароль?",
-    "login": "Увійти",
-    "noAccount": "Не маєте облікового запису?",
-    "signUp": "Зареєструватися",
-    "qr": "QR-наклейка, яка може <accent>врятувати життя</accent>",
+    "title": "Account login",
+    "description": "Sign in to your Scan Me account using your email.",
+    "forgotPassword": "Forgot password?",
+    "login": "Sign in",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up",
+    "qr": "QR sticker that can <accent>save lives</accent>",
     "errors": {
-      "wrongCredentials": "Невірний email або пароль",
-      "invalidEmail": "Невірний формат email",
-      "accountDisabled": "Обліковий запис відключено",
-      "networkError": "Помилка мережі. Перевірте інтернет-з'єднання",
-      "manyRequests": "Забагато спроб. Спробуйте пізніше",
-      "signInError": "Помилка входу: ",
-      "unknownError": "Невідома помилка. Спробуйте пізніше"
+      "wrongCredentials": "Invalid email or password",
+      "invalidEmail": "Invalid email format",
+      "accountDisabled": "Account disabled",
+      "networkError": "Network error. Check your internet connection",
+      "manyRequests": "Too many attempts. Please try again later",
+      "signInError": "Sign in error: ",
+      "unknownError": "Unknown error. Please try again later"
     }
   },
   "forgotPasswordPage": {
-    "title": "Відновлення пароля",
-    "description": "Введіть адресу електронної пошти, прив'язану до вашого акаунта, і ми надішлемо вам посилання для створення нового пароля.",
-    "send": "Надіслати посилання",
-    "changeAccount": "Змінити акаунт",
-    "success": "Посилання для відновлення пароля надіслано на вашу електронну пошту. Перевірте пошту та перейдіть за посиланням.",
+    "title": "Password recovery",
+    "description": "Enter the email address associated with your account, and we will send you a link to create a new password.",
+    "send": "Send link",
+    "changeAccount": "Change account",
+    "success": "Password recovery link has been sent to your email. Please check your email and follow the link.",
     "errors": {
-      "invalidEmail": "Невірний формат email",
-      "accountDisabled": "Обліковий запис відключено",
-      "networkError": "Помилка мережі. Перевірте інтернет-з'єднання",
-      "manyRequests": "Забагато спроб. Спробуйте пізніше",
-      "invalidUrl": "Помилка налаштування посилання. Зверніться до підтримки",
-      "resetError": "Помилка відновлення пароля: ",
-      "unknownError": "Невідома помилка. Спробуйте пізніше"
+      "invalidEmail": "Invalid email format",
+      "accountDisabled": "Account disabled",
+      "networkError": "Network error. Check your internet connection",
+      "manyRequests": "Too many attempts. Please try again later",
+      "invalidUrl": "Link configuration error. Please contact support",
+      "resetError": "Password recovery error: ",
+      "unknownError": "Unknown error. Please try again later"
+    }
+  },
+  "resetPasswordPage": {
+    "title": "Create new password",
+    "description": "Enter a new password that you want to set for your account.",
+    "verifying": "Verifying code...",
+    "confirmPasswordPlaceholder": "Confirm password",
+    "submit": "Set new password",
+    "login": "Sign in",
+    "success": "Password successfully changed! Redirecting to sign in page...",
+    "passwordSetSuccess": "Password successfully set! Redirecting...",
+    "errors": {
+      "noCode": "Password reset code is missing or invalid",
+      "expiredCode": "Password reset code has expired. Please request a new email",
+      "invalidCode": "Invalid password reset code",
+      "weakPassword": "Password is too weak. Minimum 6 characters",
+      "verifyError": "Error verifying code. Please try again",
+      "resetError": "Error setting password: ",
+      "unknownError": "Unknown error. Please try again later"
     }
   }
 }

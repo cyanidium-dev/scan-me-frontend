@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import Container from "../shared/container/Container";
 import ForgotPasswordForm from "../shared/forms/ForgotPasswordForm";
 import SectionTitle from "../shared/titles/SectionTitle";
-import Image from "next/image";
+import AnimatedAuthImage from "../shared/images/AnimatedAuthImage";
 
 export default function ForgotPassword() {
   const t = useTranslations("signInPage");
@@ -16,15 +16,7 @@ export default function ForgotPassword() {
             accent: (chunks) => <span className="text-accent">{chunks}</span>,
           })}
         </SectionTitle>
-        <div className="hidden lg:block absolute bottom-[-403px] lg:right-[-300px] xl:right-[-110px] w-[1367px] h-[1117px]">
-          <Image
-            src="/images/signInPage/scanme.webp"
-            alt="scan me"
-            width={1367}
-            height={1117}
-            className="object-cover"
-          />
-        </div>
+        <AnimatedAuthImage />
       </Container>
     </section>
   );
