@@ -225,6 +225,7 @@
       "surnamePlaceholder": "Wprowadź nazwisko",
       "dateOfBirth": "Data urodzenia*",
       "dateOfBirthPlaceholder": "Wprowadź datę urodzenia",
+      "dateOfBirthFutureError": "Data nie może być z przyszłości",
       "gender": "Płeć*",
       "male": "Męska",
       "female": "Żeńska",

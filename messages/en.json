@@ -225,6 +225,7 @@
       "surnamePlaceholder": "Enter surname",
       "dateOfBirth": "Date of birth*",
       "dateOfBirthPlaceholder": "Enter date of birth",
+      "dateOfBirthFutureError": "Date cannot be in the future",
       "gender": "Gender*",
       "male": "Male",
       "female": "Female",

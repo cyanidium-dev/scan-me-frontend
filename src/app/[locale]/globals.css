@@ -1,7 +1,8 @@
 @import "tailwindcss";
 @import "react-phone-number-input/style.css";
-@plugin './hero';
-@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@plugin './hero.ts';
+@source '../../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+/* @custom-variant dark (&:is(.dark *)); */
 @plugin 'tailwind-scrollbar' {
   nocompatible: true;
   preferredstrategy: "pseudoelements";
@@ -135,4 +136,8 @@
   .PhoneInputCountrySelect::-webkit-scrollbar-thumb:hover {
     background: rgba(250, 54, 68, 0.6);
   }
+
+  .group-data-\[invalid\=true\]\:text-danger:is(:where(.group)[data-invalid="true"] *) {
+    color: var(--color-accent)!important;
+}
 }
