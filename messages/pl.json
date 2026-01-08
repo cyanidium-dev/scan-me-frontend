@@ -233,6 +233,30 @@
       "cityPlaceholder": "Miasto",
       "addressPlaceholder": "Adres",
       "addPhoto": "Dodaj zdjęcie"
+    },
+    "medicalData": {
+      "title": "Informacje medyczne",
+      "description": "Te dane pomogą medykom udzielić szybkiej i właściwej pomocy w razie potrzeby.",
+      "bloodType": "Grupa krwi*",
+      "bloodTypePlaceholder": "Wybierz swoją grupę krwi",
+      "rhFactor": "Czynnik Rh*",
+      "allergies": "Alergie",
+      "allergiesPlaceholder": "Wskaż alergie, jeśli występują",
+      "allergiesAdd": "Dodaj alergię",
+      "chronicDiseases": "Choroby przewlekłe",
+      "chronicDiseasesPlaceholder": "Opisz choroby przewlekłe...",
+      "operations": "Przebyte operacje",
+      "yearPlaceholder": "Wskaż rok",
+      "operationsPlaceholder": "Wskaż operacje",
+      "addOperation": "Dodaj operację",
+      "medications": "Przyjmowane leki",
+      "medicationsPlaceholder": "Na przykład: insulina, leki przeciwhistaminowe…",
+      "addMedication": "Dodaj lek",
+      "doctorContact": "Kontakty lekarzy",
+      "doctorNamePlaceholder": "Imię lekarza",
+      "doctorPhonePlaceholder": "Numer telefonu lekarza",
+      "doctorSpecializationPlaceholder": "Wskaż specjalizację lekarza",
+      "addDoctor": "Dodaj lekarza"
     }
   }
 }

@@ -232,6 +232,30 @@
       "cityPlaceholder": "Місто",
       "addressPlaceholder": "Адреса",
       "addPhoto": "Додати фото"
+    },
+    "medicalData": {
+      "title": "Медична інформація",
+      "description": "Ці дані допоможуть медикам надати швидку та правильну допомогу у разі потреби.",
+      "bloodType": "Група крові*",
+      "bloodTypePlaceholder": "Оберіть вашу групу крові",
+      "rhFactor": "Резуз-фактор*",
+      "allergies": "Алергії",
+      "allergiesPlaceholder": "Вкажіть алергії, якщо є",
+      "allergiesAdd": "Додати алергію",
+      "chronicDiseases": "Хронічні захворювання",
+      "chronicDiseasesPlaceholder": "Опишіть хронічні захворювання...",
+      "operations": "Перенесені операції",
+      "yearPlaceholder": "Вкажіть рік",
+      "operationsPlaceholder": "Вкажіть операції",
+      "addOperation": "Додати операцію",
+      "medications": "Прийняті ліки",
+      "medicationsPlaceholder": "Наприклад: інсулін, антигістамінні…",
+      "addMedication": "Додати ліки",
+      "doctorContact": "Контакти лікарів",
+      "doctorNamePlaceholder": "Ім’я лікаря",
+      "doctorPhonePlaceholder": "Номер лікаря",
+      "doctorSpecializationPlaceholder": "Вкажіть спеціалізацію лікаря",
+      "addDoctor": "Додати лікаря"
     }
   }
 }

@@ -233,6 +233,30 @@
       "cityPlaceholder": "City",
       "addressPlaceholder": "Address",
       "addPhoto": "Add photo"
+    },
+    "medicalData": {
+      "title": "Medical information",
+      "description": "This data will help medics provide quick and proper assistance if needed.",
+      "bloodType": "Blood type*",
+      "bloodTypePlaceholder": "Select your blood type",
+      "rhFactor": "Rh factor*",
+      "allergies": "Allergies",
+      "allergiesPlaceholder": "Specify allergies, if any",
+      "allergiesAdd": "Add allergy",
+      "chronicDiseases": "Chronic diseases",
+      "chronicDiseasesPlaceholder": "Describe chronic diseases...",
+      "operations": "Past surgeries",
+      "yearPlaceholder": "Specify year",
+      "operationsPlaceholder": "Specify surgeries",
+      "addOperation": "Add surgery",
+      "medications": "Medications taken",
+      "medicationsPlaceholder": "For example: insulin, antihistamines…",
+      "addMedication": "Add medication",
+      "doctorContact": "Doctor contacts",
+      "doctorNamePlaceholder": "Doctor's name",
+      "doctorPhonePlaceholder": "Doctor's phone number",
+      "doctorSpecializationPlaceholder": "Specify doctor's specialization",
+      "addDoctor": "Add doctor"
     }
   }
 }
