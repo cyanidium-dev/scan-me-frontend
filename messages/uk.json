@@ -204,15 +204,34 @@
       "unknownError": "Невідома помилка. Спробуйте пізніше"
     }
   },
-
-"signUpPage": {
-  "title": "Реєстрація",
-  "description": "Реєструючись за допомогою електронної пошти, ви зможете увійти до свого облікового запису Scan Me",
-  "signUp": "Зареєструватися",
-  "haveAccount": "Вже маєте обліковий запис?",
-  "signIn": "Увійти",
-  "errors": {
-    "unknownError": "Невідома помилка. Спробуйте пізніше"
+  "signUpPage": {
+    "title": "Реєстрація",
+    "description": "Реєструючись за допомогою електронної пошти, ви зможете увійти до свого облікового запису Scan Me",
+    "signUp": "Зареєструватися",
+    "haveAccount": "Вже маєте обліковий запис?",
+    "signIn": "Увійти",
+    "errors": {
+      "unknownError": "Невідома помилка. Спробуйте пізніше"
+    },
+    "nextButton": "Продовжити",
+    "backButton": "Назад",
+    "personalData": {
+      "title": "Особисті дані",
+      "description": "Вкажіть основну інформацію про себе.",
+      "name": "Ім’я*",
+      "namePlaceholder": "Введіть ім’я",
+      "surname": "Прізвище*",
+      "surnamePlaceholder": "Введіть прізвище",
+      "dateOfBirth": "Дата народження*",
+      "dateOfBirthPlaceholder": "Введіть дату народження",
+      "gender": "Стать*",
+      "male": "Чоловіча",
+      "female": "Жіноча",
+      "address": "Адреса",
+      "countryPlaceholder": "Країна",
+      "cityPlaceholder": "Місто",
+      "addressPlaceholder": "Адреса",
+      "addPhoto": "Додати фото"
+    }
   }
-}
 }

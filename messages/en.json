@@ -213,6 +213,26 @@
     "signIn": "Sign in",
     "errors": {
       "unknownError": "Unknown error. Please try again later"
+    },
+    "nextButton": "Continue",
+    "backButton": "Back",
+    "personalData": {
+      "title": "Personal data",
+      "description": "Provide basic information about yourself.",
+      "name": "Name*",
+      "namePlaceholder": "Enter name",
+      "surname": "Surname*",
+      "surnamePlaceholder": "Enter surname",
+      "dateOfBirth": "Date of birth*",
+      "dateOfBirthPlaceholder": "Enter date of birth",
+      "gender": "Gender*",
+      "male": "Male",
+      "female": "Female",
+      "address": "Address",
+      "countryPlaceholder": "Country",
+      "cityPlaceholder": "City",
+      "addressPlaceholder": "Address",
+      "addPhoto": "Add photo"
     }
   }
 }

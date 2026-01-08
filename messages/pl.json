@@ -213,6 +213,26 @@
     "signIn": "Zaloguj się",
     "errors": {
       "unknownError": "Nieznany błąd. Spróbuj ponownie później"
+    },
+    "nextButton": "Kontynuuj",
+    "backButton": "Wstecz",
+    "personalData": {
+      "title": "Dane osobowe",
+      "description": "Podaj podstawowe informacje o sobie.",
+      "name": "Imię*",
+      "namePlaceholder": "Wprowadź imię",
+      "surname": "Nazwisko*",
+      "surnamePlaceholder": "Wprowadź nazwisko",
+      "dateOfBirth": "Data urodzenia*",
+      "dateOfBirthPlaceholder": "Wprowadź datę urodzenia",
+      "gender": "Płeć*",
+      "male": "Męska",
+      "female": "Żeńska",
+      "address": "Adres",
+      "countryPlaceholder": "Kraj",
+      "cityPlaceholder": "Miasto",
+      "addressPlaceholder": "Adres",
+      "addPhoto": "Dodaj zdjęcie"
     }
   }
 }
