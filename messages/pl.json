@@ -210,6 +210,9 @@
     "description": "Rejestrując się za pomocą adresu email, będziesz mógł zalogować się do swojego konta Scan Me",
     "signUp": "Zarejestruj się",
     "haveAccount": "Masz już konto?",
-    "signIn": "Zaloguj się"
+    "signIn": "Zaloguj się",
+    "errors": {
+      "unknownError": "Nieznany błąd. Spróbuj ponownie później"
+    }
   }
 }

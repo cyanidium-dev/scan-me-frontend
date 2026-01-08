@@ -210,6 +210,9 @@
     "description": "By registering with your email, you will be able to sign in to your Scan Me account",
     "signUp": "Sign up",
     "haveAccount": "Already have an account?",
-    "signIn": "Sign in"
+    "signIn": "Sign in",
+    "errors": {
+      "unknownError": "Unknown error. Please try again later"
+    }
   }
 }
