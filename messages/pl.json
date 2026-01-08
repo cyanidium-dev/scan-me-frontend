@@ -257,6 +257,16 @@
       "doctorPhonePlaceholder": "Numer telefonu lekarza",
       "doctorSpecializationPlaceholder": "Wskaż specjalizację lekarza",
       "addDoctor": "Dodaj lekarza"
+    },
+    "emergencyData": {
+      "title": "Dane awaryjne",
+      "description": "Dodaj kontakt bliskiej osoby lub lekarza, aby można było się z Tobą skontaktować w sytuacji krytycznej.",
+      "emergencyContact": "Kontakt awaryjny",
+      "emergencyContactPlaceholder": "Imię",
+      "emergencyContactPhonePlaceholder": "Numer telefonu",
+      "emergencyContactRelationshipPlaceholder": "Relacja",
+      "sendMessage": "Wyślij SMS podczas skanowania mojego QR",
+      "gps": "Zezwól na udostępnianie lokalizacji podczas skanowania"
     }
   }
 }

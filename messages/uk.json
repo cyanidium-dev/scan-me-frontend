@@ -228,7 +228,7 @@
       "gender": "Стать*",
       "male": "Чоловіча",
       "female": "Жіноча",
-      "address": "Адреса",
+      "address": "Адреса проживання",
       "countryPlaceholder": "Країна",
       "cityPlaceholder": "Місто",
       "addressPlaceholder": "Адреса",
@@ -262,11 +262,11 @@
       "title": "Екстрені дані",
       "description": "Додайте контакт близької людини або лікаря, щоб з вами могли зв’язатися у критичній ситуації.",
       "emergencyContact": "Екстрений контакт",
-  "emergencyContactPlaceholder": "Ім’я",
-  "emergencyContactPhonePlaceholder": "Номер телефону",
-  "emergencyContactRelationshipPlaceholder": "Ким доводиться",
-  "sendMessage": "Відправити SMS при скануванні мого QR",
-  "gps": "Дозволити передавати геопозицію при скануванні"
+      "emergencyContactPlaceholder": "Ім’я",
+      "emergencyContactPhonePlaceholder": "Номер телефону",
+      "emergencyContactRelationshipPlaceholder": "Ким доводиться",
+      "sendMessage": "Відправити SMS при скануванні мого QR",
+      "gps": "Дозволити передавати геопозицію при скануванні"
     }
   }
 }

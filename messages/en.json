@@ -257,6 +257,16 @@
       "doctorPhonePlaceholder": "Doctor's phone number",
       "doctorSpecializationPlaceholder": "Specify doctor's specialization",
       "addDoctor": "Add doctor"
+    },
+    "emergencyData": {
+      "title": "Emergency data",
+      "description": "Add a contact of a close person or doctor so they can be contacted in a critical situation.",
+      "emergencyContact": "Emergency contact",
+      "emergencyContactPlaceholder": "Name",
+      "emergencyContactPhonePlaceholder": "Phone number",
+      "emergencyContactRelationshipPlaceholder": "Relationship",
+      "sendMessage": "Send SMS when scanning my QR",
+      "gps": "Allow sharing location when scanning"
     }
   }
 }

@@ -4,7 +4,7 @@ import SignUp from "@/components/signUpPage/SignUp";
 
 export default function SignUpPage() {
   return (
-    <div className="bg-black overflow-hidden">
+    <div className="bg-black overflow-hidden" data-signup-page>
       <Header />
       <main className="flex-1">
         <SignUp />
