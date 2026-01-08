@@ -204,5 +204,15 @@
       "resetError": "Błąd ustawiania hasła: ",
       "unknownError": "Nieznany błąd. Spróbuj ponownie później"
     }
+  },
+  "signUpPage": {
+    "title": "Rejestracja",
+    "description": "Rejestrując się za pomocą adresu email, będziesz mógł zalogować się do swojego konta Scan Me",
+    "signUp": "Zarejestruj się",
+    "haveAccount": "Masz już konto?",
+    "signIn": "Zaloguj się",
+    "errors": {
+      "unknownError": "Nieznany błąd. Spróbuj ponownie później"
+    }
   }
 }

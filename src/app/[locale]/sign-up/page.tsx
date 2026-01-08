@@ -1,19 +1,15 @@
-import SignUpForm from "@/components/shared/auth/SignUpForm";
-import Container from "@/components/shared/container/Container";
+import Header from "@/components/shared/header/Header";
+import Footer from "@/components/shared/footer/Footer";
+import SignUp from "@/components/signUpPage/SignUp";
 
 export default function SignUpPage() {
   return (
-    <Container>
-      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold">
-              Реєстрація
-            </h2>
-          </div>
-          <SignUpForm />
-        </div>
-      </div>
-    </Container>
+    <div className="bg-black overflow-hidden">
+      <Header />
+      <main className="flex-1">
+        <SignUp />
+      </main>
+      <Footer />
+    </div>
   );
 }
