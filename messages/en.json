@@ -243,6 +243,8 @@
       "bloodType": "Blood type*",
       "bloodTypePlaceholder": "Select your blood type",
       "rhFactor": "Rh factor*",
+      "rhPositive": "+",
+      "rhNegative": "-",
       "allergies": "Allergies",
       "allergiesPlaceholder": "Specify allergies, if any",
       "allergiesAdd": "Add allergy",

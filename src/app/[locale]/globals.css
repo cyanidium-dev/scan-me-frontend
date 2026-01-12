@@ -155,4 +155,14 @@
     border-color: var(--color-accent) !important;
   }
 
+  /* Select Customization - перевизначення content1 кольору на білий */
+  .bg-content1 {
+    background-color: var(--color-white) !important;
+  }
+
+  /* Select Customization - перевизначення focus кольору на акцентний 40% */
+  .data-\[selectable\=true\]\:focus\:bg-default[data-selectable="true"]:focus {
+    background-color: rgba(250, 54, 68, 0.25) !important;
+  }
+
 }
