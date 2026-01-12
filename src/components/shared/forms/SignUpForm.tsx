@@ -32,7 +32,7 @@ interface SignUpFormData {
 
 interface SignUpFormProps {
   currentStep?: SignUpStep;
-  onStepChange?: (step: number) => void;
+  onStepChange?: (step: SignUpStep) => void;
 }
 
 export default function SignUpForm({ currentStep: externalStep, onStepChange }: SignUpFormProps) {
@@ -50,7 +50,7 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
     name: "",
     surname: "",
     dateOfBirth: "",
-    gender: "",
+    gender: "male",
     photo: null,
     country: "",
     city: "",
@@ -125,27 +125,21 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
     onStepChange?.(newStep);
   };
 
-  // Стилі залежно від кроку
-  const containerClasses =
-    currentStep === 0
-      ? "relative z-10 lg:w-100 px-4 lg:px-8 py-6 lg:pt-12 lg:pb-8 bg-white rounded-[16px] shrink-0"
-      : "relative z-10 w-full max-w-full px-4 lg:px-8 xl:px-16 bg-white";
+  // Стилі для кроку 0
+  const containerClasses = "relative z-10 lg:w-100 px-4 lg:px-8 py-6 lg:pt-12 lg:pb-8 bg-white rounded-[16px] shrink-0";
 
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      exit="exit"
-      viewport={{ once: true, amount: 0.3 }}
-      variants={fadeInAnimation({ scale: 0.85, delay: 0.3 })}
-      className={containerClasses}
-    >
-      {/* Індикатор кроків - показуємо тільки з кроку 1 */}
-      {currentStep > 0 && <Stepper currentStep={currentStep} />}
-
+    <>
       {/* Крок 0: Email та Password */}
       {currentStep === 0 && (
-        <>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          exit="exit"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInAnimation({ scale: 0.85, delay: 0.3 })}
+          className={containerClasses}
+        >
           <h2 className="mb-4 lg:mb-6 font-actay text-[24px] lg:text-[32px] font-bold leading-[120%] uppercase text-center">
             {t("signUpPage.title")}
           </h2>
@@ -160,73 +154,78 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
             validationSchema={validationSchema}
             onSubmit={handleStep0Submit}
           >
-            <Form className="flex flex-col gap-4">
-              {error && (
-                <div className="bg-accent/15 border border-accent text-accent px-4 py-3 rounded mb-4">
-                  {error}
-                </div>
-              )}
+            {({ isValid, dirty }) => (
+              <Form className="flex flex-col gap-4">
+                {error && (
+                  <div className="bg-accent/15 border border-accent text-accent px-4 py-3 rounded mb-4">
+                    {error}
+                  </div>
+                )}
 
-              <CustomizedInput
-                fieldName="email"
-                placeholder={t("forms.emailPlaceholder")}
-                inputType="email"
-                icon={<EnvelopeIcon />}
-                fieldClassName="h-12"
-              />
+                <CustomizedInput
+                  fieldName="email"
+                  placeholder={t("forms.emailPlaceholder")}
+                  inputType="email"
+                  icon={<EnvelopeIcon />}
+                  fieldClassName="h-12"
+                />
 
-              <CustomizedInput
-                fieldName="password"
-                placeholder={t("forms.passwordPlaceholder")}
-                inputType="password"
-                icon={<KeyIcon />}
-                fieldClassName="h-12 "
-              />
+                <CustomizedInput
+                  fieldName="password"
+                  placeholder={t("forms.passwordPlaceholder")}
+                  inputType="password"
+                  icon={<KeyIcon />}
+                  fieldClassName="h-12 "
+                />
 
-              <MainButton
-                type="submit"
-                variant="gradient"
-                className="w-full h-[54px] mt-1 lg:mt-2"
-                disabled={loading}
-              >
-                {loading ? t("forms.loading") : t("signUpPage.signUp")}
-              </MainButton>
-              <div className="h-[1px] my-1 lg:my-2 bg-grey" />
-              <p className="text-[10px] lg:text-[12px] font-light leading-none text-center">
-                {t("signUpPage.haveAccount")}&nbsp;&nbsp;
-                <Link
-                  href="/sign-in"
-                  className="text-accent border-b border-accent xl:hover:text-accent/70 xl:hover:border-accent/70 focus-visible:text-accent/70
-              focus-visible:border-accent/70 transition duration-300 ease-out"
+                <MainButton
+                  type="submit"
+                  variant="gradient"
+                  className="w-full h-[54px] mt-1 lg:mt-2"
+                  disabled={loading || !(isValid && dirty)}
                 >
-                  {t("signUpPage.signIn")}
-                </Link>
-              </p>
-            </Form>
+                  {loading ? t("forms.loading") : t("signUpPage.signUp")}
+                </MainButton>
+                <div className="h-[1px] my-1 lg:my-2 bg-grey" />
+                <p className="text-[10px] lg:text-[12px] font-light leading-none text-center">
+                  {t("signUpPage.haveAccount")}&nbsp;&nbsp;
+                  <Link
+                    href="/sign-in"
+                    className="text-accent border-b border-accent xl:hover:text-accent/70 xl:hover:border-accent/70 focus-visible:text-accent/70
+              focus-visible:border-accent/70 transition duration-300 ease-out"
+                  >
+                    {t("signUpPage.signIn")}
+                  </Link>
+                </p>
+              </Form>
+            )}
           </Formik>
-        </>
+        </motion.div>
       )}
 
       {/* Крок 1: Персональні дані */}
       {currentStep === 1 && (
-        <PersonalDataStep
-          initialValues={{
-            name: formData.name,
-            surname: formData.surname,
-            dateOfBirth: formData.dateOfBirth,
-            gender: formData.gender,
-            photo: formData.photo,
-            country: formData.country,
-            city: formData.city,
-            address: formData.address,
-          }}
-          onSubmit={handleStep1Submit}
-          onBack={handleBackToStep0}
-          error={error}
-          loading={loading}
-        />
+        <>
+          <Stepper currentStep={currentStep} />
+          <PersonalDataStep
+            initialValues={{
+              name: formData.name,
+              surname: formData.surname,
+              dateOfBirth: formData.dateOfBirth,
+              gender: formData.gender,
+              photo: formData.photo,
+              country: formData.country,
+              city: formData.city,
+              address: formData.address,
+            }}
+            onSubmit={handleStep1Submit}
+            onBack={handleBackToStep0}
+            error={error}
+            loading={loading}
+          />
+        </>
       )}
-    </motion.div>
+    </>
   );
 }
 

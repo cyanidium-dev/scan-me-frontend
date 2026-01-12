@@ -7,9 +7,11 @@ import SignUpForm from "../shared/forms/SignUpForm";
 import SectionTitle from "../shared/titles/SectionTitle";
 import AnimatedAuthImage from "../shared/images/AnimatedAuthImage";
 
+type SignUpStep = 0 | 1 | 2 | 3;
+
 export default function SignUp() {
   const t = useTranslations("signInPage");
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState<SignUpStep>(0);
 
   // Змінюємо фон сторінки залежно від кроку
   useEffect(() => {
@@ -45,10 +47,10 @@ export default function SignUp() {
 
   // На кроці 1+ - повноекранний білий фон
   return (
-    <section className="min-h-screen bg-white pt-[147px] lg:pt-[205px] pb-15 lg:pb-[105px]">
-      <div className="w-full max-w-full">
+    <section className="min-h-screen bg-white pt-26 lg:pt-[205px] pb-15 lg:pb-[105px]">
+      <Container>
         <SignUpForm currentStep={currentStep} onStepChange={setCurrentStep} />
-      </div>
+      </Container>
     </section>
   );
 }

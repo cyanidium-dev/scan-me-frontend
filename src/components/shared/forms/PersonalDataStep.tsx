@@ -82,9 +82,10 @@ export default function PersonalDataStep({
                                     <DatePickerField
                                         fieldName="dateOfBirth"
                                         label={t("signUpPage.personalData.dateOfBirth")}
+                                        className="lg:w-[calc(50%-12px)]"
                                     />
 
-                                    <div className="flex gap-4 lg:gap-6">
+                                    <div className="flex gap-4 lg:gap-6 lg:w-[calc(50%-12px)]">
                                         {/* Поле статі */}
                                         <div className="w-[calc(50%-8px)] lg:w-[calc(50%-12px)]">
                                             <GenderRadioGroup
@@ -152,7 +153,7 @@ export default function PersonalDataStep({
                         <MainButton
                             type="submit"
                             variant="gradient"
-                            className="w-fit px-10 lg:px-22.5 lg:flex-1 h-[54px]"
+                            className="w-fit px-10 lg:px-22.5 h-[54px]"
                             disabled={isSubmitting || loading || !(isValid && dirty)}
                         >
                             {isSubmitting || loading

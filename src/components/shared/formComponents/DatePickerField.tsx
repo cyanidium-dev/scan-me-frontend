@@ -12,9 +12,10 @@ import { ErrorMessage } from "formik";
 interface DatePickerFieldProps {
     fieldName: string;
     label: string;
+    className?: string;
 }
 
-export default function DatePickerField({ fieldName, label }: DatePickerFieldProps) {
+export default function DatePickerField({ fieldName, label, className }: DatePickerFieldProps) {
     const { setFieldValue, setFieldTouched, validateField, values, errors, touched } = useFormikContext<any>();
     const locale = useLocale();
     const hasError = !!(touched[fieldName] && errors[fieldName]);
@@ -63,7 +64,7 @@ export default function DatePickerField({ fieldName, label }: DatePickerFieldPro
     };
 
     return (
-        <div className="flex flex-col relative">
+        <div className={twMerge("flex flex-col relative", className)}>
             <label className="mb-2 text-[12px] lg:text-[14px] font-medium leading-[120%]">
                 {label}
             </label>

@@ -4,13 +4,15 @@ import { useFormikContext } from "formik";
 import { useTranslations } from "next-intl";
 import { RadioGroup, Radio } from "@heroui/react";
 import { ErrorMessage } from "formik";
+import { twMerge } from "tailwind-merge";
 
 interface GenderRadioGroupProps {
     fieldName: string;
     label: string;
+    className?: string;
 }
 
-export default function GenderRadioGroup({ fieldName, label }: GenderRadioGroupProps) {
+export default function GenderRadioGroup({ fieldName, label, className }: GenderRadioGroupProps) {
     const { setFieldValue, setFieldTouched, values, errors, touched } = useFormikContext<any>();
     const t = useTranslations();
     const hasError = !!(touched[fieldName] && errors[fieldName]);
@@ -21,7 +23,7 @@ export default function GenderRadioGroup({ fieldName, label }: GenderRadioGroupP
     };
 
     return (
-        <div className="flex flex-col relative">
+        <div className={twMerge("flex flex-col relative", className)}>
             <label className="mb-5 text-[14px] font-medium leading-[120%]">
                 {label}
             </label>
@@ -30,7 +32,7 @@ export default function GenderRadioGroup({ fieldName, label }: GenderRadioGroupP
                 onValueChange={handleChange}
                 isInvalid={hasError}
                 classNames={{
-                    base: "gap-4",
+                    base: "gap-4 px-2",
                     wrapper: "lg:w-fit lg:flex-row flex-wrap lg:flex-nowrap gap-4",
                 }}
             >
