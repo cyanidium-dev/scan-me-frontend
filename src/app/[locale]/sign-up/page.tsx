@@ -9,7 +9,7 @@ export default function SignUpPage() {
       <main className="flex-1">
         <SignUp />
       </main>
-      <Footer />
+      <Footer className="overflow-hidden"/>
     </div>
   );
 }
