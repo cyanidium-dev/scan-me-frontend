@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Formik, Form } from "formik";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import { useAuth } from "@/hooks/useAuth";
 import CustomizedInput from "../formComponents/CustomizedInput";
 import MainButton from "../buttons/MainButton";
 import EnvelopeIcon from "../icons/Envelope";
@@ -23,6 +24,7 @@ interface SignUpFormData {
   surname: string;
   dateOfBirth: string;
   gender: string;
+  photo: File | null;
   country: string;
   city: string;
   address: string;
@@ -35,6 +37,7 @@ interface SignUpFormProps {
 
 export default function SignUpForm({ currentStep: externalStep, onStepChange }: SignUpFormProps) {
   const t = useTranslations();
+  const { signUp } = useAuth();
   const [internalStep, setInternalStep] = useState<SignUpStep>(0);
   
   // Використовуємо зовнішній крок, якщо він переданий, інакше внутрішній
@@ -48,6 +51,7 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
     surname: "",
     dateOfBirth: "",
     gender: "",
+    photo: null,
     country: "",
     city: "",
     address: "",
@@ -57,43 +61,60 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
 
   const handleStep0Submit = async (values: { email: string; password: string }) => {
     setError(null);
-    setLoading(true);
-    try {
-      // Зберігаємо дані email та password
-      setFormData((prev) => ({
-        ...prev,
-        email: values.email,
-        password: values.password,
-      }));
-      // Переходимо на крок 1
-      const newStep = 1;
-      if (externalStep === undefined) {
-        setInternalStep(newStep);
-      }
-      onStepChange?.(newStep);
-    } catch (err) {
-      setError(t("signUpPage.errors.unknownError"));
-    } finally {
-      setLoading(false);
+    // Зберігаємо дані email та password
+    setFormData((prev) => ({
+      ...prev,
+      email: values.email,
+      password: values.password,
+    }));
+    // Переходимо на крок 1
+    const newStep = 1;
+    if (externalStep === undefined) {
+      setInternalStep(newStep);
     }
+    onStepChange?.(newStep);
   };
 
-  const handleStep1Submit = (values: {
+  const handleStep1Submit = async (values: {
     name: string;
     surname: string;
     dateOfBirth: string;
     gender: string;
+    photo: File | null;
     country: string;
     city: string;
     address: string;
   }) => {
-    // Зберігаємо дані персональних даних
-    setFormData((prev) => ({
-      ...prev,
-      ...values,
-    }));
-    // TODO: Перехід на крок 2 (медичні дані)
-    // setCurrentStep(2);
+    setError(null);
+    setLoading(true);
+    try {
+      // Зберігаємо дані персональних даних
+      const updatedFormData = {
+        ...formData,
+        ...values,
+      };
+      setFormData(updatedFormData);
+
+      // Створюємо користувача - тут Firebase перевірить, чи email вже існує
+      await signUp(updatedFormData.email, updatedFormData.password);
+      
+      // Якщо реєстрація успішна, можна перейти на наступний крок або завершити
+      // TODO: Перехід на крок 2 (медичні дані) або завершення реєстрації
+      // setCurrentStep(2);
+    } catch (err: any) {
+      // Обробка помилок Firebase
+      if (err?.code === "auth/email-already-in-use") {
+        setError(t("signUpPage.errors.emailAlreadyExists"));
+      } else if (err?.code === "auth/weak-password") {
+        setError(t("signUpPage.errors.weakPassword") || "Пароль занадто слабкий");
+      } else if (err?.code === "auth/invalid-email") {
+        setError(t("signUpPage.errors.invalidEmail") || "Невірний формат email");
+      } else {
+        setError(t("signUpPage.errors.unknownError"));
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleBackToStep0 = () => {
@@ -194,12 +215,15 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
             surname: formData.surname,
             dateOfBirth: formData.dateOfBirth,
             gender: formData.gender,
+            photo: formData.photo,
             country: formData.country,
             city: formData.city,
             address: formData.address,
           }}
           onSubmit={handleStep1Submit}
           onBack={handleBackToStep0}
+          error={error}
+          loading={loading}
         />
       )}
     </motion.div>

@@ -211,6 +211,7 @@
     "haveAccount": "Вже маєте обліковий запис?",
     "signIn": "Увійти",
     "errors": {
+      "emailAlreadyExists": "Користувач з таким email вже зареєстрований",
       "unknownError": "Невідома помилка. Спробуйте пізніше"
     },
     "nextButton": "Продовжити",

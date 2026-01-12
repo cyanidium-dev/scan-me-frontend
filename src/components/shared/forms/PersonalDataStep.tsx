@@ -8,6 +8,7 @@ import { I18nProvider } from "@react-aria/i18n";
 import { twMerge } from "tailwind-merge";
 import { useState, useEffect } from "react";
 import CustomizedInput from "../formComponents/CustomizedInput";
+import PhotoUploadField from "../formComponents/PhotoUploadField";
 import MainButton from "../buttons/MainButton";
 import { PersonalDataValidation } from "@/schemas/PersonalDataValidation";
 
@@ -15,7 +16,7 @@ function DatePickerField({ fieldName, label }: { fieldName: string; label: strin
     const { setFieldValue, setFieldTouched, validateField, values, errors, touched } = useFormikContext<any>();
     const locale = useLocale();
     const hasError = !!(touched[fieldName] && errors[fieldName]);
-    
+
     // Локальний стан для DatePicker - uncontrolled режим, як в прикладі Hero UI
     const [dateValue, setDateValue] = useState<CalendarDate | null>(() => {
         // Ініціалізуємо з Formik значенням
@@ -28,16 +29,16 @@ function DatePickerField({ fieldName, label }: { fieldName: string; label: strin
         }
         return null;
     });
-    
+
     // Мапінг мов для Hero UI DatePicker
     const localeMap: Record<string, string> = {
         uk: "uk-UA",
         en: "en-US",
         pl: "pl-PL",
     };
-    
+
     const datePickerLocale = localeMap[locale] || "uk-UA";
-    
+
     // Максимальна дата - сьогодні
     const maxDate = today(getLocalTimeZone());
 
@@ -86,14 +87,14 @@ function DatePickerField({ fieldName, label }: { fieldName: string; label: strin
                         ),
                         input: twMerge(
                             "text-[12px] lg:text-[14px] leading-[120%] font-normal bg-transparent uppercase",
-                            hasError 
-                                ? "!text-accent placeholder:!text-accent/40 [&::placeholder]:!text-accent/40" 
+                            hasError
+                                ? "!text-accent placeholder:!text-accent/40 [&::placeholder]:!text-accent/40"
                                 : "text-black placeholder:text-black/40 [&::placeholder]:text-black/40"
                         ),
                         segment: twMerge(
                             "text-[12px] lg:text-[14px] leading-[120%] font-normal uppercase",
-                            hasError 
-                                ? "!text-accent placeholder:!text-accent/40 [&::placeholder]:!text-accent/40" 
+                            hasError
+                                ? "!text-accent placeholder:!text-accent/40 [&::placeholder]:!text-accent/40"
                                 : "text-black placeholder:text-black/40 [&::placeholder]:text-black/40"
                         ),
                         innerWrapper: "bg-transparent",
@@ -115,18 +116,23 @@ interface PersonalDataStepProps {
         surname: string;
         dateOfBirth: string;
         gender: string;
+        photo: File | null;
         country: string;
         city: string;
         address: string;
     };
-    onSubmit: (values: any) => void;
+    onSubmit: (values: any) => Promise<void>;
     onBack: () => void;
+    error?: string | null;
+    loading?: boolean;
 }
 
 export default function PersonalDataStep({
     initialValues,
     onSubmit,
     onBack,
+    error,
+    loading = false,
 }: PersonalDataStepProps) {
     const t = useTranslations();
     const validationSchema = PersonalDataValidation();
@@ -146,14 +152,20 @@ export default function PersonalDataStep({
                         {t("signUpPage.personalData.description")}
                     </p>
 
+                    {error && (
+                        <div className="bg-accent/15 border border-accent text-accent px-4 py-3 rounded mb-4">
+                            {error}
+                        </div>
+                    )}
+
                     <div className="flex flex-col gap-6 lg:gap-8">
-                        <div className="flex flex-col gap-4 lg:gap-6 lg:flex-row lg:justify-between">  
+                        <div className="flex flex-col gap-4 lg:gap-6 lg:flex-row lg:justify-between">
                             <CustomizedInput
-                            fieldName="name"
-                            label={t("signUpPage.personalData.name")}
-                            placeholder={t("signUpPage.personalData.namePlaceholder")}
-                            fieldClassName="h-12 lg:h-[49px]"
-                        />
+                                fieldName="name"
+                                label={t("signUpPage.personalData.name")}
+                                placeholder={t("signUpPage.personalData.namePlaceholder")}
+                                fieldClassName="h-12 lg:h-[49px]"
+                            />
 
                             <CustomizedInput
                                 fieldName="surname"
@@ -161,48 +173,55 @@ export default function PersonalDataStep({
                                 placeholder={t("signUpPage.personalData.surnamePlaceholder")}
                                 fieldClassName="h-12 lg:h-[49px]"
                             />
-                            </div>
+                        </div>
 
                         <DatePickerField
                             fieldName="dateOfBirth"
                             label={t("signUpPage.personalData.dateOfBirth")}
                         />
 
-                        {/* Поле статі */}
-                        <div className="flex flex-col relative">
-                            <label className="mb-2 text-[12px] lg:text-[14px] font-medium leading-[120%]">
-                                {t("signUpPage.personalData.gender")}
-                            </label>
-                            <div className="flex gap-4">
-                                <label className="flex items-center gap-2 cursor-pointer">
-                                    <Field
-                                        type="radio"
-                                        name="gender"
-                                        value="male"
-                                        className="w-4 h-4 text-accent border-black/40 focus:ring-accent focus:ring-2"
-                                    />
-                                    <span className="text-[12px] lg:text-[14px]">
-                                        {t("signUpPage.personalData.male")}
-                                    </span>
+                        <div className="flex gap-4 lg:gap-6">
+                            {/* Поле статі */}
+                            <div className="flex flex-col relative w-[calc(50%-8px)]">
+                                <label className="mb-5 text-[12px] lg:text-[14px] font-medium leading-[120%]">
+                                    {t("signUpPage.personalData.gender")}
                                 </label>
-                                <label className="flex items-center gap-2 cursor-pointer">
-                                    <Field
-                                        type="radio"
-                                        name="gender"
-                                        value="female"
-                                        className="w-4 h-4 text-accent border-black/40 focus:ring-accent focus:ring-2 checked:bg-accent"
-                                    />
-                                    <span className="text-[12px] lg:text-[14px]">
-                                        {t("signUpPage.personalData.female")}
-                                    </span>
-                                </label>
+                                <div className="flex flex-col gap-4 w-[calc(50%-8px)]">
+                                    <label className="flex items-center gap-2 cursor-pointer">
+                                        <Field
+                                            type="radio"
+                                            name="gender"
+                                            value="male"
+                                            className="w-4 h-4 text-accent border-black/40 focus:ring-accent focus:ring-2"
+                                        />
+                                        <span className="text-[12px] lg:text-[14px]">
+                                            {t("signUpPage.personalData.male")}
+                                        </span>
+                                    </label>
+                                    <label className="flex items-center gap-2 cursor-pointer">
+                                        <Field
+                                            type="radio"
+                                            name="gender"
+                                            value="female"
+                                            className="w-4 h-4 text-accent border-black/40 focus:ring-accent focus:ring-2 checked:bg-accent"
+                                        />
+                                        <span className="text-[12px] lg:text-[14px]">
+                                            {t("signUpPage.personalData.female")}
+                                        </span>
+                                    </label>
+                                </div>
+                                <ErrorMessage
+                                    name="gender"
+                                    component="p"
+                                    className="absolute bottom-[-12px] left-4 text-[8px] lg:text-[10px] lg:bottom-[-14px] font-light leading-[120%] text-accent"
+                                />
                             </div>
-                            <ErrorMessage
-                                name="gender"
-                                component="p"
-                                className="absolute bottom-[-12px] left-4 text-[8px] lg:text-[10px] lg:bottom-[-14px] font-light leading-[120%] text-accent"
-                            />
-                        </div>
+
+                            {/* Поле завантаження фото */}
+                            <PhotoUploadField
+                                fieldName="photo"
+                                className="w-[calc(50%-8px)]"
+                            /></div>
 
                         {/* Адреса - опціональні поля */}
                         <div className="flex flex-col gap-4">
@@ -244,11 +263,11 @@ export default function PersonalDataStep({
                             type="submit"
                             variant="gradient"
                             className="w-full lg:flex-1 h-[54px]"
-                            disabled={isSubmitting || !(isValid && dirty)}
+                            disabled={isSubmitting || loading || !(isValid && dirty)}
                         >
-                            {isSubmitting
+                            {isSubmitting || loading
                                 ? t("forms.loading")
-                                : t("signUpPage.nextButton")}
+                                : t("signUpPage.finishSignUp")}
                         </MainButton>
                     </div>
                 </Form>

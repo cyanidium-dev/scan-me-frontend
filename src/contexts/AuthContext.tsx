@@ -17,6 +17,7 @@ import {
   updateProfile as firebaseUpdateProfile,
   verifyPasswordResetCode,
   confirmPasswordReset,
+  deleteUser,
 } from "firebase/auth";
 import { auth } from "@/lib/firebase/config";
 import { AuthContextType } from "@/types/auth";
@@ -84,6 +85,31 @@ export function AuthProvider({ children }: AuthProviderProps) {
     });
   };
 
+  const checkEmailExists = async (email: string, password: string): Promise<boolean> => {
+    try {
+      // Оскільки fetchSignInMethodsForEmail застаріла, використовуємо інший підхід:
+      // Спробуємо створити користувача з тимчасовим паролем
+      // Якщо email вже існує, отримаємо помилку auth/email-already-in-use
+      // Якщо користувач був створений (email не існував), видалимо його
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      // Якщо досягли цього кроку, значить користувач був створений (email не існував)
+      // Видаляємо тимчасового користувача
+      if (userCredential.user) {
+        await deleteUser(userCredential.user);
+        await firebaseSignOut(auth);
+      }
+      return false; // Email не існував
+    } catch (error: any) {
+      // Якщо помилка "auth/email-already-in-use", значить email вже зареєстрований
+      if (error?.code === "auth/email-already-in-use") {
+        return true;
+      }
+      // Якщо інша помилка (наприклад, auth/invalid-email, auth/weak-password)
+      // вважаємо що email не існує (або не можемо перевірити)
+      return false;
+    }
+  };
+
   const value: AuthContextType = {
     user,
     loading,
@@ -94,6 +120,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     verifyResetCode,
     confirmResetPassword,
     updateProfile,
+    checkEmailExists,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

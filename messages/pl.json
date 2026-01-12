@@ -212,9 +212,11 @@
     "haveAccount": "Masz już konto?",
     "signIn": "Zaloguj się",
     "errors": {
+      "emailAlreadyExists": "Użytkownik z tym adresem email jest już zarejestrowany",
       "unknownError": "Nieznany błąd. Spróbuj ponownie później"
     },
     "nextButton": "Kontynuuj",
+    "finishSignUp": "Zakończ rejestrację",
     "backButton": "Wstecz",
     "personalData": {
       "title": "Dane osobowe",

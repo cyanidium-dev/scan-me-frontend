@@ -11,4 +11,5 @@ export interface AuthContextType {
   verifyResetCode: (code: string) => Promise<string>;
   confirmResetPassword: (code: string, newPassword: string) => Promise<void>;
   updateProfile: (displayName?: string, photoURL?: string) => Promise<void>;
+  checkEmailExists: (email: string, password: string) => Promise<boolean>;
 }

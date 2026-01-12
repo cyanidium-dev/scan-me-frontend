@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { useTranslations } from "next-intl";
-import { nameRegex } from "../regex/regex";
+import { nameRegex, addressRegex } from "../regex/regex";
 
 export const PersonalDataValidation = () => {
   const t = useTranslations("forms.errors");
@@ -39,9 +39,24 @@ export const PersonalDataValidation = () => {
         }
       }),
     gender: yup.string().required(t("required")),
-    country: yup.string(),
-    city: yup.string(),
-    address: yup.string(),
+    country: yup
+      .string()
+      .test("address-format", t("nameAllowedSymbols") || "Invalid characters", function (value) {
+        if (!value || value.trim() === "") return true; // Дозволяємо порожнє значення
+        return addressRegex.test(value);
+      }),
+    city: yup
+      .string()
+      .test("address-format", t("nameAllowedSymbols") || "Invalid characters", function (value) {
+        if (!value || value.trim() === "") return true; // Дозволяємо порожнє значення
+        return addressRegex.test(value);
+      }),
+    address: yup
+      .string()
+      .test("address-format", t("nameAllowedSymbols") || "Invalid characters", function (value) {
+        if (!value || value.trim() === "") return true; // Дозволяємо порожнє значення
+        return addressRegex.test(value);
+      }),
   });
 
   return personalDataValidationSchema;
