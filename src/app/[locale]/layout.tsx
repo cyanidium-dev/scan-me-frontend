@@ -1,11 +1,11 @@
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
-import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations, getLocale, getMessages } from "next-intl/server";
 import { getDefaultMetadata } from "@/utils/getDefaultMetadata";
-import { AuthProvider } from "@/contexts/AuthContext";
+import Providers from "@/components/shared/providers/Providers";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -50,14 +50,16 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  const messages = await getMessages();
+
   return (
     <html lang={locale}>
       <body
         className={`${montserrat.variable} ${actay.variable} flex min-h-dvh flex-col text-[12px] lg:text-[14px] font-light leading-[120%] antialiased`}
       >
-        <AuthProvider>
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
-        </AuthProvider>
+        <Providers messages={messages} locale={locale}>
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { twMerge } from "tailwind-merge";
 import Container from "../container/Container";
 import Logo from "../logo/Logo";
 import Socials from "../socials/Socials";
@@ -9,11 +10,15 @@ import Image from "next/image";
 import * as motion from "motion/react-client";
 import { fadeInAnimation } from "@/utils/animationVariants";
 
-export default function Footer() {
+interface FooterProps {
+  className?: string;
+}
+
+export default function Footer({ className }: FooterProps) {
   const t = useTranslations("footer");
 
   return (
-    <footer className="w-full py-12 rounded-t-[16px] bg-black overflow-visible">
+    <footer className={twMerge("w-full py-12 rounded-t-[16px] bg-black overflow-visible", className)}>
       <Container className="relative z-10">
         <motion.div
           initial="hidden"
