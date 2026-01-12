@@ -52,7 +52,7 @@ export default function CustomizedInput({
         <span
           className={twMerge(
             clsx(
-              "mb-2 text-[12px] lg:text-[14px] font-medium leading-[120%]",
+              "mb-2 text-[14px] font-medium leading-[120%]",
               isLabelHidden && "sr-only"
             )
           )}

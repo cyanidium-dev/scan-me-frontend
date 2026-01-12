@@ -2,7 +2,7 @@
 
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
 import { useTranslations, useLocale } from "next-intl";
-import { DatePicker } from "@heroui/react";
+import { DatePicker, RadioGroup, Radio } from "@heroui/react";
 import { CalendarDate, parseDate, today, getLocalTimeZone } from "@internationalized/date";
 import { I18nProvider } from "@react-aria/i18n";
 import { twMerge } from "tailwind-merge";
@@ -12,6 +12,63 @@ import PhotoUploadField from "../formComponents/PhotoUploadField";
 import MainButton from "../buttons/MainButton";
 import { PersonalDataValidation } from "@/schemas/PersonalDataValidation";
 import ShevronIcon from "../icons/ShevronIcon";
+
+function GenderRadioGroup({ fieldName, label }: { fieldName: string; label: string }) {
+    const { setFieldValue, setFieldTouched, values, errors, touched } = useFormikContext<any>();
+    const t = useTranslations();
+    const hasError = !!(touched[fieldName] && errors[fieldName]);
+
+    const handleChange = (value: string) => {
+        setFieldValue(fieldName, value);
+        setFieldTouched(fieldName, true, false);
+    };
+
+    return (
+        <div className="flex flex-col relative">
+            <label className="mb-5 text-[14px] font-medium leading-[120%]">
+                {label}
+            </label>
+            <RadioGroup
+                value={values[fieldName] || ""}
+                onValueChange={handleChange}
+                orientation="horizontal"
+                isInvalid={hasError}
+                classNames={{
+                    base: "gap-4",
+                    wrapper: "flex flex-col lg:flex-row gap-4",
+                }}
+            >
+                <Radio
+                    value="male"
+                
+                    classNames={{
+                        
+                        base: "max-w-none cursor-pointer",
+                        label: "text-[14px] cursor-pointer",
+                        
+                    }}
+                >
+                    {t("signUpPage.personalData.male")}
+                </Radio>
+                <Radio
+                    value="female"
+                    classNames={{
+                        base: "max-w-none cursor-pointer",
+                        label: "text-[14px] cursor-pointer",
+                        
+                    }}
+                >
+                    {t("signUpPage.personalData.female")}
+                </Radio>
+            </RadioGroup>
+            <ErrorMessage
+                name={fieldName}
+                component="p"
+                className="absolute bottom-[-12px] left-4 text-[8px] lg:text-[10px] lg:bottom-[-14px] font-light leading-[120%] text-accent"
+            />
+        </div>
+    );
+}
 
 function DatePickerField({ fieldName, label }: { fieldName: string; label: string }) {
     const { setFieldValue, setFieldTouched, validateField, values, errors, touched } = useFormikContext<any>();
@@ -63,7 +120,7 @@ function DatePickerField({ fieldName, label }: { fieldName: string; label: strin
 
     return (
         <div className="flex flex-col relative">
-            <label className="mb-2 text-[12px] lg:text-[14px] font-medium leading-[120%]">
+            <label className="mb-2 text-[14px] font-medium leading-[120%]">
                 {label}
             </label>
             <I18nProvider locale={datePickerLocale}>
@@ -187,38 +244,10 @@ export default function PersonalDataStep({
 
                                     <div className="flex gap-4 lg:gap-6">
                                         {/* Поле статі */}
-                                        <div className="flex flex-col relative w-[calc(50%-8px)] lg:w-[calc(50%-12px)]">
-                                            <label className="mb-5 text-[12px] lg:text-[14px] font-medium leading-[120%]">
-                                                {t("signUpPage.personalData.gender")}
-                                            </label>
-                                            <div className="flex flex-col lg:flex-row gap-4">
-                                                <label className="flex items-center gap-2 cursor-pointer">
-                                                    <Field
-                                                        type="radio"
-                                                        name="gender"
-                                                        value="male"
-                                                        className="w-4 h-4 text-accent border-black/40 focus:ring-accent focus:ring-2"
-                                                    />
-                                                    <span className="text-[12px] lg:text-[14px]">
-                                                        {t("signUpPage.personalData.male")}
-                                                    </span>
-                                                </label>
-                                                <label className="flex items-center gap-2 cursor-pointer">
-                                                    <Field
-                                                        type="radio"
-                                                        name="gender"
-                                                        value="female"
-                                                        className="w-4 h-4 text-accent border-black/40 focus:ring-accent focus:ring-2 checked:bg-accent"
-                                                    />
-                                                    <span className="text-[12px] lg:text-[14px]">
-                                                        {t("signUpPage.personalData.female")}
-                                                    </span>
-                                                </label>
-                                            </div>
-                                            <ErrorMessage
-                                                name="gender"
-                                                component="p"
-                                                className="absolute bottom-[-12px] left-4 text-[8px] lg:text-[10px] lg:bottom-[-14px] font-light leading-[120%] text-accent"
+                                        <div className="w-[calc(50%-8px)] lg:w-[calc(50%-12px)]">
+                                            <GenderRadioGroup
+                                                fieldName="gender"
+                                                label={t("signUpPage.personalData.gender")}
                                             />
                                         </div>
 
@@ -240,7 +269,7 @@ export default function PersonalDataStep({
 
                         {/* Адреса - опціональні поля (займають всю ширину) */}
                         <div>
-                            <span className="inline-block mb-2 text-[12px] lg:text-[14px] font-medium leading-[120%]">
+                            <span className="inline-block mb-2 text-[14px] font-medium leading-[120%]">
                                 {t("signUpPage.personalData.address")}
                             </span>
                             <div className="flex flex-col lg:flex-row gap-4 lg:gap-2">

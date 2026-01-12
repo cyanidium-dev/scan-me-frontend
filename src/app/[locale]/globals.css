@@ -139,5 +139,20 @@
 
   .group-data-\[invalid\=true\]\:text-danger:is(:where(.group)[data-invalid="true"] *) {
     color: var(--color-accent)!important;
-}
+  }
+
+  /* RadioGroup Customization - перевизначення primary кольору на accent */
+  .bg-primary {
+    background-color: var(--color-accent) !important;
+  }
+
+  .border-default {
+    border-color: var(--color-black) !important;
+    border-width: 1px !important;
+  }
+
+  .group-data-\[selected\=true\]\:border-primary:is(:where(.group)[data-selected="true"] *) {
+    border-color: var(--color-accent) !important;
+  }
+
 }

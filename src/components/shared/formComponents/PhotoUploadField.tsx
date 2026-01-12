@@ -72,7 +72,7 @@ export default function PhotoUploadField({ fieldName, label, className }: PhotoU
   return (
     <div className={twMerge("flex flex-col relative", className)}>
       {label && (
-        <label className="mb-2 text-[12px] lg:text-[14px] font-medium leading-[120%]">
+        <label className="mb-2 text-[14px] font-medium leading-[120%]">
           {label}
         </label>
       )}
