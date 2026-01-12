@@ -11,6 +11,7 @@ import CustomizedInput from "../formComponents/CustomizedInput";
 import PhotoUploadField from "../formComponents/PhotoUploadField";
 import MainButton from "../buttons/MainButton";
 import { PersonalDataValidation } from "@/schemas/PersonalDataValidation";
+import ShevronIcon from "../icons/ShevronIcon";
 
 function DatePickerField({ fieldName, label }: { fieldName: string; label: string }) {
     const { setFieldValue, setFieldTouched, validateField, values, errors, touched } = useFormikContext<any>();
@@ -159,115 +160,133 @@ export default function PersonalDataStep({
                     )}
 
                     <div className="flex flex-col gap-6 lg:gap-8">
-                        <div className="flex flex-col gap-4 lg:gap-6 lg:flex-row lg:justify-between">
-                            <CustomizedInput
-                                fieldName="name"
-                                label={t("signUpPage.personalData.name")}
-                                placeholder={t("signUpPage.personalData.namePlaceholder")}
-                                fieldClassName="h-12 lg:h-[49px]"
-                            />
+                        {/* Верхній блок: основні поля + фото на десктопі */}
+                        <div className="lg:flex lg:flex-row lg:gap-6">
+                            <div className="flex flex-col gap-6 lg:gap-8 lg:flex-1">
+                                <div className="flex flex-col gap-6 lg:gap-6 lg:flex-row lg:justify-between">
+                                    <CustomizedInput
+                                        fieldName="name"
+                                        label={t("signUpPage.personalData.name")}
+                                        placeholder={t("signUpPage.personalData.namePlaceholder")}
+                                        fieldClassName="h-12 lg:h-[49px]"
+                                    />
 
-                            <CustomizedInput
-                                fieldName="surname"
-                                label={t("signUpPage.personalData.surname")}
-                                placeholder={t("signUpPage.personalData.surnamePlaceholder")}
-                                fieldClassName="h-12 lg:h-[49px]"
+                                    <CustomizedInput
+                                        fieldName="surname"
+                                        label={t("signUpPage.personalData.surname")}
+                                        placeholder={t("signUpPage.personalData.surnamePlaceholder")}
+                                        fieldClassName="h-12 lg:h-[49px]"
+                                    />
+                                </div>
+
+                                <div className="flex flex-col lg:flex-row gap-6">
+                                    <DatePickerField
+                                        fieldName="dateOfBirth"
+                                        label={t("signUpPage.personalData.dateOfBirth")}
+                                    />
+
+                                    <div className="flex gap-4 lg:gap-6">
+                                        {/* Поле статі */}
+                                        <div className="flex flex-col relative w-[calc(50%-8px)] lg:w-[calc(50%-12px)]">
+                                            <label className="mb-5 text-[12px] lg:text-[14px] font-medium leading-[120%]">
+                                                {t("signUpPage.personalData.gender")}
+                                            </label>
+                                            <div className="flex flex-col lg:flex-row gap-4">
+                                                <label className="flex items-center gap-2 cursor-pointer">
+                                                    <Field
+                                                        type="radio"
+                                                        name="gender"
+                                                        value="male"
+                                                        className="w-4 h-4 text-accent border-black/40 focus:ring-accent focus:ring-2"
+                                                    />
+                                                    <span className="text-[12px] lg:text-[14px]">
+                                                        {t("signUpPage.personalData.male")}
+                                                    </span>
+                                                </label>
+                                                <label className="flex items-center gap-2 cursor-pointer">
+                                                    <Field
+                                                        type="radio"
+                                                        name="gender"
+                                                        value="female"
+                                                        className="w-4 h-4 text-accent border-black/40 focus:ring-accent focus:ring-2 checked:bg-accent"
+                                                    />
+                                                    <span className="text-[12px] lg:text-[14px]">
+                                                        {t("signUpPage.personalData.female")}
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <ErrorMessage
+                                                name="gender"
+                                                component="p"
+                                                className="absolute bottom-[-12px] left-4 text-[8px] lg:text-[10px] lg:bottom-[-14px] font-light leading-[120%] text-accent"
+                                            />
+                                        </div>
+
+                                        {/* Поле завантаження фото - мобільна версія */}
+                                        <PhotoUploadField
+                                            fieldName="photo"
+                                            className="lg:hidden w-[calc(50%-8px)]"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Поле завантаження фото - десктопна версія */}
+                            <PhotoUploadField
+                                fieldName="photo"
+                                className="hidden lg:block w-[36%]"
                             />
                         </div>
 
-                        <DatePickerField
-                            fieldName="dateOfBirth"
-                            label={t("signUpPage.personalData.dateOfBirth")}
-                        />
+                        {/* Адреса - опціональні поля (займають всю ширину) */}
+                        <div>
+                            <span className="inline-block mb-2 text-[12px] lg:text-[14px] font-medium leading-[120%]">
+                                {t("signUpPage.personalData.address")}
+                            </span>
+                            <div className="flex flex-col lg:flex-row gap-4 lg:gap-2">
+                                <CustomizedInput
+                                    fieldName="country"
+                                    placeholder={t("signUpPage.personalData.countryPlaceholder")}
+                                    fieldClassName="h-12 lg:h-[49px]"
+                                />
 
-                        <div className="flex gap-4 lg:gap-6">
-                            {/* Поле статі */}
-                            <div className="flex flex-col relative w-[calc(50%-8px)]">
-                                <label className="mb-5 text-[12px] lg:text-[14px] font-medium leading-[120%]">
-                                    {t("signUpPage.personalData.gender")}
-                                </label>
-                                <div className="flex flex-col gap-4 w-[calc(50%-8px)]">
-                                    <label className="flex items-center gap-2 cursor-pointer">
-                                        <Field
-                                            type="radio"
-                                            name="gender"
-                                            value="male"
-                                            className="w-4 h-4 text-accent border-black/40 focus:ring-accent focus:ring-2"
-                                        />
-                                        <span className="text-[12px] lg:text-[14px]">
-                                            {t("signUpPage.personalData.male")}
-                                        </span>
-                                    </label>
-                                    <label className="flex items-center gap-2 cursor-pointer">
-                                        <Field
-                                            type="radio"
-                                            name="gender"
-                                            value="female"
-                                            className="w-4 h-4 text-accent border-black/40 focus:ring-accent focus:ring-2 checked:bg-accent"
-                                        />
-                                        <span className="text-[12px] lg:text-[14px]">
-                                            {t("signUpPage.personalData.female")}
-                                        </span>
-                                    </label>
-                                </div>
-                                <ErrorMessage
-                                    name="gender"
-                                    component="p"
-                                    className="absolute bottom-[-12px] left-4 text-[8px] lg:text-[10px] lg:bottom-[-14px] font-light leading-[120%] text-accent"
+                                <CustomizedInput
+                                    fieldName="city"
+                                    placeholder={t("signUpPage.personalData.cityPlaceholder")}
+                                    fieldClassName="h-12 lg:h-[49px]"
+                                    isLabelHidden={true}
+                                />
+
+                                <CustomizedInput
+                                    fieldName="address"
+                                    placeholder={t("signUpPage.personalData.addressPlaceholder")}
+                                    fieldClassName="h-12 lg:h-[49px]"
+                                    isLabelHidden={true}
                                 />
                             </div>
-
-                            {/* Поле завантаження фото */}
-                            <PhotoUploadField
-                                fieldName="photo"
-                                className="w-[calc(50%-8px)]"
-                            /></div>
-
-                        {/* Адреса - опціональні поля */}
-                        <div className="flex flex-col gap-4">
-                            <CustomizedInput
-                                fieldName="country"
-                                label={t("signUpPage.personalData.address")}
-                                placeholder={t("signUpPage.personalData.countryPlaceholder")}
-                                fieldClassName="h-12 lg:h-[49px]"
-                            />
-
-                            <CustomizedInput
-                                fieldName="city"
-                                placeholder={t("signUpPage.personalData.cityPlaceholder")}
-                                fieldClassName="h-12 lg:h-[49px]"
-                                isLabelHidden={true}
-                            />
-
-                            <CustomizedInput
-                                fieldName="address"
-                                placeholder={t("signUpPage.personalData.addressPlaceholder")}
-                                fieldClassName="h-12 lg:h-[49px]"
-                                isLabelHidden={true}
-                            />
                         </div>
                     </div>
 
                     {/* Кнопки */}
-                    <div className="flex flex-col-reverse lg:flex-row gap-3 lg:gap-4 mt-4 lg:mt-6">
+                    <div className="flex lg:flex-row justify-between gap-6 mt-12">
                         <MainButton
                             type="button"
                             variant="outlineBlack"
-                            className="w-full lg:w-auto lg:px-8 h-[54px]"
+                            className="w-fit px-4 lg:px-8 h-[54px] shrink-0"
                             onClick={onBack}
                             disabled={isSubmitting}
                         >
-                            {t("signUpPage.backButton")}
+                            <ShevronIcon className="rotate-90 mr-2" /> {t("signUpPage.backButton")}
                         </MainButton>
                         <MainButton
                             type="submit"
                             variant="gradient"
-                            className="w-full lg:flex-1 h-[54px]"
+                            className="w-fit px-10 lg:px-22.5 lg:flex-1 h-[54px]"
                             disabled={isSubmitting || loading || !(isValid && dirty)}
                         >
                             {isSubmitting || loading
                                 ? t("forms.loading")
-                                : t("signUpPage.finishSignUp")}
+                                : t("signUpPage.nextButton")}
                         </MainButton>
                     </div>
                 </Form>

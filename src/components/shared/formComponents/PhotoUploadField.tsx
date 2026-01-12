@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 import { useFormikContext } from "formik";
 import { useTranslations } from "next-intl";
 import { twMerge } from "tailwind-merge";
@@ -92,10 +93,11 @@ export default function PhotoUploadField({ fieldName, label, className }: PhotoU
         />
         
         {preview ? (
-          <div className="relative size-[97px] rounded-full overflow-hidden border-2 border-accent">
-            <img
+          <div className="relative size-[97px] lg:size-[147px] rounded-full overflow-hidden border-2 border-accent">
+            <Image
               src={preview}
               alt="Preview"
+              fill
               className="w-full h-full object-cover"
             />
             <button
@@ -109,8 +111,8 @@ export default function PhotoUploadField({ fieldName, label, className }: PhotoU
           </div>
         ) : (
           <div className="relative w-full flex flex-col items-center">
-            <div className="size-[97px] rounded-full bg-accent flex items-center justify-center">
-              <CameraPlusIcon className="size-[65px] text-white" />
+            <div className="size-[97px] lg:size-[147px] rounded-full bg-accent flex items-center justify-center">
+              <CameraPlusIcon className="size-[65px] lg:size-[83px] text-white" />
             </div>
           </div>
         )}
