@@ -49,7 +49,7 @@ export default function AllergiesField() {
                     type="button"
                     variant="red"
                     onClick={addAllergy}
-                    className="hidden lg:flex w-fit px-4 lg:px-6 h-12 lg:shrink-0"
+                    className="hidden lg:flex w-fit px-4 lg:px-6 h-12 lg:shrink-0 normal-case"
                 >
                     {t("signUpPage.medicalData.allergiesAdd")}
                     <PlusIcon className="ml-2.5" />
@@ -83,7 +83,7 @@ export default function AllergiesField() {
                 type="button"
                 variant="red"
                 onClick={addAllergy}
-                className="lg:hidden w-fit px-4 lg:px-6 h-12"
+                className="lg:hidden w-fit px-4 lg:px-6 h-12 normal-case"
             >
                 {t("signUpPage.medicalData.allergiesAdd")}
                 <PlusIcon className="ml-2.5" />

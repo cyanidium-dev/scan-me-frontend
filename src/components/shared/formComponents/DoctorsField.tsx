@@ -98,7 +98,7 @@ export default function DoctorsField() {
                 type="button"
                 variant="red"
                 onClick={addDoctor}
-                className="w-fit px-4 lg:px-6 h-12"
+                className="w-fit px-4 lg:px-6 h-12 normal-case"
             >
                 {t("signUpPage.medicalData.addDoctor")}
                 <PlusIcon className="ml-2.5" />

@@ -70,7 +70,7 @@ export default function MedicationsField() {
                 type="button"
                 variant="red"
                 onClick={addMedication}
-                className="w-fit px-4 lg:px-6 h-12"
+                className="w-fit px-4 lg:px-6 h-12 normal-case"
             >
                 {t("signUpPage.medicalData.addMedication")}
                 <PlusIcon className="ml-2.5" />
