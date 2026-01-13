@@ -16,7 +16,7 @@ export default function EmergencyContactField({ index, onRemove, showRemove = fa
 
     return (
         <div className="flex flex-col gap-4">
-            <div className="flex flex-col lg:flex-row gap-2 relative">
+            <div className="flex flex-col lg:flex-row gap-4 lg:gap-2 relative">
                 <CustomizedInput
                     fieldName={`emergencyContacts[${index}].name`}
                     placeholder={t("signUpPage.emergencyData.emergencyContactPlaceholder")}

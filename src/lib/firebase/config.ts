@@ -1,5 +1,7 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage, FirebaseStorage } from "firebase/storage";
 import type { FirebaseApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -18,5 +20,20 @@ const app: FirebaseApp = getApps().length
 
 // 🔐 Auth НІКОЛИ не null
 export const auth = getAuth(app);
+
+// 🔥 Firestore Database
+export const db = getFirestore(app);
+
+// 📦 Storage для файлів (опціонально, якщо доступний)
+let storageInstance: FirebaseStorage | null = null;
+try {
+  if (firebaseConfig.storageBucket) {
+    storageInstance = getStorage(app);
+  }
+} catch (error) {
+  console.warn("Firebase Storage недоступний:", error);
+}
+
+export const storage = storageInstance;
 
 export default app;

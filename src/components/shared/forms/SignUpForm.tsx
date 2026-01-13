@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Formik, Form } from "formik";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/hooks/useAuth";
 import CustomizedInput from "../formComponents/CustomizedInput";
@@ -16,6 +16,7 @@ import Stepper from "../stepper/Stepper";
 import PersonalDataStep from "./PersonalDataStep";
 import MedicalDataStep from "./MedicalDataStep";
 import EmergencyDataStep from "./EmergencyDataStep";
+import { saveUserProfile, uploadUserPhoto } from "@/lib/firebase/userService";
 
 type SignUpStep = 0 | 1 | 2 | 3;
 
@@ -49,7 +50,8 @@ interface SignUpFormProps {
 
 export default function SignUpForm({ currentStep: externalStep, onStepChange }: SignUpFormProps) {
   const t = useTranslations();
-  const { signUp } = useAuth();
+  const { signUp, checkEmailExists } = useAuth();
+  const router = useRouter();
   const [internalStep, setInternalStep] = useState<SignUpStep>(0);
   
   // Використовуємо зовнішній крок, якщо він переданий, інакше внутрішній
@@ -163,10 +165,74 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
       };
       setFormData(updatedFormData);
 
-      // Створюємо користувача - тут Firebase перевірить, чи email вже існує
-      await signUp(updatedFormData.email, updatedFormData.password);
-      
-      // TODO: Після успішної реєстрації можна перенаправити на іншу сторінку
+      // 1. Перевіряємо, чи email вже зареєстрований
+      const emailExists = await checkEmailExists(updatedFormData.email, updatedFormData.password);
+      if (emailExists) {
+        setError(t("signUpPage.errors.emailAlreadyExists"));
+        setLoading(false);
+        return;
+      }
+
+      // 2. Створюємо користувача в Firebase Authentication
+      const userCredential = await signUp(updatedFormData.email, updatedFormData.password);
+      const user = userCredential.user;
+
+      // 3. Завантажуємо фото (якщо є) в Cloudinary
+      let photoURL: string | undefined;
+      if (updatedFormData.photo) {
+        try {
+          photoURL = await uploadUserPhoto(user.uid, updatedFormData.photo);
+        } catch (photoError: any) {
+          console.error("Помилка завантаження фото:", photoError);
+          // Продовжуємо реєстрацію навіть якщо фото не завантажилось
+          // Користувач зможе додати фото пізніше через редагування профілю
+        }
+      }
+
+      // 4. Фільтруємо порожні значення з масивів
+      const filteredAllergies = updatedFormData.allergies.filter((a) => a.trim() !== "");
+      const filteredMedications = updatedFormData.medications.filter((m) => m.trim() !== "");
+      const filteredOperations = updatedFormData.operations.filter(
+        (o) => o.name.trim() !== "" || o.year.trim() !== ""
+      );
+      const filteredDoctors = updatedFormData.doctors.filter(
+        (d) => d.name.trim() !== "" || d.phone.trim() !== "" || d.specialization.trim() !== ""
+      );
+      const filteredEmergencyContacts = updatedFormData.emergencyContacts.filter(
+        (ec) => ec.name.trim() !== "" || ec.phone.trim() !== "" || ec.relationship.trim() !== ""
+      );
+
+      // 5. Зберігаємо профіль користувача в Firestore
+      await saveUserProfile(user, {
+        personalData: {
+          name: updatedFormData.name,
+          surname: updatedFormData.surname,
+          dateOfBirth: updatedFormData.dateOfBirth,
+          gender: updatedFormData.gender,
+          photo: photoURL,
+          country: updatedFormData.country,
+          city: updatedFormData.city,
+          address: updatedFormData.address,
+        },
+        medicalData: {
+          bloodType: updatedFormData.bloodType,
+          rhFactor: updatedFormData.rhFactor,
+          allergies: filteredAllergies,
+          chronicDiseases: updatedFormData.chronicDiseases,
+          operations: filteredOperations,
+          medications: filteredMedications,
+          doctors: filteredDoctors,
+        },
+        emergencyData: {
+          emergencyContacts: filteredEmergencyContacts,
+          sendSMS: updatedFormData.sendSMS,
+          allowGPS: updatedFormData.allowGPS,
+        },
+      });
+
+      // 6. Після успішної реєстрації перенаправляємо на сторінку успіху або головну
+      // TODO: Замініть на потрібну сторінку
+      router.push("/");
     } catch (err: any) {
       // Обробка помилок Firebase
       if (err?.code === "auth/email-already-in-use") {
@@ -175,9 +241,17 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
         setError(t("signUpPage.errors.weakPassword") || "Пароль занадто слабкий");
       } else if (err?.code === "auth/invalid-email") {
         setError(t("signUpPage.errors.invalidEmail") || "Невірний формат email");
+      } else if (err?.code === "auth/operation-not-allowed") {
+        setError(
+          "Метод Email/Password не увімкнено в Firebase Console. " +
+          "Перейдіть до Firebase Console → Authentication → Sign-in method → Email/Password → Enable"
+        );
+      } else if (err?.code === "auth/network-request-failed") {
+        setError("Помилка мережі. Перевірте інтернет-з'єднання");
       } else {
-        setError(t("signUpPage.errors.unknownError"));
+        setError(t("signUpPage.errors.unknownError") || "Невідома помилка");
       }
+      console.error("Помилка реєстрації:", err);
     } finally {
       setLoading(false);
     }

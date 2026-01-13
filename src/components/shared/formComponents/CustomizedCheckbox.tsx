@@ -31,7 +31,7 @@ export default function CustomizedCheckbox({ fieldName, label, className }: Cust
                                 onBlur={field.onBlur}
                                 name={field.name}
                                 className={twMerge(
-                                    "w-4 h-4 rounded border cursor-pointer transition duration-300 appearance-none",
+                                    "w-4 h-4 rounded border cursor-pointer transition duration-300 appearance-none shrink-0",
                                     "border-black bg-transparent",
                                     "hover:border-accent/60 focus-visible:border-accent focus-visible:outline-none",
                                     hasError && "border-accent",

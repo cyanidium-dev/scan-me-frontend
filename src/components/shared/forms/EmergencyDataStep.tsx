@@ -37,8 +37,11 @@ export default function EmergencyDataStep({
             onSubmit={onSubmit}
             enableReinitialize={true}
             validateOnMount={true}
+            validateOnChange={true}
+            validateOnBlur={true}
         >
-            {({ isSubmitting, isValid, dirty }) => (
+            {({ isSubmitting, isValid, dirty, values, errors }) => {
+                return (
                 <Form>
                     <h2 className="mb-3 lg:mb-4 text-[24px] lg:text-[32px] font-semibold leading-[120%] uppercase">
                         {t("signUpPage.emergencyData.title")}
@@ -101,7 +104,8 @@ export default function EmergencyDataStep({
                         </MainButton>
                     </div>
                 </Form>
-            )}
+                );
+            }}
         </Formik>
     );
 }

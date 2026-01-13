@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     <section className="bg-black text-white rounded-b-[16px] overflow-hidden">
       <Container className="relative pt-[138px] lg:pt-[156px] pb-12 lg:pb-[276px]">
-        <PageTitle className="relative z-10 max-w-[313px] lg:max-w-full mb-4 lg:mb-9">
+        <PageTitle className="relative z-10 max-w-[313px] lg:max-w-[1080px] mb-4 lg:mb-9 xl:text-[68px]">
           {t.rich("title", {
             accent: (chunks) => <span className="text-accent">{chunks}</span>,
           })}
