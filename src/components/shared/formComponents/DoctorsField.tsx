@@ -60,36 +60,38 @@ export default function DoctorsField() {
             {safeDoctors.length > 1 && (
                 <>
                     {safeDoctors.slice(1).map((doctor: { name: string; phone: string; specialization: string }, index: number) => (
-                        <div key={index + 1} className="flex flex-col lg:flex-row gap-2 relative">
-                            <div className="flex-1 flex flex-col lg:flex-row gap-2">
-                                <CustomizedInput
-                                    fieldName={`doctors[${index + 1}].name`}
-                                    placeholder={t("signUpPage.medicalData.doctorNamePlaceholder")}
-                                    fieldClassName="h-12 lg:h-[49px] flex-1"
-                                    isLabelHidden={true}
-                                />
-                                <CustomizedInput
-                                    fieldName={`doctors[${index + 1}].phone`}
-                                    placeholder={t("signUpPage.medicalData.doctorPhonePlaceholder")}
-                                    inputType="tel"
-                                    fieldClassName="h-12 lg:h-[49px] flex-1"
-                                    isLabelHidden={true}
-                                />
+                        <div key={index + 1} className="flex flex-col lg:flex-row gap-2">
+                            <CustomizedInput
+                                fieldName={`doctors[${index + 1}].name`}
+                                placeholder={t("signUpPage.medicalData.doctorNamePlaceholder")}
+                                fieldClassName="h-12 lg:h-[49px]"
+                                labelClassName="lg:w-[calc(33.33%-5.33px)]"
+                                isLabelHidden={true}
+                            />
+                            <CustomizedInput
+                                fieldName={`doctors[${index + 1}].phone`}
+                                placeholder={t("signUpPage.medicalData.doctorPhonePlaceholder")}
+                                inputType="tel"
+                                fieldClassName="h-12 lg:h-[49px]"
+                                labelClassName="lg:w-[calc(33.33%-5.33px)]"
+                                isLabelHidden={true}
+                            />
+                            <div className="relative flex-1 w-full lg:w-[calc(33.33%-5.33px)]">
                                 <CustomizedInput
                                     fieldName={`doctors[${index + 1}].specialization`}
                                     placeholder={t("signUpPage.medicalData.doctorSpecializationPlaceholder")}
-                                    fieldClassName="h-12 lg:h-[49px] flex-1"
+                                    fieldClassName="h-12 lg:h-[49px]"
                                     isLabelHidden={true}
                                 />
+                                <button
+                                    type="button"
+                                    onClick={() => removeDoctor(index + 1)}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-accent hover:text-accent/70 focus-visible:text-accent/70 focus-visible:outline-none cursor-pointer transition duration-300 z-10"
+                                    aria-label="Remove doctor"
+                                >
+                                    <CrossIcon className="w-5 h-5" />
+                                </button>
                             </div>
-                            <button
-                                type="button"
-                                onClick={() => removeDoctor(index + 1)}
-                                className="absolute right-0 top-1/2 -translate-y-1/2 text-accent hover:text-accent/70 focus-visible:text-accent/70 focus-visible:outline-none cursor-pointer transition duration-300 z-10"
-                                aria-label="Remove doctor"
-                            >
-                                <CrossIcon className="w-5 h-5" />
-                            </button>
                         </div>
                     ))}
                 </>
