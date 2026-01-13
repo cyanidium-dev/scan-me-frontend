@@ -15,6 +15,7 @@ import { fadeInAnimation } from "@/utils/animationVariants";
 import Stepper from "../stepper/Stepper";
 import PersonalDataStep from "./PersonalDataStep";
 import MedicalDataStep from "./MedicalDataStep";
+import EmergencyDataStep from "./EmergencyDataStep";
 
 type SignUpStep = 0 | 1 | 2 | 3;
 
@@ -36,6 +37,9 @@ interface SignUpFormData {
   operations: Array<{ name: string; year: string }>;
   medications: string[];
   doctors: Array<{ name: string; phone: string; specialization: string }>;
+  emergencyContacts: Array<{ name: string; phone: string; relationship: string }>;
+  sendSMS: boolean;
+  allowGPS: boolean;
 }
 
 interface SignUpFormProps {
@@ -70,6 +74,13 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
     operations: [{ name: "", year: "" }],
     medications: [""],
     doctors: [{ name: "", phone: "", specialization: "" }],
+    emergencyContacts: [
+      { name: "", phone: "", relationship: "" },
+      { name: "", phone: "", relationship: "" },
+      { name: "", phone: "", relationship: "" },
+    ],
+    sendSMS: false,
+    allowGPS: false,
   });
 
   const validationSchema = SignUpValidation();
@@ -124,9 +135,28 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
     doctors: Array<{ name: string; phone: string; specialization: string }>;
   }) => {
     setError(null);
+    // Зберігаємо дані медичних даних
+    setFormData((prev) => ({
+      ...prev,
+      ...values,
+    }));
+    // Переходимо на крок 3
+    const newStep = 3;
+    if (externalStep === undefined) {
+      setInternalStep(newStep);
+    }
+    onStepChange?.(newStep);
+  };
+
+  const handleStep3Submit = async (values: {
+    emergencyContacts: Array<{ name: string; phone: string; relationship: string }>;
+    sendSMS: boolean;
+    allowGPS: boolean;
+  }) => {
+    setError(null);
     setLoading(true);
     try {
-      // Зберігаємо дані медичних даних
+      // Зберігаємо дані екстрених даних
       const updatedFormData = {
         ...formData,
         ...values,
@@ -136,9 +166,7 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
       // Створюємо користувача - тут Firebase перевірить, чи email вже існує
       await signUp(updatedFormData.email, updatedFormData.password);
       
-      // Якщо реєстрація успішна, можна перейти на наступний крок або завершити
-      // TODO: Перехід на крок 3 (екстрені дані) або завершення реєстрації
-      // setCurrentStep(3);
+      // TODO: Після успішної реєстрації можна перенаправити на іншу сторінку
     } catch (err: any) {
       // Обробка помилок Firebase
       if (err?.code === "auth/email-already-in-use") {
@@ -165,6 +193,14 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
 
   const handleBackToStep1 = () => {
     const newStep = 1;
+    if (externalStep === undefined) {
+      setInternalStep(newStep);
+    }
+    onStepChange?.(newStep);
+  };
+
+  const handleBackToStep2 = () => {
+    const newStep = 2;
     if (externalStep === undefined) {
       setInternalStep(newStep);
     }
@@ -199,6 +235,8 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
             }}
             validationSchema={validationSchema}
             onSubmit={handleStep0Submit}
+            enableReinitialize={true}
+            validateOnMount={true}
           >
             {({ isValid, dirty }) => (
               <Form className="flex flex-col gap-4">
@@ -228,7 +266,7 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
                   type="submit"
                   variant="gradient"
                   className="w-full h-[54px] mt-1 lg:mt-2"
-                  disabled={loading || !(isValid && dirty)}
+                  disabled={loading || !isValid}
                 >
                   {loading ? t("forms.loading") : t("signUpPage.signUp")}
                 </MainButton>
@@ -288,6 +326,30 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
             }}
             onSubmit={handleStep2Submit}
             onBack={handleBackToStep1}
+            error={error}
+            loading={loading}
+          />
+        </>
+      )}
+
+      {/* Крок 3: Екстрені дані */}
+      {currentStep === 3 && (
+        <>
+          <Stepper currentStep={currentStep} />
+          <EmergencyDataStep
+            initialValues={{
+              emergencyContacts: formData.emergencyContacts.length > 0 
+                ? formData.emergencyContacts 
+                : [
+                    { name: "", phone: "", relationship: "" },
+                    { name: "", phone: "", relationship: "" },
+                    { name: "", phone: "", relationship: "" },
+                  ],
+              sendSMS: formData.sendSMS,
+              allowGPS: formData.allowGPS,
+            }}
+            onSubmit={handleStep3Submit}
+            onBack={handleBackToStep2}
             error={error}
             loading={loading}
           />

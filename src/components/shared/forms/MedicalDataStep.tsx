@@ -45,6 +45,8 @@ export default function MedicalDataStep({
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}
+            enableReinitialize={true}
+            validateOnMount={true}
         >
             {({ isSubmitting, isValid, dirty }) => (
                 <Form>
@@ -114,7 +116,7 @@ export default function MedicalDataStep({
                             type="submit"
                             variant="gradient"
                             className="w-fit px-10 lg:px-22.5 h-[54px]"
-                            disabled={isSubmitting || loading || !(isValid && dirty)}
+                            disabled={isSubmitting || loading || !isValid}
                         >
                             {isSubmitting || loading
                                 ? t("forms.loading")
