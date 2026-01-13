@@ -60,7 +60,7 @@ export default function CustomizedInput({
           {label}
         </span>
       ) : null}
-      <div className="relative w-full">
+      <div className="relative">
         <Field name={fieldName}>
           {({
             field,

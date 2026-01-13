@@ -14,6 +14,7 @@ import * as motion from "motion/react-client";
 import { fadeInAnimation } from "@/utils/animationVariants";
 import Stepper from "../stepper/Stepper";
 import PersonalDataStep from "./PersonalDataStep";
+import MedicalDataStep from "./MedicalDataStep";
 
 type SignUpStep = 0 | 1 | 2 | 3;
 
@@ -28,6 +29,13 @@ interface SignUpFormData {
   country: string;
   city: string;
   address: string;
+  bloodType: string;
+  rhFactor: string;
+  allergies: string[];
+  chronicDiseases: string;
+  operations: Array<{ name: string; year: string }>;
+  medications: string[];
+  doctors: Array<{ name: string; phone: string; specialization: string }>;
 }
 
 interface SignUpFormProps {
@@ -55,6 +63,13 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
     country: "",
     city: "",
     address: "",
+    bloodType: "",
+    rhFactor: "positive",
+    allergies: [""],
+    chronicDiseases: "",
+    operations: [{ name: "", year: "" }],
+    medications: [""],
+    doctors: [{ name: "", phone: "", specialization: "" }],
   });
 
   const validationSchema = SignUpValidation();
@@ -86,9 +101,32 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
     address: string;
   }) => {
     setError(null);
+    // Зберігаємо дані персональних даних
+    setFormData((prev) => ({
+      ...prev,
+      ...values,
+    }));
+    // Переходимо на крок 2
+    const newStep = 2;
+    if (externalStep === undefined) {
+      setInternalStep(newStep);
+    }
+    onStepChange?.(newStep);
+  };
+
+  const handleStep2Submit = async (values: {
+    bloodType: string;
+    rhFactor: string;
+    allergies: string[];
+    chronicDiseases: string;
+    operations: Array<{ name: string; year: string }>;
+    medications: string[];
+    doctors: Array<{ name: string; phone: string; specialization: string }>;
+  }) => {
+    setError(null);
     setLoading(true);
     try {
-      // Зберігаємо дані персональних даних
+      // Зберігаємо дані медичних даних
       const updatedFormData = {
         ...formData,
         ...values,
@@ -99,8 +137,8 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
       await signUp(updatedFormData.email, updatedFormData.password);
       
       // Якщо реєстрація успішна, можна перейти на наступний крок або завершити
-      // TODO: Перехід на крок 2 (медичні дані) або завершення реєстрації
-      // setCurrentStep(2);
+      // TODO: Перехід на крок 3 (екстрені дані) або завершення реєстрації
+      // setCurrentStep(3);
     } catch (err: any) {
       // Обробка помилок Firebase
       if (err?.code === "auth/email-already-in-use") {
@@ -119,6 +157,14 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
 
   const handleBackToStep0 = () => {
     const newStep = 0;
+    if (externalStep === undefined) {
+      setInternalStep(newStep);
+    }
+    onStepChange?.(newStep);
+  };
+
+  const handleBackToStep1 = () => {
+    const newStep = 1;
     if (externalStep === undefined) {
       setInternalStep(newStep);
     }
@@ -220,6 +266,28 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
             }}
             onSubmit={handleStep1Submit}
             onBack={handleBackToStep0}
+            error={error}
+            loading={loading}
+          />
+        </>
+      )}
+
+      {/* Крок 2: Медичні дані */}
+      {currentStep === 2 && (
+        <>
+          <Stepper currentStep={currentStep} />
+          <MedicalDataStep
+            initialValues={{
+              bloodType: formData.bloodType,
+              rhFactor: formData.rhFactor,
+              allergies: formData.allergies.length > 0 ? formData.allergies : [""],
+              chronicDiseases: formData.chronicDiseases,
+              operations: formData.operations.length > 0 ? formData.operations : [{ name: "", year: "" }],
+              medications: formData.medications.length > 0 ? formData.medications : [""],
+              doctors: formData.doctors.length > 0 ? formData.doctors : [{ name: "", phone: "", specialization: "" }],
+            }}
+            onSubmit={handleStep2Submit}
+            onBack={handleBackToStep1}
             error={error}
             loading={loading}
           />

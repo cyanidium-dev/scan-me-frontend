@@ -243,6 +243,8 @@
       "bloodType": "Grupa krwi*",
       "bloodTypePlaceholder": "Wybierz swoją grupę krwi",
       "rhFactor": "Czynnik Rh*",
+      "rhPositive": "+",
+      "rhNegative": "-",
       "allergies": "Alergie",
       "allergiesPlaceholder": "Wskaż alergie, jeśli występują",
       "allergiesAdd": "Dodaj alergię",
