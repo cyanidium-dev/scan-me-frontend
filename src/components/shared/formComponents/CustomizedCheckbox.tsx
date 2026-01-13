@@ -15,7 +15,7 @@ export default function CustomizedCheckbox({ fieldName, label, className }: Cust
     const checkboxId = useId();
 
     return (
-        <div className={twMerge("flex items-center gap-3 relative", className)}>
+        <div className={twMerge("flex items-center gap-3 relative p-2", className)}>
             <Field name={fieldName}>
                 {({ field, meta }: { field: any; meta: any }) => {
                     const hasError = meta.touched && meta.error;
@@ -31,8 +31,8 @@ export default function CustomizedCheckbox({ fieldName, label, className }: Cust
                                 onBlur={field.onBlur}
                                 name={field.name}
                                 className={twMerge(
-                                    "w-5 h-5 rounded border-2 cursor-pointer transition duration-300 appearance-none",
-                                    "border-black/40 bg-transparent",
+                                    "w-4 h-4 rounded border cursor-pointer transition duration-300 appearance-none",
+                                    "border-black bg-transparent",
                                     "hover:border-accent/60 focus-visible:border-accent focus-visible:outline-none",
                                     hasError && "border-accent",
                                     isChecked && "bg-accent border-accent"

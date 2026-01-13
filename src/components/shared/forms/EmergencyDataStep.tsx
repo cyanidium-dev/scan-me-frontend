@@ -66,7 +66,7 @@ export default function EmergencyDataStep({
                         </div>
 
                         {/* Чекбокси */}
-                        <div className="flex flex-col gap-4 mt-6 lg:mt-8">
+                        <div className="flex flex-col lg:flex-row gap-2 lg:gap-8 mt-6 lg:mt-8">
                             <CustomizedCheckbox
                                 fieldName="sendSMS"
                                 label={t("signUpPage.emergencyData.sendMessage")}
