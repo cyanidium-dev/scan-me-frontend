@@ -2,11 +2,11 @@
 
 import { Formik, Form } from "formik";
 import { useTranslations } from "next-intl";
-import EmergencyContactField from "../formComponents/EmergencyContactField";
-import CustomizedCheckbox from "../formComponents/CustomizedCheckbox";
-import MainButton from "../buttons/MainButton";
+import EmergencyContactField from "../../formComponents/EmergencyContactField";
+import CustomizedCheckbox from "../../formComponents/CustomizedCheckbox";
+import MainButton from "../../buttons/MainButton";
 import { EmergencyDataValidation } from "@/schemas/EmergencyDataValidation";
-import ShevronIcon from "../icons/ShevronIcon";
+import ShevronIcon from "../../icons/ShevronIcon";
 
 interface EmergencyDataStepProps {
     initialValues: {

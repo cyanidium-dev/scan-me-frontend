@@ -2,13 +2,13 @@
 
 import { Formik, Form } from "formik";
 import { useTranslations } from "next-intl";
-import CustomizedInput from "../formComponents/CustomizedInput";
-import PhotoUploadField from "../formComponents/PhotoUploadField";
-import DatePickerField from "../formComponents/DatePickerField";
-import GenderRadioGroup from "../formComponents/GenderRadioGroup";
-import MainButton from "../buttons/MainButton";
+import CustomizedInput from "../../formComponents/CustomizedInput";
+import PhotoUploadField from "../../formComponents/PhotoUploadField";
+import DatePickerField from "../../formComponents/DatePickerField";
+import GenderRadioGroup from "../../formComponents/GenderRadioGroup";
+import MainButton from "../../buttons/MainButton";
 import { PersonalDataValidation } from "@/schemas/PersonalDataValidation";
-import ShevronIcon from "../icons/ShevronIcon";
+import ShevronIcon from "../../icons/ShevronIcon";
 
 interface PersonalDataStepProps {
     initialValues: {

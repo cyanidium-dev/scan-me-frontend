@@ -5,14 +5,14 @@ import { Formik, Form } from "formik";
 import { Link, useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/hooks/useAuth";
-import CustomizedInput from "../formComponents/CustomizedInput";
-import MainButton from "../buttons/MainButton";
-import EnvelopeIcon from "../icons/Envelope";
-import KeyIcon from "../icons/KeyIcon";
+import CustomizedInput from "../../formComponents/CustomizedInput";
+import MainButton from "../../buttons/MainButton";
+import EnvelopeIcon from "../../icons/Envelope";
+import KeyIcon from "../../icons/KeyIcon";
 import { SignUpValidation } from "@/schemas/SignUpFormValidation";
 import * as motion from "motion/react-client";
 import { fadeInAnimation } from "@/utils/animationVariants";
-import Stepper from "../stepper/Stepper";
+import Stepper from "../../stepper/Stepper";
 import PersonalDataStep from "./PersonalDataStep";
 import MedicalDataStep from "./MedicalDataStep";
 import EmergencyDataStep from "./EmergencyDataStep";
@@ -289,11 +289,11 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
       {/* Крок 0: Email та Password */}
       {currentStep === 0 && (
         <motion.div
+          key="step-0"
           initial="hidden"
-          whileInView="visible"
+          animate="visible"
           exit="exit"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeInAnimation({ scale: 0.85, delay: 0.3 })}
+          variants={fadeInAnimation({ y:30, delay: 0.2 })}
           className={containerClasses}
         >
           <h2 className="mb-4 lg:mb-6 font-actay text-[24px] lg:text-[32px] font-bold leading-[120%] uppercase text-center">
@@ -365,22 +365,30 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
       {currentStep === 1 && (
         <>
           <Stepper currentStep={currentStep} />
-          <PersonalDataStep
-            initialValues={{
-              name: formData.name,
-              surname: formData.surname,
-              dateOfBirth: formData.dateOfBirth,
-              gender: formData.gender,
-              photo: formData.photo,
-              country: formData.country,
-              city: formData.city,
-              address: formData.address,
-            }}
-            onSubmit={handleStep1Submit}
-            onBack={handleBackToStep0}
-            error={error}
-            loading={loading}
-          />
+          <motion.div
+            key="step-1"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={fadeInAnimation({ y: 30, delay: 0.2 })}
+          >
+            <PersonalDataStep
+              initialValues={{
+                name: formData.name,
+                surname: formData.surname,
+                dateOfBirth: formData.dateOfBirth,
+                gender: formData.gender,
+                photo: formData.photo,
+                country: formData.country,
+                city: formData.city,
+                address: formData.address,
+              }}
+              onSubmit={handleStep1Submit}
+              onBack={handleBackToStep0}
+              error={error}
+              loading={loading}
+            />
+          </motion.div>
         </>
       )}
 
@@ -388,21 +396,29 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
       {currentStep === 2 && (
         <>
           <Stepper currentStep={currentStep} />
-          <MedicalDataStep
-            initialValues={{
-              bloodType: formData.bloodType,
-              rhFactor: formData.rhFactor,
-              allergies: formData.allergies.length > 0 ? formData.allergies : [""],
-              chronicDiseases: formData.chronicDiseases,
-              operations: formData.operations.length > 0 ? formData.operations : [{ name: "", year: "" }],
-              medications: formData.medications.length > 0 ? formData.medications : [""],
-              doctors: formData.doctors.length > 0 ? formData.doctors : [{ name: "", phone: "", specialization: "" }],
-            }}
-            onSubmit={handleStep2Submit}
-            onBack={handleBackToStep1}
-            error={error}
-            loading={loading}
-          />
+          <motion.div
+            key="step-2"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={fadeInAnimation({ y:30, delay: 0.2 })}
+          >
+            <MedicalDataStep
+              initialValues={{
+                bloodType: formData.bloodType,
+                rhFactor: formData.rhFactor,
+                allergies: formData.allergies.length > 0 ? formData.allergies : [""],
+                chronicDiseases: formData.chronicDiseases,
+                operations: formData.operations.length > 0 ? formData.operations : [{ name: "", year: "" }],
+                medications: formData.medications.length > 0 ? formData.medications : [""],
+                doctors: formData.doctors.length > 0 ? formData.doctors : [{ name: "", phone: "", specialization: "" }],
+              }}
+              onSubmit={handleStep2Submit}
+              onBack={handleBackToStep1}
+              error={error}
+              loading={loading}
+            />
+          </motion.div>
         </>
       )}
 
@@ -410,23 +426,31 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
       {currentStep === 3 && (
         <>
           <Stepper currentStep={currentStep} />
-          <EmergencyDataStep
-            initialValues={{
-              emergencyContacts: formData.emergencyContacts.length > 0 
-                ? formData.emergencyContacts 
-                : [
-                    { name: "", phone: "", relationship: "" },
-                    { name: "", phone: "", relationship: "" },
-                    { name: "", phone: "", relationship: "" },
-                  ],
-              sendSMS: formData.sendSMS,
-              allowGPS: formData.allowGPS,
-            }}
-            onSubmit={handleStep3Submit}
-            onBack={handleBackToStep2}
-            error={error}
-            loading={loading}
-          />
+          <motion.div
+            key="step-3"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={fadeInAnimation({ y:30, delay: 0.2 })}
+          >
+            <EmergencyDataStep
+              initialValues={{
+                emergencyContacts: formData.emergencyContacts.length > 0 
+                  ? formData.emergencyContacts 
+                  : [
+                      { name: "", phone: "", relationship: "" },
+                      { name: "", phone: "", relationship: "" },
+                      { name: "", phone: "", relationship: "" },
+                    ],
+                sendSMS: formData.sendSMS,
+                allowGPS: formData.allowGPS,
+              }}
+              onSubmit={handleStep3Submit}
+              onBack={handleBackToStep2}
+              error={error}
+              loading={loading}
+            />
+          </motion.div>
         </>
       )}
     </>

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import Container from "../shared/container/Container";
-import SignUpForm from "../shared/forms/SignUpForm";
+import SignUpForm from "../shared/forms/signUp/SignUpForm";
 import SectionTitle from "../shared/titles/SectionTitle";
 import AnimatedAuthImage from "../shared/images/AnimatedAuthImage";
 
@@ -12,6 +12,7 @@ type SignUpStep = 0 | 1 | 2 | 3;
 export default function SignUp() {
   const t = useTranslations("signInPage");
   const [currentStep, setCurrentStep] = useState<SignUpStep>(0);
+  const sectionRef = useRef<HTMLElement>(null);
 
   // Змінюємо фон сторінки залежно від кроку
   useEffect(() => {
@@ -27,11 +28,33 @@ export default function SignUp() {
     }
   }, [currentStep]);
 
+  // Автоматична прокрутка вгору при зміні кроку
+  useEffect(() => {
+    // Прокручуємо до початку секції з невеликою затримкою для анімації
+    const scrollTimeout = setTimeout(() => {
+      if (sectionRef.current) {
+        sectionRef.current.scrollIntoView({ 
+           
+          block: "start",
+          inline: "nearest"
+        });
+      } else {
+        // Якщо ref ще не готовий, прокручуємо до верху сторінки
+        window.scrollTo({ 
+          top: 0, 
+         
+        });
+      }
+    }, 200);
+
+    return () => clearTimeout(scrollTimeout);
+  }, [currentStep]);
+
   // На кроці 0 показуємо звичайний layout з картинкою
   // На кроці 1+ показуємо повноекранний білий фон без картинки
   if (currentStep === 0) {
     return (
-      <section className="pt-[147px] lg:pt-[205px] pb-15 lg:pb-[105px]">
+      <section ref={sectionRef} className="pt-[147px] lg:pt-[205px] pb-15 lg:pb-[105px]">
         <Container className="relative lg:flex lg:gap-20 xl:gap-[150px]">
           <SignUpForm currentStep={currentStep} onStepChange={setCurrentStep} />
           <SectionTitle className="relative z-10 hidden lg:block lg:mt-[-32px] xl:mt-[-49px] text-white lg:text-[26px] xl:text-[40px]">
@@ -47,7 +70,7 @@ export default function SignUp() {
 
   // На кроці 1+ - повноекранний білий фон
   return (
-    <section className="min-h-screen bg-white pt-26 lg:pt-[205px] pb-15 lg:pb-[105px]">
+    <section ref={sectionRef} className="min-h-screen bg-white pt-26 lg:pt-[205px] pb-15 lg:pb-[105px]">
       <Container>
         <SignUpForm currentStep={currentStep} onStepChange={setCurrentStep} />
       </Container>
