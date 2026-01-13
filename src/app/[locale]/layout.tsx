@@ -55,7 +55,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${montserrat.variable} ${actay.variable} flex min-h-dvh flex-col text-[12px] lg:text-[14px] font-light leading-[120%] antialiased`}
+        className={`${montserrat.variable} ${actay.variable} relative z-1 flex min-h-dvh flex-col text-[12px] lg:text-[14px] font-light leading-[120%] antialiased`}
       >
         <Providers messages={messages} locale={locale}>
           {children}

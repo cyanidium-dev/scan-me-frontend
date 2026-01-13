@@ -2,13 +2,13 @@
 
 import { Formik, Form } from "formik";
 import { useTranslations } from "next-intl";
-import CustomizedInput from "../formComponents/CustomizedInput";
-import PhotoUploadField from "../formComponents/PhotoUploadField";
-import DatePickerField from "../formComponents/DatePickerField";
-import GenderRadioGroup from "../formComponents/GenderRadioGroup";
-import MainButton from "../buttons/MainButton";
+import CustomizedInput from "../../formComponents/CustomizedInput";
+import PhotoUploadField from "../../formComponents/PhotoUploadField";
+import DatePickerField from "../../formComponents/DatePickerField";
+import GenderRadioGroup from "../../formComponents/GenderRadioGroup";
+import MainButton from "../../buttons/MainButton";
 import { PersonalDataValidation } from "@/schemas/PersonalDataValidation";
-import ShevronIcon from "../icons/ShevronIcon";
+import ShevronIcon from "../../icons/ShevronIcon";
 
 interface PersonalDataStepProps {
     initialValues: {
@@ -42,6 +42,8 @@ export default function PersonalDataStep({
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}
+            enableReinitialize={true}
+            validateOnMount={true}
         >
             {({ isSubmitting, isValid, dirty }) => (
                 <Form>
@@ -154,7 +156,7 @@ export default function PersonalDataStep({
                             type="submit"
                             variant="gradient"
                             className="w-fit px-10 lg:px-22.5 h-[54px]"
-                            disabled={isSubmitting || loading || !(isValid && dirty)}
+                            disabled={isSubmitting || loading || !isValid}
                         >
                             {isSubmitting || loading
                                 ? t("forms.loading")

@@ -17,7 +17,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: "Data sent successfully" });
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.log(error);
       return NextResponse.json(
         { error: "Failed to send data to the telegram" },
         { status: 500 }

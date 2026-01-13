@@ -2,6 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import clsx from "clsx";
+import * as motion from "motion/react-client";
+import { fadeInAnimation } from "@/utils/animationVariants";
 
 interface StepperProps {
   currentStep: number;
@@ -21,7 +23,14 @@ export default function Stepper({
   ];
 
   return (
-    <div className="flex items-center justify-center mb-19 lg:mb-17 relative">
+    <motion.div
+      key={`stepper-${currentStep}`}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      variants={fadeInAnimation({ y: 30, delay: 0.1 })}
+      className="flex items-center justify-center mb-19 lg:mb-17 relative"
+    >
       {steps.map((step, index) => {
         const isActive = currentStep === step.number;
         const isCompleted = currentStep > step.number;
@@ -66,7 +75,7 @@ export default function Stepper({
           </div>
         );
       })}
-    </div>
+    </motion.div>
   );
 }
 

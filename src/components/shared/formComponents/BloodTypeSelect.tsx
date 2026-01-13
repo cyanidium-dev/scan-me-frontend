@@ -13,10 +13,10 @@ interface BloodTypeSelectProps {
 }
 
 const bloodTypes = [
-    { value: "I", label: "I" },
-    { value: "II", label: "II" },
-    { value: "III", label: "III" },
-    { value: "IV", label: "IV" },
+    { value: "I", label: "I (0)" },
+    { value: "II", label: "II (A)" },
+    { value: "III", label: "III (B)" },
+    { value: "IV", label: "IV (AB)" },
 ];
 
 export default function BloodTypeSelect({ fieldName, label, placeholder, className }: BloodTypeSelectProps) {

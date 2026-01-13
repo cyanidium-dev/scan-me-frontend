@@ -2,16 +2,16 @@
 
 import { Formik, Form } from "formik";
 import { useTranslations } from "next-intl";
-import CustomizedInput from "../formComponents/CustomizedInput";
-import BloodTypeSelect from "../formComponents/BloodTypeSelect";
-import RhFactorRadioGroup from "../formComponents/RhFactorRadioGroup";
-import AllergiesField from "../formComponents/AllergiesField";
-import OperationsField from "../formComponents/OperationsField";
-import MedicationsField from "../formComponents/MedicationsField";
-import DoctorsField from "../formComponents/DoctorsField";
-import MainButton from "../buttons/MainButton";
+import CustomizedInput from "../../formComponents/CustomizedInput";
+import BloodTypeSelect from "../../formComponents/BloodTypeSelect";
+import RhFactorRadioGroup from "../../formComponents/RhFactorRadioGroup";
+import AllergiesField from "../../formComponents/AllergiesField";
+import OperationsField from "../../formComponents/OperationsField";
+import MedicationsField from "../../formComponents/MedicationsField";
+import DoctorsField from "../../formComponents/DoctorsField";
+import MainButton from "../../buttons/MainButton";
 import { MedicalDataValidation } from "@/schemas/MedicalDataValidation";
-import ShevronIcon from "../icons/ShevronIcon";
+import ShevronIcon from "../../icons/ShevronIcon";
 
 interface MedicalDataStepProps {
     initialValues: {
@@ -45,6 +45,8 @@ export default function MedicalDataStep({
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}
+            enableReinitialize={true}
+            validateOnMount={true}
         >
             {({ isSubmitting, isValid, dirty }) => (
                 <Form>
@@ -114,7 +116,7 @@ export default function MedicalDataStep({
                             type="submit"
                             variant="gradient"
                             className="w-fit px-10 lg:px-22.5 h-[54px]"
-                            disabled={isSubmitting || loading || !(isValid && dirty)}
+                            disabled={isSubmitting || loading || !isValid}
                         >
                             {isSubmitting || loading
                                 ? t("forms.loading")

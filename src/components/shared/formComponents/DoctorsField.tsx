@@ -46,7 +46,7 @@ export default function DoctorsField() {
                     fieldName="doctors[0].phone"
                     placeholder={t("signUpPage.medicalData.doctorPhonePlaceholder")}
                     inputType="tel"
-                    fieldClassName="h-12 lg:h-[49px] flex-1"
+                    fieldClassName="h-12 lg:h-[49px] flex-1 py-0 lg:py-0"
                     isLabelHidden={true}
                 />
                 <CustomizedInput
