@@ -64,12 +64,12 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
     city: "",
     address: "",
     bloodType: "",
-    rhFactor: "",
-    allergies: [],
+    rhFactor: "positive",
+    allergies: [""],
     chronicDiseases: "",
-    operations: [],
-    medications: [],
-    doctors: [],
+    operations: [{ name: "", year: "" }],
+    medications: [""],
+    doctors: [{ name: "", phone: "", specialization: "" }],
   });
 
   const validationSchema = SignUpValidation();
@@ -280,11 +280,11 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
             initialValues={{
               bloodType: formData.bloodType,
               rhFactor: formData.rhFactor,
-              allergies: formData.allergies,
+              allergies: formData.allergies.length > 0 ? formData.allergies : [""],
               chronicDiseases: formData.chronicDiseases,
-              operations: formData.operations,
-              medications: formData.medications,
-              doctors: formData.doctors,
+              operations: formData.operations.length > 0 ? formData.operations : [{ name: "", year: "" }],
+              medications: formData.medications.length > 0 ? formData.medications : [""],
+              doctors: formData.doctors.length > 0 ? formData.doctors : [{ name: "", phone: "", specialization: "" }],
             }}
             onSubmit={handleStep2Submit}
             onBack={handleBackToStep1}

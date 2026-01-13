@@ -29,7 +29,7 @@ export default function BloodTypeSelect({ fieldName, label, placeholder, classNa
     };
 
     return (
-        <div className={twMerge("flex flex-col relative", className)}>
+        <div className={twMerge("flex flex-col relative lg:max-w-[356px]", className)}>
             <label className="mb-2 text-[14px] font-medium leading-[120%]">
                 {label}
             </label>
