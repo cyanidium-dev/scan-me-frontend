@@ -273,5 +273,18 @@
       "sendMessage": "Wyślij SMS podczas skanowania mojego QR",
       "gps": "Zezwól na udostępnianie lokalizacji podczas skanowania"
     }
+  },
+  "dashboardPage": {
+    "signOut": "Wyloguj się",
+    "order": "Zamów naklejkę",
+    "personalData": {
+      "title": "Dane osobowe"
+    },
+    "medicalData": {
+      "title": "Informacje medyczne"
+    },
+    "emergencyData": {
+      "title": "Dane awaryjne"
+    }
   }
 }
