@@ -117,132 +117,128 @@ export default function PersonalDataTab({
         >
             {({ isSubmitting, isValid }) => (
                 <Form>
-                    <SectionTitle className="mb-6 lg:mb-4 text-[24px] lg:text-[32px]">
-                        {t("personalData.title")}
-                    </SectionTitle>
+                    <div className="lg:px-6 lg:py-8 rounded-[16px] lg:shadow-[0px_4px_14px_0px_rgba(0,0,0,0.1)]">
+                        {" "}
+                        <SectionTitle className="mb-6 lg:mb-8 text-[24px] lg:text-[32px] xl:text-[32px]">
+                            {t("personalData.title")}
+                        </SectionTitle>
+                        {error && (
+                            <div className="bg-accent/15 border border-accent text-accent px-4 py-3 rounded mb-4">
+                                {error}
+                            </div>
+                        )}
+                        {success && (
+                            <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded mb-4">
+                                Дані успішно збережено
+                            </div>
+                        )}
+                        <div className="flex flex-col gap-6 lg:gap-8">
+                            {/* Верхній блок: основні поля + фото на десктопі */}
+                            <div className="lg:flex lg:flex-row lg:gap-6">
+                                <div className="flex flex-col gap-6 lg:gap-8 lg:flex-1">
+                                    <div className="flex flex-col gap-6 lg:gap-6 lg:flex-row">
+                                        <div className="relative lg:w-[calc(50%-12px)]">
+                                            <CustomizedInput
+                                                fieldName="name"
+                                                label={tSignUp("name")}
+                                                placeholder={tSignUp(
+                                                    "namePlaceholder"
+                                                )}
+                                                fieldClassName="h-12 lg:h-[49px] pr-10"
+                                            />
+                                            <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
+                                                <PenIcon className="w-5 h-5 text-black/40" />
+                                            </div>
+                                        </div>
 
-                    {error && (
-                        <div className="bg-accent/15 border border-accent text-accent px-4 py-3 rounded mb-4">
-                            {error}
-                        </div>
-                    )}
-
-                    {success && (
-                        <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded mb-4">
-                            Дані успішно збережено
-                        </div>
-                    )}
-
-                    <div className="flex flex-col gap-6 lg:gap-8">
-                        {/* Верхній блок: основні поля + фото на десктопі */}
-                        <div className="lg:flex lg:flex-row lg:gap-6">
-                            <div className="flex flex-col gap-6 lg:gap-8 lg:flex-1">
-                                <div className="flex flex-col gap-6 lg:gap-6 lg:flex-row lg:justify-between">
-                                    <div className="relative">
-                                        <CustomizedInput
-                                            fieldName="name"
-                                            label={tSignUp("name")}
-                                            placeholder={tSignUp(
-                                                "namePlaceholder"
-                                            )}
-                                            fieldClassName="h-12 lg:h-[49px] pr-10"
-                                        />
-                                        <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
-                                            <PenIcon className="w-5 h-5 text-black/40" />
+                                        <div className="relative lg:w-[calc(50%-12px)]">
+                                            <CustomizedInput
+                                                fieldName="surname"
+                                                label={tSignUp("surname")}
+                                                placeholder={tSignUp(
+                                                    "surnamePlaceholder"
+                                                )}
+                                                fieldClassName="h-12 lg:h-[49px] pr-10"
+                                            />
+                                            <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
+                                                <PenIcon className="w-5 h-5 text-black/40" />
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div className="relative">
-                                        <CustomizedInput
-                                            fieldName="surname"
-                                            label={tSignUp("surname")}
-                                            placeholder={tSignUp(
-                                                "surnamePlaceholder"
-                                            )}
-                                            fieldClassName="h-12 lg:h-[49px] pr-10"
+                                    <div className="flex gap-6">
+                                        <DatePickerField
+                                            fieldName="dateOfBirth"
+                                            label={tSignUp("dateOfBirth")}
+                                            className="lg:w-[calc(50%-12px)]"
                                         />
-                                        <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
-                                            <PenIcon className="w-5 h-5 text-black/40" />
-                                        </div>
+
+                                        {/* Поле статі */}
+                                        <GenderRadioGroup
+                                            fieldName="gender"
+                                            label={tSignUp("gender")}
+                                        />
                                     </div>
-                                </div>
-
-                                <div className="flex gap-6">
-                                    <DatePickerField
-                                        fieldName="dateOfBirth"
-                                        label={tSignUp("dateOfBirth")}
-                                        className="lg:w-[calc(50%-12px)]"
-                                    />
-
-                                    {/* Поле статі */}
-                                    <GenderRadioGroup
-                                        fieldName="gender"
-                                        label={tSignUp("gender")}
-                                    />
                                 </div>
                             </div>
 
-                            {/* Поле завантаження фото - десктопна версія */}
-                            <PhotoUploadField
-                                fieldName="photo"
-                                className="hidden lg:block w-[36%]"
-                            />
-                        </div>
-
-                        {/* Адреса - опціональні поля (займають всю ширину) */}
-                        <div>
-                            <span className="inline-block mb-2 text-[14px] font-medium leading-[120%]">
-                                {tSignUp("address")}
-                            </span>
-                            <div className="flex flex-col lg:flex-row gap-4 lg:gap-2">
-                                <div className="relative">
-                                    <CustomizedInput
-                                        fieldName="country"
-                                        placeholder={tSignUp(
-                                            "countryPlaceholder"
-                                        )}
-                                        fieldClassName="h-12 lg:h-[49px] pr-10"
-                                    />
-                                    <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
-                                        <PenIcon className="w-5 h-5 text-black/40" />
+                            {/* Адреса - опціональні поля (займають всю ширину) */}
+                            <div>
+                                <span className="inline-block mb-2 text-[14px] font-medium leading-[120%]">
+                                    {tSignUp("address")}
+                                </span>
+                                <div className="flex flex-col gap-4 lg:gap-2">
+                                    <div className="flex flex-col lg:flex-row gap-4 lg:gap-2">
+                                        <div className="relative lg:w-[calc(50%-4px)]">
+                                            <CustomizedInput
+                                                fieldName="country"
+                                                placeholder={tSignUp(
+                                                    "countryPlaceholder"
+                                                )}
+                                                fieldClassName="h-12 lg:h-[49px] pr-10"
+                                            />
+                                            <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
+                                                <PenIcon className="w-5 h-5 text-black/40" />
+                                            </div>
+                                        </div>
+                                        <div className="relative lg:w-[calc(50%-4px)]">
+                                            <CustomizedInput
+                                                fieldName="city"
+                                                placeholder={tSignUp(
+                                                    "cityPlaceholder"
+                                                )}
+                                                fieldClassName="h-12 lg:h-[49px] pr-10"
+                                                isLabelHidden={true}
+                                            />
+                                            <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
+                                                <PenIcon className="w-5 h-5 text-black/40" />
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className="relative">
-                                    <CustomizedInput
-                                        fieldName="city"
-                                        placeholder={tSignUp("cityPlaceholder")}
-                                        fieldClassName="h-12 lg:h-[49px] pr-10"
-                                        isLabelHidden={true}
-                                    />
-                                    <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
-                                        <PenIcon className="w-5 h-5 text-black/40" />
-                                    </div>
-                                </div>
-
-                                <div className="relative">
-                                    <CustomizedInput
-                                        fieldName="address"
-                                        placeholder={tSignUp(
-                                            "addressPlaceholder"
-                                        )}
-                                        fieldClassName="h-12 lg:h-[49px] pr-10"
-                                        isLabelHidden={true}
-                                    />
-                                    <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
-                                        <PenIcon className="w-5 h-5 text-black/40" />
+                                    <div className="relative">
+                                        <CustomizedInput
+                                            fieldName="address"
+                                            placeholder={tSignUp(
+                                                "addressPlaceholder"
+                                            )}
+                                            fieldClassName="h-12 lg:h-[49px] pr-10"
+                                            isLabelHidden={true}
+                                        />
+                                        <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
+                                            <PenIcon className="w-5 h-5 text-black/40" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     {/* Кнопка збереження */}
-                    <div className="flex justify-end mt-8">
+                    <div className="flex justify-end mt-12 lg:mt-6">
                         <MainButton
                             type="submit"
                             variant="gradient"
-                            className="w-full lg:w-fit px-10 lg:px-22.5 h-[54px]"
+                            className="w-full lg:w-[399px] px-10 lg:px-22.5 h-[54px]"
                             disabled={isSubmitting || loading || !isValid}
                             isLoading={isSubmitting || loading}
                             loadingText={tForms("loading")}
