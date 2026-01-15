@@ -1,5 +1,6 @@
 import { 
   doc, 
+  getDoc,
   setDoc, 
   serverTimestamp,
   FieldValue
@@ -81,6 +82,29 @@ export async function uploadUserPhoto(
     return data.url;
   } catch (error) {
     console.error("Помилка завантаження фото в Cloudinary:", error);
+    throw error;
+  }
+}
+
+/**
+ * Отримує профіль користувача з Firestore
+ * @param userId - ID користувача
+ * @returns Дані профілю користувача або null, якщо профіль не знайдено
+ */
+export async function getUserProfile(
+  userId: string
+): Promise<UserProfileData | null> {
+  try {
+    const userRef = doc(db, "users", userId);
+    const userSnap = await getDoc(userRef);
+    
+    if (!userSnap.exists()) {
+      return null;
+    }
+    
+    return userSnap.data() as UserProfileData;
+  } catch (error) {
+    console.error("Помилка отримання профілю користувача:", error);
     throw error;
   }
 }

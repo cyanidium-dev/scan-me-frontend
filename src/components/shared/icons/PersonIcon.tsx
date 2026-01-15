@@ -1,28 +1,33 @@
 interface PersonIconProps {
   className?: string;
+  strokeWidth?: number | string;
 }
-export default function PersonIcon({ className }: PersonIconProps) {
+
+export default function PersonIcon({
+  className,
+  strokeWidth = 1.5,
+}: PersonIconProps) {
   return (
     <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-label="person icon"
       className={className}
     >
       <circle
-        cx="9.99984"
-        cy="4.99984"
-        r="3.33333"
-        stroke="#040404"
-        strokeWidth="1.5"
+        cx="8.00016"
+        cy="4.00016"
+        r="2.66667"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
       />
       <path
-        d="M16.6668 14.5835C16.6668 16.6546 16.6668 18.3335 10.0002 18.3335C3.3335 18.3335 3.3335 16.6546 3.3335 14.5835C3.3335 12.5124 6.31826 10.8335 10.0002 10.8335C13.6821 10.8335 16.6668 12.5124 16.6668 14.5835Z"
-        stroke="#040404"
-        strokeWidth="1.5"
+        d="M13.3332 11.6665C13.3332 13.3234 13.3332 14.6665 7.99984 14.6665C2.6665 14.6665 2.6665 13.3234 2.6665 11.6665C2.6665 10.0096 5.05432 8.6665 7.99984 8.6665C10.9454 8.6665 13.3332 10.0096 13.3332 11.6665Z"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
       />
     </svg>
   );
