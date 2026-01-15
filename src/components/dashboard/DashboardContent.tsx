@@ -99,7 +99,15 @@ export default function DashboardContent() {
                     />
                 )}
                 {activeTab === "medical" && (
-                    <MedicalDataTab profileData={profileData} />
+                    <MedicalDataTab
+                        profileData={profileData}
+                        onProfileUpdate={async () => {
+                            if (user?.uid) {
+                                const data = await getUserProfile(user.uid);
+                                setProfileData(data);
+                            }
+                        }}
+                    />
                 )}
                 {activeTab === "emergency" && (
                     <EmergencyDataTab profileData={profileData} />
