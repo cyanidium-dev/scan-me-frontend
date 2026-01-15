@@ -12,8 +12,11 @@ export default function AllergiesField() {
     const t = useTranslations();
     const allergies = values.allergies || [""];
 
-    // Переконатися, що завжди є принаймні один елемент
-    const safeAllergies = allergies.length > 0 ? allergies : [""];
+    // Переконатися, що завжди є принаймні один елемент і всі значення є рядками
+    const safeAllergies =
+        allergies.length > 0
+            ? allergies.map((a: any) => (a === null || a === undefined ? "" : String(a)))
+            : [""];
 
     const addAllergy = () => {
         setFieldValue("allergies", [...safeAllergies, ""]);

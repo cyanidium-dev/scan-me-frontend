@@ -12,8 +12,18 @@ export default function DoctorsField() {
     const t = useTranslations();
     const doctors = values.doctors || [{ name: "", phone: "", specialization: "" }];
 
-    // Переконатися, що завжди є принаймні один елемент
-    const safeDoctors = doctors.length > 0 ? doctors : [{ name: "", phone: "", specialization: "" }];
+    // Переконатися, що завжди є принаймні один елемент і всі значення є рядками
+    const safeDoctors =
+        doctors.length > 0
+            ? doctors.map((doc: any) => ({
+                  name: doc?.name === null || doc?.name === undefined ? "" : String(doc.name),
+                  phone: doc?.phone === null || doc?.phone === undefined ? "" : String(doc.phone),
+                  specialization:
+                      doc?.specialization === null || doc?.specialization === undefined
+                          ? ""
+                          : String(doc.specialization),
+              }))
+            : [{ name: "", phone: "", specialization: "" }];
 
     const addDoctor = () => {
         setFieldValue("doctors", [...safeDoctors, { name: "", phone: "", specialization: "" }]);

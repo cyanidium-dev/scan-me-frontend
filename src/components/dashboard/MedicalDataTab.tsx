@@ -45,11 +45,34 @@ export default function MedicalDataTab({
     const initialValues = {
         bloodType: profileData.medicalData.bloodType || "",
         rhFactor: profileData.medicalData.rhFactor || "",
-        allergies: profileData.medicalData.allergies || [],
+        allergies:
+            profileData.medicalData.allergies &&
+            profileData.medicalData.allergies.length > 0
+                ? profileData.medicalData.allergies.map(a => a || "")
+                : [""],
         chronicDiseases: profileData.medicalData.chronicDiseases || "",
-        operations: profileData.medicalData.operations || [],
-        medications: profileData.medicalData.medications || [],
-        doctors: profileData.medicalData.doctors || [],
+        operations:
+            profileData.medicalData.operations &&
+            profileData.medicalData.operations.length > 0
+                ? profileData.medicalData.operations.map(op => ({
+                      name: op.name || "",
+                      year: op.year || "",
+                  }))
+                : [{ name: "", year: "" }],
+        medications:
+            profileData.medicalData.medications &&
+            profileData.medicalData.medications.length > 0
+                ? profileData.medicalData.medications.map(m => m || "")
+                : [""],
+        doctors:
+            profileData.medicalData.doctors &&
+            profileData.medicalData.doctors.length > 0
+                ? profileData.medicalData.doctors.map(doc => ({
+                      name: doc.name || "",
+                      phone: doc.phone || "",
+                      specialization: doc.specialization || "",
+                  }))
+                : [{ name: "", phone: "", specialization: "" }],
     };
 
     const handleSubmit = async (values: typeof initialValues) => {

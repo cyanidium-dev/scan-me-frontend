@@ -64,7 +64,7 @@ export default function DashboardNavigationDesktop({
             <nav className="flex flex-col gap-3 mb-6">
                 <button
                     onClick={() => onTabChange("personal")}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-full border transition duration-300 ease-out ${
+                    className={`cursor-pointer flex items-center gap-3 px-4 py-3 rounded-full border xl:hover:border-black/40 focus-visible:border-black/40 transition duration-300 ease-out ${
                         activeTab === "personal"
                             ? "border-black"
                             : "border-transparent"
@@ -77,7 +77,7 @@ export default function DashboardNavigationDesktop({
                 </button>
                 <button
                     onClick={() => onTabChange("medical")}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-full border transition duration-300 ease-out ${
+                    className={`cursor-pointer flex items-center gap-3 px-4 py-3 rounded-full border xl:hover:border-black/40 focus-visible:border-black/40transition duration-300 ease-out ${
                         activeTab === "medical"
                             ? "border-black"
                             : "border-transparent"
@@ -90,7 +90,7 @@ export default function DashboardNavigationDesktop({
                 </button>
                 <button
                     onClick={() => onTabChange("emergency")}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-full border transition duration-300 ease-out ${
+                    className={`cursor-pointer flex items-center gap-3 px-4 py-3 rounded-full border xl:hover:border-black/40 focus-visible:border-black/40transition duration-300 ease-out ${
                         activeTab === "emergency"
                             ? "border-black"
                             : "border-transparent"

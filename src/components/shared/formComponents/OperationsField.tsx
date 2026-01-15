@@ -13,8 +13,14 @@ export default function OperationsField() {
     const t = useTranslations();
     const operations = values.operations || [{ name: "", year: "" }];
 
-    // Переконатися, що завжди є принаймні один елемент
-    const safeOperations = operations.length > 0 ? operations : [{ name: "", year: "" }];
+    // Переконатися, що завжди є принаймні один елемент і всі значення є рядками
+    const safeOperations =
+        operations.length > 0
+            ? operations.map((op: any) => ({
+                  name: op?.name === null || op?.name === undefined ? "" : String(op.name),
+                  year: op?.year === null || op?.year === undefined ? "" : String(op.year),
+              }))
+            : [{ name: "", year: "" }];
 
     const addOperation = () => {
         setFieldValue("operations", [...safeOperations, { name: "", year: "" }]);

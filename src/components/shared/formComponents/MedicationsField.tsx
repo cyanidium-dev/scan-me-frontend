@@ -12,8 +12,11 @@ export default function MedicationsField() {
     const t = useTranslations();
     const medications = values.medications || [""];
 
-    // Переконатися, що завжди є принаймні один елемент
-    const safeMedications = medications.length > 0 ? medications : [""];
+    // Переконатися, що завжди є принаймні один елемент і всі значення є рядками
+    const safeMedications =
+        medications.length > 0
+            ? medications.map((m: any) => (m === null || m === undefined ? "" : String(m)))
+            : [""];
 
     const addMedication = () => {
         setFieldValue("medications", [...safeMedications, ""]);
