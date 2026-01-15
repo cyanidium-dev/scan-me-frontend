@@ -11,6 +11,7 @@ interface PhotoUploadButtonProps {
     currentPhoto?: string;
     onPhotoUpdate: () => void;
     size?: "desktop" | "mobile";
+    variant?: "form" | "dashboard"; // "form" для реєстрації, "dashboard" для дашборда
     userName?: string;
     userEmail?: string;
 }
@@ -19,6 +20,7 @@ export default function PhotoUploadButton({
     currentPhoto,
     onPhotoUpdate,
     size = "desktop",
+    variant = "form",
     userName,
     userEmail,
 }: PhotoUploadButtonProps) {
@@ -76,9 +78,30 @@ export default function PhotoUploadButton({
     };
 
     const isDesktop = size === "desktop";
-    const photoSize = isDesktop ? "w-24 h-24" : "w-16 h-16";
-    const buttonSize = isDesktop ? "w-8 h-8" : "w-6 h-6";
-    const iconSize = isDesktop ? "w-4 h-4" : "w-3 h-3";
+    const isDashboard = variant === "dashboard";
+
+    // Розміри фото: для дашборда на desktop - 147px, для форми - 96px (w-24)
+    const photoSize = isDesktop
+        ? isDashboard
+            ? "w-[147px] h-[147px]"
+            : "w-24 h-24"
+        : "w-16 h-16";
+
+    // Розміри кнопки: для дашборда на desktop - 36px, для інших - стандартні
+    const buttonSize =
+        isDesktop && isDashboard
+            ? "w-9 h-9"
+            : isDesktop
+              ? "w-8 h-8"
+              : "w-6 h-6";
+
+    // Розміри іконки: для дашборда на desktop - 24px, для інших - стандартні
+    const iconSize =
+        isDesktop && isDashboard
+            ? "w-6 h-6"
+            : isDesktop
+              ? "w-4 h-4"
+              : "w-3 h-3";
 
     return (
         <div className="relative">
@@ -90,7 +113,9 @@ export default function PhotoUploadButton({
                 className="hidden"
                 disabled={uploading}
             />
-            <div className={`${photoSize} rounded-full bg-black/20 overflow-hidden relative`}>
+            <div
+                className={`${photoSize} rounded-full bg-black/20 overflow-hidden relative`}
+            >
                 {currentPhoto ? (
                     <Image
                         src={currentPhoto}
@@ -142,4 +167,3 @@ export default function PhotoUploadButton({
         </div>
     );
 }
-

@@ -40,83 +40,66 @@ export default function DashboardNavigation({
     return (
         <>
             {/* Desktop Navigation */}
-            <aside className="hidden lg:flex flex-col w-[320px] bg-black rounded-2xl p-6 h-fit sticky top-8">
+            <aside className="hidden lg:flex flex-col w-[320px] rounded-[16px] px-6 py-8 h-fit sticky top-8 lg:shadow-[0px_4px_14px_0px_rgba(0,0,0,0.1)]">
                 {/* User Profile */}
-                <div className="flex flex-col items-center mb-6">
+                <div className="flex flex-col items-center mb-16">
                     <div className="mb-4">
                         <PhotoUploadButton
                             currentPhoto={profileData?.photo}
                             onPhotoUpdate={onProfileUpdate}
                             size="desktop"
+                            variant="dashboard"
                             userName={profileData?.name}
                             userEmail={user?.email || undefined}
                         />
                     </div>
-                    <h2 className="text-white text-lg font-medium text-center">
+                    <p className="text-[14px] leading-[120%] font-medium text-center">
                         {fullName}
-                    </h2>
+                    </p>
                 </div>
 
                 {/* Order Button */}
-                <button className="w-full bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold py-3 px-4 rounded-lg mb-6 hover:from-red-600 hover:to-red-800 transition-all uppercase">
+                <MainButton variant="gradient" className="w-full h-[54px] mb-3">
                     {t("order")}
-                </button>
+                </MainButton>
 
                 {/* Tabs */}
-                <nav className="flex flex-col gap-2 mb-6">
+                <nav className="flex flex-col gap-3 mb-6">
                     <button
                         onClick={() => onTabChange("personal")}
-                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                        className={`flex items-center gap-3 px-4 py-3 rounded-full border transition duration-300 ease-out ${
                             activeTab === "personal"
-                                ? "bg-white text-black"
-                                : "text-white hover:bg-gray-800"
+                                ? "border-black"
+                                : "border-transparent"
                         }`}
                     >
-                        <PersonIcon
-                            className={
-                                activeTab === "personal"
-                                    ? "text-black"
-                                    : "text-white"
-                            }
-                        />
+                        <PersonIcon strokeWidth={0.8} className="size-6" />
                         <span className="font-medium">
                             {t("personalData.title")}
                         </span>
                     </button>
                     <button
                         onClick={() => onTabChange("medical")}
-                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                        className={`flex items-center gap-3 px-4 py-3 rounded-full border transition duration-300 ease-out ${
                             activeTab === "medical"
-                                ? "bg-white text-black"
-                                : "text-white hover:bg-gray-800"
+                                ? "border-black"
+                                : "border-transparent"
                         }`}
                     >
-                        <MedicalIcon
-                            className={
-                                activeTab === "medical"
-                                    ? "text-black"
-                                    : "text-white"
-                            }
-                        />
+                        <MedicalIcon strokeWidth={0.7} className="size-6" />
                         <span className="font-medium">
                             {t("medicalData.title")}
                         </span>
                     </button>
                     <button
                         onClick={() => onTabChange("emergency")}
-                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                        className={`flex items-center gap-3 px-4 py-3 rounded-full border transition duration-300 ease-out ${
                             activeTab === "emergency"
-                                ? "bg-white text-black"
-                                : "text-white hover:bg-gray-800"
+                                ? "border-black"
+                                : "border-transparent"
                         }`}
                     >
-                        <EmergencyIcon
-                            className={
-                                activeTab === "emergency"
-                                    ? "text-black"
-                                    : "text-white"
-                            }
-                        />
+                        <EmergencyIcon strokeWidth={0.8} className="size-6" />
                         <span className="font-medium">
                             {t("emergencyData.title")}
                         </span>
@@ -146,7 +129,7 @@ export default function DashboardNavigation({
                                 {profileData?.surname || ""}
                             </p>
                         </div>
-                        <button
+                        {/* <button
                             onClick={() => {
                                 const button = document.querySelector(
                                     "[data-sign-out-button]"
@@ -156,9 +139,9 @@ export default function DashboardNavigation({
                             className="size-11 rounded-full bg-black flex items-center justify-center"
                         >
                             <LogoutIcon className="text-white" />
-                        </button>
+                        </button> */}
                         <SignOutButton
-                            className="hidden"
+                            // className="hidden"
                             data-sign-out-button
                         />
                     </div>
