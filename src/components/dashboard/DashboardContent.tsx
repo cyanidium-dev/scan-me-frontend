@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useTranslations } from "next-intl";
 import { getUserProfile, UserProfileData } from "@/lib/firebase/userService";
-import DashboardNavigation from "./DashboardNavigation";
+import DashboardNavigation from "./DashboardNavigation/DashboardNavigation";
 import PersonalDataTab from "./PersonalDataTab";
 import MedicalDataTab from "./MedicalDataTab";
 import EmergencyDataTab from "./EmergencyDataTab";
