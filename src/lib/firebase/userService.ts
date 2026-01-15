@@ -1,7 +1,8 @@
 import { 
   doc, 
   getDoc,
-  setDoc, 
+  setDoc,
+  updateDoc,
   serverTimestamp,
   FieldValue
 } from "firebase/firestore";
@@ -130,6 +131,39 @@ export async function saveUserProfile(
     await setDoc(userRef, dataToSave, { merge: true });
   } catch (error) {
     console.error("Помилка збереження профілю користувача:", error);
+    throw error;
+  }
+}
+
+/**
+ * Оновлює профіль користувача в Firestore (зберігає тільки оновлені поля)
+ * @param userId - ID користувача
+ * @param personalData - Оновлені особисті дані
+ */
+export async function updateUserProfile(
+  userId: string,
+  personalData: Partial<UserProfileData["personalData"]>
+): Promise<void> {
+  try {
+    const userRef = doc(db, "users", userId);
+    
+    // Використовуємо updateDoc з точковими шляхами для оновлення вкладених полів
+    const updateData: any = {
+      "updatedAt": serverTimestamp(),
+    };
+    
+    // Додаємо всі передані поля (включаючи порожні рядки для очищення полів)
+    Object.keys(personalData).forEach((key) => {
+      const value = personalData[key as keyof typeof personalData];
+      // Перевіряємо тільки на undefined та null, дозволяємо порожні рядки
+      if (value !== undefined && value !== null) {
+        updateData[`personalData.${key}`] = value;
+      }
+    });
+    
+    await updateDoc(userRef, updateData);
+  } catch (error) {
+    console.error("Помилка оновлення профілю користувача:", error);
     throw error;
   }
 }

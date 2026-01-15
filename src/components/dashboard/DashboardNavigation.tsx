@@ -139,7 +139,7 @@ export default function DashboardNavigation({
             </aside>
 
             {/* Mobile Navigation */}
-            <div className="lg:hidden">
+            <div className="lg:hidden mb-6">
                 <div className="mb-4">
                     <div className="flex items-center gap-2 mb-4">
                         <div className="relative">

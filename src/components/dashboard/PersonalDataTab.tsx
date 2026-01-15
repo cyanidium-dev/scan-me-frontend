@@ -1,288 +1,257 @@
 "use client";
 
-import { UserProfileData } from "@/lib/firebase/userService";
+import { useState } from "react";
+import { Formik, Form } from "formik";
+import { useAuth } from "@/hooks/useAuth";
+import {
+    UserProfileData,
+    updateUserProfile,
+    uploadUserPhoto,
+} from "@/lib/firebase/userService";
 import { useTranslations } from "next-intl";
+import SectionTitle from "@/components/shared/titles/SectionTitle";
+import CustomizedInput from "@/components/shared/formComponents/CustomizedInput";
+import PhotoUploadField from "@/components/shared/formComponents/PhotoUploadField";
+import DatePickerField from "@/components/shared/formComponents/DatePickerField";
+import GenderRadioGroup from "@/components/shared/formComponents/GenderRadioGroup";
+import MainButton from "@/components/shared/buttons/MainButton";
+import PenIcon from "@/components/shared/icons/PenIcon";
+import { PersonalDataValidation } from "@/schemas/PersonalDataValidation";
 
 interface PersonalDataTabProps {
-  profileData: UserProfileData | null;
-  userEmail?: string | null;
+    profileData: UserProfileData | null;
+    userEmail?: string | null;
+    onProfileUpdate?: () => void;
 }
 
-export default function PersonalDataTab({ profileData, userEmail }: PersonalDataTabProps) {
-  const t = useTranslations("dashboardPage");
+export default function PersonalDataTab({
+    profileData,
+    userEmail,
+    onProfileUpdate,
+}: PersonalDataTabProps) {
+    const { user } = useAuth();
+    const t = useTranslations("dashboardPage");
+    const tSignUp = useTranslations("signUpPage.personalData");
+    const tForms = useTranslations("forms");
+    const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const validationSchema = PersonalDataValidation();
 
-  if (!profileData) {
+    if (!profileData) {
+        return (
+            <div className="">
+                <p>Профіль користувача ще не заповнений.</p>
+            </div>
+        );
+    }
+
+    const initialValues = {
+        name: profileData.personalData.name || "",
+        surname: profileData.personalData.surname || "",
+        dateOfBirth: profileData.personalData.dateOfBirth || "",
+        gender: profileData.personalData.gender || "",
+        photo: null as File | null,
+        country: profileData.personalData.country || "",
+        city: profileData.personalData.city || "",
+        address: profileData.personalData.address || "",
+    };
+
+    const handleSubmit = async (values: typeof initialValues) => {
+        if (!user?.uid) {
+            setError("Користувач не авторизований");
+            return;
+        }
+
+        try {
+            setLoading(true);
+            setError(null);
+            setSuccess(false);
+
+            let photoUrl = profileData.personalData.photo;
+
+            // Завантажуємо нове фото, якщо воно було змінене
+            if (values.photo instanceof File) {
+                photoUrl = await uploadUserPhoto(user.uid, values.photo);
+            }
+
+            // Оновлюємо профіль
+            await updateUserProfile(user.uid, {
+                name: values.name,
+                surname: values.surname,
+                dateOfBirth: values.dateOfBirth,
+                gender: values.gender,
+                photo: photoUrl || undefined,
+                country: values.country,
+                city: values.city,
+                address: values.address,
+            });
+
+            setSuccess(true);
+
+            // Викликаємо callback для оновлення даних в батьківському компоненті
+            if (onProfileUpdate) {
+                await onProfileUpdate();
+            }
+
+            // Приховуємо повідомлення про успіх через 3 секунди
+            setTimeout(() => {
+                setSuccess(false);
+            }, 3000);
+        } catch (err: any) {
+            console.error("Помилка оновлення профілю:", err);
+            setError(err.message || "Не вдалося зберегти дані");
+            setSuccess(false);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
-      <div className="">
-        <p>Профіль користувача ще не заповнений.</p>
-      </div>
+        <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+            enableReinitialize={true}
+            validateOnMount={true}
+        >
+            {({ isSubmitting, isValid }) => (
+                <Form>
+                    <SectionTitle className="mb-6 lg:mb-4 text-[24px] lg:text-[32px]">
+                        {t("personalData.title")}
+                    </SectionTitle>
+
+                    {error && (
+                        <div className="bg-accent/15 border border-accent text-accent px-4 py-3 rounded mb-4">
+                            {error}
+                        </div>
+                    )}
+
+                    {success && (
+                        <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded mb-4">
+                            Дані успішно збережено
+                        </div>
+                    )}
+
+                    <div className="flex flex-col gap-6 lg:gap-8">
+                        {/* Верхній блок: основні поля + фото на десктопі */}
+                        <div className="lg:flex lg:flex-row lg:gap-6">
+                            <div className="flex flex-col gap-6 lg:gap-8 lg:flex-1">
+                                <div className="flex flex-col gap-6 lg:gap-6 lg:flex-row lg:justify-between">
+                                    <div className="relative">
+                                        <CustomizedInput
+                                            fieldName="name"
+                                            label={tSignUp("name")}
+                                            placeholder={tSignUp(
+                                                "namePlaceholder"
+                                            )}
+                                            fieldClassName="h-12 lg:h-[49px] pr-10"
+                                        />
+                                        <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
+                                            <PenIcon className="w-5 h-5 text-black/40" />
+                                        </div>
+                                    </div>
+
+                                    <div className="relative">
+                                        <CustomizedInput
+                                            fieldName="surname"
+                                            label={tSignUp("surname")}
+                                            placeholder={tSignUp(
+                                                "surnamePlaceholder"
+                                            )}
+                                            fieldClassName="h-12 lg:h-[49px] pr-10"
+                                        />
+                                        <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
+                                            <PenIcon className="w-5 h-5 text-black/40" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="flex gap-6">
+                                    <DatePickerField
+                                        fieldName="dateOfBirth"
+                                        label={tSignUp("dateOfBirth")}
+                                        className="lg:w-[calc(50%-12px)]"
+                                    />
+
+                                    {/* Поле статі */}
+                                    <GenderRadioGroup
+                                        fieldName="gender"
+                                        label={tSignUp("gender")}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Поле завантаження фото - десктопна версія */}
+                            <PhotoUploadField
+                                fieldName="photo"
+                                className="hidden lg:block w-[36%]"
+                            />
+                        </div>
+
+                        {/* Адреса - опціональні поля (займають всю ширину) */}
+                        <div>
+                            <span className="inline-block mb-2 text-[14px] font-medium leading-[120%]">
+                                {tSignUp("address")}
+                            </span>
+                            <div className="flex flex-col lg:flex-row gap-4 lg:gap-2">
+                                <div className="relative">
+                                    <CustomizedInput
+                                        fieldName="country"
+                                        placeholder={tSignUp(
+                                            "countryPlaceholder"
+                                        )}
+                                        fieldClassName="h-12 lg:h-[49px] pr-10"
+                                    />
+                                    <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
+                                        <PenIcon className="w-5 h-5 text-black/40" />
+                                    </div>
+                                </div>
+
+                                <div className="relative">
+                                    <CustomizedInput
+                                        fieldName="city"
+                                        placeholder={tSignUp("cityPlaceholder")}
+                                        fieldClassName="h-12 lg:h-[49px] pr-10"
+                                        isLabelHidden={true}
+                                    />
+                                    <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
+                                        <PenIcon className="w-5 h-5 text-black/40" />
+                                    </div>
+                                </div>
+
+                                <div className="relative">
+                                    <CustomizedInput
+                                        fieldName="address"
+                                        placeholder={tSignUp(
+                                            "addressPlaceholder"
+                                        )}
+                                        fieldClassName="h-12 lg:h-[49px] pr-10"
+                                        isLabelHidden={true}
+                                    />
+                                    <div className="absolute right-4 bottom-[14.5px] pointer-events-none">
+                                        <PenIcon className="w-5 h-5 text-black/40" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Кнопка збереження */}
+                    <div className="flex justify-end mt-8">
+                        <MainButton
+                            type="submit"
+                            variant="gradient"
+                            className="w-full lg:w-fit px-10 lg:px-22.5 h-[54px]"
+                            disabled={isSubmitting || loading || !isValid}
+                            isLoading={isSubmitting || loading}
+                            loadingText={tForms("loading")}
+                        >
+                            {t("personalData.saveButton") || "Зберегти дані"}
+                        </MainButton>
+                    </div>
+                </Form>
+            )}
+        </Formik>
     );
-  }
-
-  return (
-    <div className="space-y-6">
-      <h1 className="text-3xl lg:text-4xl font-bold text-gray-300 uppercase mb-8">
-        {t("personalData.title")}
-      </h1>
-
-      <div className="space-y-4">
-        {/* Email */}
-        <div>
-          <label className="block text-sm font-medium text-gray-400 mb-2">
-            Email
-          </label>
-          <div className="relative">
-            <input
-              type="email"
-              value={userEmail || ""}
-              readOnly
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white pr-10"
-            />
-            <button className="absolute right-3 top-1/2 -translate-y-1/2">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-gray-400"
-              >
-                <path
-                  d="M11.3333 4.66667L4.66667 11.3333M4.66667 4.66667L11.3333 11.3333"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Name */}
-        <div>
-          <label className="block text-sm font-medium text-gray-400 mb-2">
-            {t("personalData.name")}
-          </label>
-          <div className="relative">
-            <input
-              type="text"
-              value={profileData.personalData.name || ""}
-              readOnly
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white pr-10"
-            />
-            <button className="absolute right-3 top-1/2 -translate-y-1/2">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-gray-400"
-              >
-                <path
-                  d="M8 2.66667V13.3333M2.66667 8H13.3333"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Surname */}
-        <div>
-          <label className="block text-sm font-medium text-gray-400 mb-2">
-            {t("personalData.surname")}
-          </label>
-          <div className="relative">
-            <input
-              type="text"
-              value={profileData.personalData.surname || ""}
-              readOnly
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white pr-10"
-            />
-            <button className="absolute right-3 top-1/2 -translate-y-1/2">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-gray-400"
-              >
-                <path
-                  d="M8 2.66667V13.3333M2.66667 8H13.3333"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Date of Birth */}
-        <div>
-          <label className="block text-sm font-medium text-gray-400 mb-2">
-            {t("personalData.dateOfBirth")}
-          </label>
-          <div className="relative">
-            <input
-              type="text"
-              value={profileData.personalData.dateOfBirth || ""}
-              readOnly
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white pr-10"
-            />
-            <button className="absolute right-3 top-1/2 -translate-y-1/2">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-gray-400"
-              >
-                <rect
-                  x="2.66667"
-                  y="3.33333"
-                  width="10.6667"
-                  height="10.6667"
-                  rx="1"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                />
-                <path
-                  d="M5.33333 1.33333V3.33333M10.6667 1.33333V3.33333M2.66667 6.66667H13.3333"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Gender */}
-        <div>
-          <label className="block text-sm font-medium text-gray-400 mb-2">
-            {t("personalData.gender")}
-          </label>
-          <div className="flex gap-4">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="radio"
-                name="gender"
-                value="male"
-                checked={profileData.personalData.gender === "male" || profileData.personalData.gender === "Чоловіча"}
-                readOnly
-                className="w-4 h-4 text-red-500"
-              />
-              <span className="text-white">{t("personalData.male")}</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="radio"
-                name="gender"
-                value="female"
-                checked={profileData.personalData.gender === "female" || profileData.personalData.gender === "Жіноча"}
-                readOnly
-                className="w-4 h-4 text-red-500"
-              />
-              <span className="text-white">{t("personalData.female")}</span>
-            </label>
-          </div>
-        </div>
-
-        {/* Address */}
-        <div>
-          <label className="block text-sm font-medium text-gray-400 mb-2">
-            {t("personalData.address")}
-          </label>
-          <div className="space-y-3">
-            <div className="relative">
-              <input
-                type="text"
-                value={profileData.personalData.country || ""}
-                placeholder={t("personalData.countryPlaceholder")}
-                readOnly
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white pr-10"
-              />
-              <button className="absolute right-3 top-1/2 -translate-y-1/2">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="text-gray-400"
-                >
-                  <path
-                    d="M8 2.66667V13.3333M2.66667 8H13.3333"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div className="relative">
-              <input
-                type="text"
-                value={profileData.personalData.city || ""}
-                placeholder={t("personalData.cityPlaceholder")}
-                readOnly
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white pr-10"
-              />
-              <button className="absolute right-3 top-1/2 -translate-y-1/2">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="text-gray-400"
-                >
-                  <path
-                    d="M8 2.66667V13.3333M2.66667 8H13.3333"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div className="relative">
-              <input
-                type="text"
-                value={profileData.personalData.address || ""}
-                placeholder={t("personalData.addressPlaceholder")}
-                readOnly
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white pr-10"
-              />
-              <button className="absolute right-3 top-1/2 -translate-y-1/2">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="text-gray-400"
-                >
-                  <path
-                    d="M8 2.66667V13.3333M2.66667 8H13.3333"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 }
-
-

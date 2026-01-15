@@ -277,7 +277,8 @@
     "signOut": "Вийти",
     "order": "Замовити наліпку",
     "personalData": {
-      "title": "Особисті дані"
+      "title": "Особисті дані",
+      "saveButton": "Зберегти дані"
     },
     "medicalData": {
       "title": "Медична інформація"

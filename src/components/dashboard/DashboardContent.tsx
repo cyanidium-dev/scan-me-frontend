@@ -79,11 +79,17 @@ export default function DashboardContent() {
                 }
             />
 
-            <div className="flex-1 rounded-2xl p-6 lg:p-8 min-h-[600px]">
+            <div className="flex-1">
                 {activeTab === "personal" && (
                     <PersonalDataTab
                         profileData={profileData}
                         userEmail={user?.email || null}
+                        onProfileUpdate={async () => {
+                            if (user?.uid) {
+                                const data = await getUserProfile(user.uid);
+                                setProfileData(data);
+                            }
+                        }}
                     />
                 )}
                 {activeTab === "medical" && (
@@ -93,11 +99,6 @@ export default function DashboardContent() {
                     <EmergencyDataTab profileData={profileData} />
                 )}
             </div>
-
-            {/* Mobile Order Button (Fixed at bottom) */}
-            <button className="lg:hidden fixed bottom-0 left-0 right-0 bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold py-4 px-4 rounded-t-2xl hover:from-red-600 hover:to-red-800 transition-all uppercase z-50">
-                {t("order")}
-            </button>
         </Container>
     );
 }

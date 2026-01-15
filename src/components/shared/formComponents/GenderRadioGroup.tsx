@@ -12,8 +12,13 @@ interface GenderRadioGroupProps {
     className?: string;
 }
 
-export default function GenderRadioGroup({ fieldName, label, className }: GenderRadioGroupProps) {
-    const { setFieldValue, setFieldTouched, values, errors, touched } = useFormikContext<any>();
+export default function GenderRadioGroup({
+    fieldName,
+    label,
+    className,
+}: GenderRadioGroupProps) {
+    const { setFieldValue, setFieldTouched, values, errors, touched } =
+        useFormikContext<any>();
     const t = useTranslations();
     const hasError = !!(touched[fieldName] && errors[fieldName]);
 
@@ -24,7 +29,7 @@ export default function GenderRadioGroup({ fieldName, label, className }: Gender
 
     return (
         <div className={twMerge("flex flex-col relative", className)}>
-            <label className="mb-5 text-[14px] font-medium leading-[120%]">
+            <label className="mb-2 lg:mb-5 text-[14px] font-medium leading-[120%]">
                 {label}
             </label>
             <RadioGroup
@@ -33,7 +38,8 @@ export default function GenderRadioGroup({ fieldName, label, className }: Gender
                 isInvalid={hasError}
                 classNames={{
                     base: "gap-4 px-2",
-                    wrapper: "lg:w-fit lg:flex-row flex-wrap lg:flex-nowrap gap-4",
+                    wrapper:
+                        "lg:w-fit lg:flex-row flex-wrap lg:flex-nowrap gap-4",
                 }}
             >
                 <Radio
@@ -63,4 +69,3 @@ export default function GenderRadioGroup({ fieldName, label, className }: Gender
         </div>
     );
 }
-

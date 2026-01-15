@@ -1,12 +1,10 @@
 {
-  "rules": {
-    "at-rule-no-unknown": [
-      true,
-      {
-        "ignoreAtRules": ["plugin", "source", "theme", "layer"]
-      }
-    ]
-  }
+    "rules": {
+        "at-rule-no-unknown": [
+            true,
+            {
+                "ignoreAtRules": ["plugin", "source", "theme", "layer"]
+            }
+        ]
+    }
 }
-
-
