@@ -77,6 +77,12 @@ export default function DashboardContent() {
                           }
                         : null
                 }
+                onProfileUpdate={async () => {
+                    if (user?.uid) {
+                        const data = await getUserProfile(user.uid);
+                        setProfileData(data);
+                    }
+                }}
             />
 
             <div className="flex-1">

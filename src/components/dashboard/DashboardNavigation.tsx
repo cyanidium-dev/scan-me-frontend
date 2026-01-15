@@ -2,13 +2,12 @@
 
 import { useAuth } from "@/hooks/useAuth";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import PersonIcon from "@/components/shared/icons/PersonIcon";
 import MedicalIcon from "@/components/shared/icons/MedicalIcon";
 import EmergencyIcon from "@/components/shared/icons/EmergencyIcon";
 import LogoutIcon from "@/components/shared/icons/LogoutIcon";
 import SignOutButton from "./SignOutButton";
-import CameraIcon from "../shared/icons/CameraIcon";
+import PhotoUploadButton from "./PhotoUploadButton";
 import MainButton from "../shared/buttons/MainButton";
 
 type TabType = "personal" | "medical" | "emergency";
@@ -21,12 +20,14 @@ interface DashboardNavigationProps {
         surname?: string;
         photo?: string;
     } | null;
+    onProfileUpdate: () => void;
 }
 
 export default function DashboardNavigation({
     activeTab,
     onTabChange,
     profileData,
+    onProfileUpdate,
 }: DashboardNavigationProps) {
     const { user } = useAuth();
     const t = useTranslations("dashboardPage");
@@ -42,26 +43,14 @@ export default function DashboardNavigation({
             <aside className="hidden lg:flex flex-col w-[320px] bg-black rounded-2xl p-6 h-fit sticky top-8">
                 {/* User Profile */}
                 <div className="flex flex-col items-center mb-6">
-                    <div className="relative mb-4">
-                        <div className="w-24 h-24 rounded-full bg-black/20 overflow-hidden relative">
-                            {profileData?.photo ? (
-                                <Image
-                                    src={profileData.photo}
-                                    alt="Profile"
-                                    fill
-                                    className="object-cover"
-                                />
-                            ) : (
-                                <div className="w-full h-full flex items-center justify-center text-white text-2xl">
-                                    {profileData?.name?.[0] ||
-                                        user?.email?.[0]?.toUpperCase() ||
-                                        "U"}
-                                </div>
-                            )}
-                        </div>
-                        <button className="absolute bottom-0 right-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-                            <CameraIcon className="text-white w-4 h-4" />
-                        </button>
+                    <div className="mb-4">
+                        <PhotoUploadButton
+                            currentPhoto={profileData?.photo}
+                            onPhotoUpdate={onProfileUpdate}
+                            size="desktop"
+                            userName={profileData?.name}
+                            userEmail={user?.email || undefined}
+                        />
                     </div>
                     <h2 className="text-white text-lg font-medium text-center">
                         {fullName}
@@ -142,27 +131,13 @@ export default function DashboardNavigation({
             <div className="lg:hidden mb-6">
                 <div className="mb-4">
                     <div className="flex items-center gap-2 mb-4">
-                        <div className="relative">
-                            <div className="w-16 h-16 rounded-full bg-black/20 overflow-hidden relative">
-                                {profileData?.photo ? (
-                                    <Image
-                                        src={profileData.photo}
-                                        alt="Profile"
-                                        fill
-                                        className="object-cover"
-                                    />
-                                ) : (
-                                    <div className="w-full h-full flex items-center justify-center">
-                                        {profileData?.name?.[0] ||
-                                            user?.email?.[0]?.toUpperCase() ||
-                                            "U"}
-                                    </div>
-                                )}
-                            </div>
-                            <button className="absolute bottom-0 right-0 w-6 h-6 bg-accent rounded-full flex items-center justify-center">
-                                <CameraIcon className="text-white w-3 h-3" />
-                            </button>
-                        </div>
+                        <PhotoUploadButton
+                            currentPhoto={profileData?.photo}
+                            onPhotoUpdate={onProfileUpdate}
+                            size="mobile"
+                            userName={profileData?.name}
+                            userEmail={user?.email || undefined}
+                        />
                         <div className="flex-1">
                             <p className="text-black text-[12px] font-medium leading-[120%]">
                                 {profileData?.name || ""}
