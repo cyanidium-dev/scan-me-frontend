@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import { Form, Formik, FormikHelpers } from "formik";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -27,7 +27,7 @@ interface OrderFormProps {
   className?: string;
   setIsError?: (error: boolean) => void;
   setIsNotificationShown?: (shown: boolean) => void;
-  setIsModalShown?: (shown: boolean) => void;
+  setIsModalShown?: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function OrderForm({ 

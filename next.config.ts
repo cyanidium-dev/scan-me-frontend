@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
             },
         ],
     },
-    serverComponentsExternalPackages: ["qrcode", "form-data"],
+    serverExternalPackages: ["qrcode", "form-data"],
     webpack: (config, { isServer }) => {
         if (!isServer) {
             config.resolve.fallback = {

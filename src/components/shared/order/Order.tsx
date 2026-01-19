@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import { useTranslations } from "next-intl";
 import OrderModal from "../modals/OrderModal";
 import NotificationPopUp from "../notifications/NotificationPopUp";
 
 interface OrderProps {
   isModalShown: boolean;
-  setIsModalShown: (shown: boolean) => void;
+  setIsModalShown: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function Order({

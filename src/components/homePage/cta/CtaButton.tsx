@@ -6,11 +6,11 @@ import { useAuth } from "@/hooks/useAuth";
 import MainButton from "@/components/shared/buttons/MainButton";
 import Order from "@/components/shared/order/Order";
 
-interface HeroButtonProps {
+interface CtaButtonProps {
   buttonText: string;
 }
 
-export default function HeroButton({ buttonText }: HeroButtonProps) {
+export default function CtaButton({ buttonText }: CtaButtonProps) {
   const router = useRouter();
   const { user } = useAuth();
   const [isOrderModalShown, setIsOrderModalShown] = useState(false);
@@ -29,7 +29,7 @@ export default function HeroButton({ buttonText }: HeroButtonProps) {
     <>
       <MainButton
         variant="gradient"
-        className="relative z-10 w-full lg:w-[282px] h-[54px] h-[54px]"
+        className="relative z-10 w-full lg:w-[282px] h-[54px]"
         onClick={handleButtonClick}
       >
         {buttonText}

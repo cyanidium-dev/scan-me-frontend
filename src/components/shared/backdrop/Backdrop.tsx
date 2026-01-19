@@ -1,4 +1,7 @@
+"use client";
+
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface BackdropProps {
   isVisible: boolean;
@@ -27,14 +30,19 @@ export default function Backdrop({
     };
   }, [isVisible, onClick]);
 
-  return (
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  return createPortal(
     <div
-      className={`fixed z-[40] inset-0 w-dvw h-dvh transition duration-[1000ms] ease-in-out ${
+      className={`fixed z-[90] inset-0 w-dvw h-dvh transition duration-[1000ms] ease-in-out ${
         isVisible
           ? "opacity-100 no-doc-scroll"
           : "opacity-0 pointer-events-none"
       } ${transparent ? "bg-transparent" : "bg-black/40"} ${className}`}
       onClick={onClick}
-    />
+    />,
+    document.body
   );
 }
