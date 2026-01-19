@@ -3,7 +3,7 @@
 import { Dispatch, SetStateAction } from "react";
 import Modal from "./Modal";
 import Backdrop from "../backdrop/Backdrop";
-import OrderForm from "../forms/OrderForm";
+import OrderForm from "../forms/orderForm/OrderForm";
 
 interface OrderModalProps {
   isModalShown: boolean;
