@@ -27,6 +27,7 @@ interface CustomizedInputProps {
   isLabelHidden?: boolean;
   as?: string;
   icon?: ReactNode;
+  hasClearButton?: boolean;
 }
 
 export default function CustomizedInput({
@@ -39,6 +40,7 @@ export default function CustomizedInput({
   isLabelHidden = false,
   as,
   icon,
+  hasClearButton = false,
 }: CustomizedInputProps) {
   const { setFieldValue, setFieldTouched } = useFormikContext<Values>();
   const inputId = useId();
@@ -79,7 +81,8 @@ export default function CustomizedInput({
                 hasError
                   ? "border-accent text-accent placeholder:text-accent/40"
                   : "border-black/40 text-black placeholder:text-black/40",
-                icon ? "pl-[50px] lg:pl-[50px]" : ""
+                icon ? "pl-[50px] lg:pl-[50px]" : "",
+                hasClearButton ? "pr-12 lg:pr-12" : ""
               ),
             };
 

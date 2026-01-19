@@ -4,7 +4,7 @@ import { useFormikContext } from "formik";
 import { useTranslations } from "next-intl";
 import CustomizedInput from "./CustomizedInput";
 import MainButton from "../buttons/MainButton";
-import CrossIcon from "../icons/CrossIcon";
+import TrashIcon from "../icons/TrashIcon";
 import PlusIcon from "../icons/PlusIcon";
 
 export default function DoctorsField() {
@@ -12,8 +12,18 @@ export default function DoctorsField() {
     const t = useTranslations();
     const doctors = values.doctors || [{ name: "", phone: "", specialization: "" }];
 
-    // Переконатися, що завжди є принаймні один елемент
-    const safeDoctors = doctors.length > 0 ? doctors : [{ name: "", phone: "", specialization: "" }];
+    // Переконатися, що завжди є принаймні один елемент і всі значення є рядками
+    const safeDoctors =
+        doctors.length > 0
+            ? doctors.map((doc: any) => ({
+                  name: doc?.name === null || doc?.name === undefined ? "" : String(doc.name),
+                  phone: doc?.phone === null || doc?.phone === undefined ? "" : String(doc.phone),
+                  specialization:
+                      doc?.specialization === null || doc?.specialization === undefined
+                          ? ""
+                          : String(doc.specialization),
+              }))
+            : [{ name: "", phone: "", specialization: "" }];
 
     const addDoctor = () => {
         setFieldValue("doctors", [...safeDoctors, { name: "", phone: "", specialization: "" }]);
@@ -41,6 +51,7 @@ export default function DoctorsField() {
                     placeholder={t("signUpPage.medicalData.doctorNamePlaceholder")}
                     fieldClassName="h-12 lg:h-[49px] flex-1"
                     isLabelHidden={true}
+                    labelClassName="lg:w-[calc(33.33%-5.33px)]"
                 />
                 <CustomizedInput
                     fieldName="doctors[0].phone"
@@ -48,12 +59,14 @@ export default function DoctorsField() {
                     inputType="tel"
                     fieldClassName="h-12 lg:h-[49px] flex-1 py-0 lg:py-0"
                     isLabelHidden={true}
+                    labelClassName="lg:w-[calc(33.33%-5.33px)]"
                 />
                 <CustomizedInput
                     fieldName="doctors[0].specialization"
                     placeholder={t("signUpPage.medicalData.doctorSpecializationPlaceholder")}
                     fieldClassName="h-12 lg:h-[49px] flex-1"
                     isLabelHidden={true}
+                    labelClassName="lg:w-[calc(33.33%-5.33px)]"
                 />
             </div>
             {/* Додаткові поля з хрестиками */}
@@ -65,23 +78,24 @@ export default function DoctorsField() {
                                 fieldName={`doctors[${index + 1}].name`}
                                 placeholder={t("signUpPage.medicalData.doctorNamePlaceholder")}
                                 fieldClassName="h-12 lg:h-[49px]"
-                                labelClassName="lg:w-[calc(33.33%-5.33px)]"
                                 isLabelHidden={true}
+                                labelClassName="lg:w-[calc(33.33%-5.33px)]"
                             />
                             <CustomizedInput
                                 fieldName={`doctors[${index + 1}].phone`}
                                 placeholder={t("signUpPage.medicalData.doctorPhonePlaceholder")}
                                 inputType="tel"
-                                fieldClassName="h-12 lg:h-[49px]"
+                                fieldClassName="h-12 lg:h-[49px] py-0 lg:py-0"
                                 labelClassName="lg:w-[calc(33.33%-5.33px)]"
                                 isLabelHidden={true}
                             />
-                            <div className="relative flex-1 w-full lg:w-[calc(33.33%-5.33px)]">
+                            <div className="relative flex lg:w-[calc(33.33%-5.33px)]">
                                 <CustomizedInput
                                     fieldName={`doctors[${index + 1}].specialization`}
                                     placeholder={t("signUpPage.medicalData.doctorSpecializationPlaceholder")}
-                                    fieldClassName="h-12 lg:h-[49px]"
+                                    fieldClassName="h-12 lg:h-[49px] flex-1 shrink-0"
                                     isLabelHidden={true}
+                                    hasClearButton={true}
                                 />
                                 <button
                                     type="button"
@@ -89,7 +103,7 @@ export default function DoctorsField() {
                                     className="absolute right-4 top-1/2 -translate-y-1/2 text-accent hover:text-accent/70 focus-visible:text-accent/70 focus-visible:outline-none cursor-pointer transition duration-300 z-10"
                                     aria-label="Remove doctor"
                                 >
-                                    <CrossIcon className="w-5 h-5" />
+                                    <TrashIcon className="w-5 h-5" />
                                 </button>
                             </div>
                         </div>

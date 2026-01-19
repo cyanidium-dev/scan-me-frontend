@@ -3,7 +3,12 @@
 import { useFormikContext } from "formik";
 import { useTranslations, useLocale } from "next-intl";
 import { DatePicker } from "@heroui/react";
-import { CalendarDate, parseDate, today, getLocalTimeZone } from "@internationalized/date";
+import {
+    CalendarDate,
+    parseDate,
+    today,
+    getLocalTimeZone,
+} from "@internationalized/date";
 import { I18nProvider } from "@react-aria/i18n";
 import { twMerge } from "tailwind-merge";
 import { useState } from "react";
@@ -15,8 +20,19 @@ interface DatePickerFieldProps {
     className?: string;
 }
 
-export default function DatePickerField({ fieldName, label, className }: DatePickerFieldProps) {
-    const { setFieldValue, setFieldTouched, validateField, values, errors, touched } = useFormikContext<any>();
+export default function DatePickerField({
+    fieldName,
+    label,
+    className,
+}: DatePickerFieldProps) {
+    const {
+        setFieldValue,
+        setFieldTouched,
+        validateField,
+        values,
+        errors,
+        touched,
+    } = useFormikContext<any>();
     const locale = useLocale();
     const hasError = !!(touched[fieldName] && errors[fieldName]);
 
@@ -65,7 +81,7 @@ export default function DatePickerField({ fieldName, label, className }: DatePic
 
     return (
         <div className={twMerge("flex flex-col relative", className)}>
-            <label className="mb-2 text-[12px] lg:text-[14px] font-medium leading-[120%]">
+            <label className="mb-2 text-[14px] font-medium leading-[120%]">
                 {label}
             </label>
             <I18nProvider locale={datePickerLocale}>
@@ -112,4 +128,3 @@ export default function DatePickerField({ fieldName, label, className }: DatePic
         </div>
     );
 }
-

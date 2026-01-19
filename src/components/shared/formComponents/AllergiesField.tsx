@@ -4,7 +4,7 @@ import { useFormikContext } from "formik";
 import { useTranslations } from "next-intl";
 import CustomizedInput from "./CustomizedInput";
 import MainButton from "../buttons/MainButton";
-import CrossIcon from "../icons/CrossIcon";
+import TrashIcon from "../icons/TrashIcon";
 import PlusIcon from "../icons/PlusIcon";
 
 export default function AllergiesField() {
@@ -12,8 +12,11 @@ export default function AllergiesField() {
     const t = useTranslations();
     const allergies = values.allergies || [""];
 
-    // Переконатися, що завжди є принаймні один елемент
-    const safeAllergies = allergies.length > 0 ? allergies : [""];
+    // Переконатися, що завжди є принаймні один елемент і всі значення є рядками
+    const safeAllergies =
+        allergies.length > 0
+            ? allergies.map((a: any) => (a === null || a === undefined ? "" : String(a)))
+            : [""];
 
     const addAllergy = () => {
         setFieldValue("allergies", [...safeAllergies, ""]);
@@ -65,6 +68,7 @@ export default function AllergiesField() {
                                 placeholder={t("signUpPage.medicalData.allergiesPlaceholder")}
                                 fieldClassName="h-12 lg:h-[49px]"
                                 isLabelHidden={true}
+                                hasClearButton={true}
                             />
                             <button
                                 type="button"
@@ -72,7 +76,7 @@ export default function AllergiesField() {
                                 className="absolute right-4 top-1/2 -translate-y-1/2 text-accent hover:text-accent/70 focus-visible:text-accent/70 focus-visible:outline-none cursor-pointer transition duration-300 z-10"
                                 aria-label="Remove allergy"
                             >
-                                <CrossIcon className="w-5 h-5" />
+                                <TrashIcon className="w-5 h-5" />
                             </button>
                         </div>
                     ))}

@@ -3,7 +3,7 @@
 import { useFormikContext } from "formik";
 import { useTranslations } from "next-intl";
 import CustomizedInput from "./CustomizedInput";
-import CrossIcon from "../icons/CrossIcon";
+import TrashIcon from "../icons/TrashIcon";
 
 interface EmergencyContactFieldProps {
     index: number;
@@ -16,12 +16,12 @@ export default function EmergencyContactField({ index, onRemove, showRemove = fa
 
     return (
         <div className="flex flex-col gap-4">
-            <div className="flex flex-col lg:flex-row gap-4 lg:gap-2 relative">
+            <div className="flex flex-col xl:flex-row gap-4 lg:gap-2 relative">
                 <CustomizedInput
                     fieldName={`emergencyContacts[${index}].name`}
                     placeholder={t("signUpPage.emergencyData.emergencyContactPlaceholder")}
                     fieldClassName="h-12 lg:h-[49px]"
-                    labelClassName="lg:w-[calc(33.33%-5.33px)]"
+                    labelClassName="xl:w-[calc(33.33%-5.33px)]"
                     isLabelHidden={true}
                 />
                 <CustomizedInput
@@ -29,15 +29,16 @@ export default function EmergencyContactField({ index, onRemove, showRemove = fa
                     placeholder={t("signUpPage.emergencyData.emergencyContactPhonePlaceholder")}
                     inputType="tel"
                     fieldClassName="h-12 lg:h-[49px] py-0 lg:py-0"
-                    labelClassName="lg:w-[calc(33.33%-5.33px)]"
+                    labelClassName="xl:w-[calc(33.33%-5.33px)]"
                     isLabelHidden={true}
                 />
-                <div className="relative lg:w-[calc(33.33%-5.33px)]">
+                <div className="relative xl:w-[calc(33.33%-5.33px)]">
                     <CustomizedInput
                         fieldName={`emergencyContacts[${index}].relationship`}
                         placeholder={t("signUpPage.emergencyData.emergencyContactRelationshipPlaceholder")}
                         fieldClassName="h-12 lg:h-[49px]"
                         isLabelHidden={true}
+                        hasClearButton={showRemove}
                     />
                     {showRemove && onRemove && (
                         <button
@@ -46,7 +47,7 @@ export default function EmergencyContactField({ index, onRemove, showRemove = fa
                             className="absolute right-4 top-1/2 -translate-y-1/2 text-accent hover:text-accent/70 focus-visible:text-accent/70 focus-visible:outline-none cursor-pointer transition duration-300 z-10"
                             aria-label="Remove emergency contact"
                         >
-                            <CrossIcon className="w-5 h-5" />
+                            <TrashIcon className="w-5 h-5" />
                         </button>
                     )}
                 </div>

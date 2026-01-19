@@ -4,7 +4,7 @@ import { useFormikContext } from "formik";
 import { useTranslations } from "next-intl";
 import CustomizedInput from "./CustomizedInput";
 import MainButton from "../buttons/MainButton";
-import CrossIcon from "../icons/CrossIcon";
+import TrashIcon from "../icons/TrashIcon";
 import PlusIcon from "../icons/PlusIcon";
 
 export default function MedicationsField() {
@@ -12,8 +12,11 @@ export default function MedicationsField() {
     const t = useTranslations();
     const medications = values.medications || [""];
 
-    // Переконатися, що завжди є принаймні один елемент
-    const safeMedications = medications.length > 0 ? medications : [""];
+    // Переконатися, що завжди є принаймні один елемент і всі значення є рядками
+    const safeMedications =
+        medications.length > 0
+            ? medications.map((m: any) => (m === null || m === undefined ? "" : String(m)))
+            : [""];
 
     const addMedication = () => {
         setFieldValue("medications", [...safeMedications, ""]);
@@ -95,6 +98,7 @@ export default function MedicationsField() {
                                             placeholder={t("signUpPage.medicalData.medicationsPlaceholder")}
                                             fieldClassName="h-12"
                                             isLabelHidden={true}
+                                            hasClearButton={true}
                                         />
                                         <button
                                             type="button"
@@ -102,7 +106,7 @@ export default function MedicationsField() {
                                             className="absolute right-4 top-1/2 -translate-y-1/2 text-accent hover:text-accent/70 focus-visible:text-accent/70 focus-visible:outline-none cursor-pointer transition duration-300 z-10"
                                             aria-label="Remove medication"
                                         >
-                                            <CrossIcon className="w-5 h-5" />
+                                            <TrashIcon className="w-5 h-5" />
                                         </button>
                                     </div>
                                     {isLast && (
@@ -125,6 +129,7 @@ export default function MedicationsField() {
                                             placeholder={t("signUpPage.medicalData.medicationsPlaceholder")}
                                             fieldClassName="h-[49px] w-[356px]"
                                             isLabelHidden={true}
+                                            hasClearButton={true}
                                         />
                                         <button
                                             type="button"
@@ -132,7 +137,7 @@ export default function MedicationsField() {
                                             className="absolute right-4 top-1/2 -translate-y-1/2 text-accent hover:text-accent/70 focus-visible:text-accent/70 focus-visible:outline-none cursor-pointer transition duration-300 z-10"
                                             aria-label="Remove medication"
                                         >
-                                            <CrossIcon className="w-5 h-5" />
+                                            <TrashIcon className="w-5 h-5" />
                                         </button>
                                     </div>
                                     {isLast && (

@@ -1,6 +1,8 @@
 import { 
   doc, 
-  setDoc, 
+  getDoc,
+  setDoc,
+  updateDoc,
   serverTimestamp,
   FieldValue
 } from "firebase/firestore";
@@ -86,6 +88,29 @@ export async function uploadUserPhoto(
 }
 
 /**
+ * Отримує профіль користувача з Firestore
+ * @param userId - ID користувача
+ * @returns Дані профілю користувача або null, якщо профіль не знайдено
+ */
+export async function getUserProfile(
+  userId: string
+): Promise<UserProfileData | null> {
+  try {
+    const userRef = doc(db, "users", userId);
+    const userSnap = await getDoc(userRef);
+    
+    if (!userSnap.exists()) {
+      return null;
+    }
+    
+    return userSnap.data() as UserProfileData;
+  } catch (error) {
+    console.error("Помилка отримання профілю користувача:", error);
+    throw error;
+  }
+}
+
+/**
  * Зберігає профіль користувача в Firestore
  * @param user - Firebase User об'єкт
  * @param profileData - Дані профілю користувача
@@ -110,3 +135,101 @@ export async function saveUserProfile(
   }
 }
 
+/**
+ * Оновлює профіль користувача в Firestore (зберігає тільки оновлені поля)
+ * @param userId - ID користувача
+ * @param personalData - Оновлені особисті дані
+ */
+export async function updateUserProfile(
+  userId: string,
+  personalData: Partial<UserProfileData["personalData"]>
+): Promise<void> {
+  try {
+    const userRef = doc(db, "users", userId);
+    
+    // Використовуємо updateDoc з точковими шляхами для оновлення вкладених полів
+    const updateData: any = {
+      "updatedAt": serverTimestamp(),
+    };
+    
+    // Додаємо всі передані поля (включаючи порожні рядки для очищення полів)
+    Object.keys(personalData).forEach((key) => {
+      const value = personalData[key as keyof typeof personalData];
+      // Перевіряємо тільки на undefined та null, дозволяємо порожні рядки
+      if (value !== undefined && value !== null) {
+        updateData[`personalData.${key}`] = value;
+      }
+    });
+    
+    await updateDoc(userRef, updateData);
+  } catch (error) {
+    console.error("Помилка оновлення профілю користувача:", error);
+    throw error;
+  }
+}
+
+/**
+ * Оновлює медичні дані користувача в Firestore
+ * @param userId - ID користувача
+ * @param medicalData - Оновлені медичні дані
+ */
+export async function updateMedicalData(
+  userId: string,
+  medicalData: Partial<UserProfileData["medicalData"]>
+): Promise<void> {
+  try {
+    const userRef = doc(db, "users", userId);
+    
+    // Використовуємо updateDoc з точковими шляхами для оновлення вкладених полів
+    const updateData: any = {
+      "updatedAt": serverTimestamp(),
+    };
+    
+    // Додаємо всі передані поля (включаючи порожні рядки для очищення полів)
+    Object.keys(medicalData).forEach((key) => {
+      const value = medicalData[key as keyof typeof medicalData];
+      // Перевіряємо тільки на undefined та null, дозволяємо порожні рядки та порожні масиви
+      if (value !== undefined && value !== null) {
+        updateData[`medicalData.${key}`] = value;
+      }
+    });
+    
+    await updateDoc(userRef, updateData);
+  } catch (error) {
+    console.error("Помилка оновлення медичних даних користувача:", error);
+    throw error;
+  }
+}
+
+/**
+ * Оновлює екстрені дані користувача в Firestore
+ * @param userId - ID користувача
+ * @param emergencyData - Оновлені екстрені дані
+ */
+export async function updateEmergencyData(
+  userId: string,
+  emergencyData: Partial<UserProfileData["emergencyData"]>
+): Promise<void> {
+  try {
+    const userRef = doc(db, "users", userId);
+    
+    // Використовуємо updateDoc з точковими шляхами для оновлення вкладених полів
+    const updateData: any = {
+      "updatedAt": serverTimestamp(),
+    };
+    
+    // Додаємо всі передані поля (включаючи порожні рядки для очищення полів)
+    Object.keys(emergencyData).forEach((key) => {
+      const value = emergencyData[key as keyof typeof emergencyData];
+      // Перевіряємо тільки на undefined та null, дозволяємо порожні рядки та порожні масиви
+      if (value !== undefined && value !== null) {
+        updateData[`emergencyData.${key}`] = value;
+      }
+    });
+    
+    await updateDoc(userRef, updateData);
+  } catch (error) {
+    console.error("Помилка оновлення екстрених даних користувача:", error);
+    throw error;
+  }
+}

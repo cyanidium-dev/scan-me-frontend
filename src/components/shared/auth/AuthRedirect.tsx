@@ -5,28 +5,31 @@ import { useRouter } from "@/i18n/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import Loader from "../loader/Loader";
 
-interface ProtectedRouteProps {
+interface AuthRedirectProps {
   children: React.ReactNode;
+  redirectTo?: string;
 }
 
-export default function ProtectedRoute({ children }: ProtectedRouteProps) {
+export default function AuthRedirect({ 
+  children, 
+  redirectTo = "/dashboard" 
+}: AuthRedirectProps) {
   const { user, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.push("/sign-in");
+    if (!loading && user) {
+      router.push(redirectTo);
     }
-  }, [user, loading, router]);
+  }, [user, loading, router, redirectTo]);
 
   if (loading) {
     return <Loader />;
   }
 
-  if (!user) {
+  if (user) {
     return null;
   }
 
   return <>{children}</>;
 }
-

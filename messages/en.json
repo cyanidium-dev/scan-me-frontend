@@ -273,5 +273,19 @@
       "sendMessage": "Send SMS when scanning my QR",
       "gps": "Allow sharing location when scanning"
     }
+  },
+  "dashboardPage": {
+    "signOut": "Sign out",
+    "order": "Order sticker",
+    "personalData": {
+      "title": "Personal data",
+      "saveButton": "Save data"
+    },
+    "medicalData": {
+      "title": "Medical information"
+    },
+    "emergencyData": {
+      "title": "Emergency data"
+    }
   }
 }
