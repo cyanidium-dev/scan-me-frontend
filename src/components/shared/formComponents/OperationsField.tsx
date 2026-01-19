@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import CustomizedInput from "./CustomizedInput";
 import YearPicker from "./YearPicker";
 import MainButton from "../buttons/MainButton";
-import CrossIcon from "../icons/CrossIcon";
+import TrashIcon from "../icons/TrashIcon";
 import PlusIcon from "../icons/PlusIcon";
 
 export default function OperationsField() {
@@ -113,6 +113,7 @@ export default function OperationsField() {
                                             placeholder={t("signUpPage.medicalData.operationsPlaceholder")}
                                             fieldClassName="h-12 flex-1"
                                             isLabelHidden={true}
+                                            hasClearButton={true}
                                         />
                                         <button
                                             type="button"
@@ -120,7 +121,7 @@ export default function OperationsField() {
                                             className="absolute right-4 top-1/2 -translate-y-1/2 text-accent hover:text-accent/70 focus-visible:text-accent/70 focus-visible:outline-none cursor-pointer transition duration-300 z-10"
                                             aria-label="Remove operation"
                                         >
-                                            <CrossIcon className="w-5 h-5" />
+                                            <TrashIcon className="w-5 h-5" />
                                         </button>
                                     </div>
                                     <div className="flex gap-2">
@@ -155,6 +156,7 @@ export default function OperationsField() {
                                             placeholder={t("signUpPage.medicalData.operationsPlaceholder")}
                                             fieldClassName="h-[49px] flex-1"
                                             isLabelHidden={true}
+                                            hasClearButton={true}
                                         />
                                         <button
                                             type="button"
@@ -162,7 +164,7 @@ export default function OperationsField() {
                                             className="absolute right-4 top-1/2 -translate-y-1/2 text-accent hover:text-accent/70 focus-visible:text-accent/70 focus-visible:outline-none cursor-pointer transition duration-300 z-10"
                                             aria-label="Remove operation"
                                         >
-                                            <CrossIcon className="w-5 h-5" />
+                                            <TrashIcon className="w-5 h-5" />
                                         </button>
                                     </div>
                                     {isLast && (
