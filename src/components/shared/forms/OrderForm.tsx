@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Form, Formik } from "formik";
+import { Form, Formik, FormikHelpers } from "formik";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import axios from "axios";
 import CustomizedInput from "../formComponents/CustomizedInput";
 import MainButton from "../buttons/MainButton";
+import { OrderFormValidation } from "@/schemas/OrderFormValidation";
 import { twMerge } from "tailwind-merge";
 
 interface OrderFormValues {
@@ -36,6 +38,8 @@ export default function OrderForm({
   const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
+  const validationSchema = OrderFormValidation();
+
   const initialValues: OrderFormValues = {
     productType: "sticker",
     quantity: 1,
@@ -46,16 +50,42 @@ export default function OrderForm({
     deliveryAddress: "",
   };
 
-  const handleSubmit = async (values: OrderFormValues) => {
+  const handleSubmit = async (
+    values: OrderFormValues,
+    formikHelpers: FormikHelpers<OrderFormValues>
+  ) => {
+    const { resetForm } = formikHelpers;
+
+    const productTypeText = values.productType === "sticker" 
+      ? t("orderForm.sticker") 
+      : t("orderForm.bracelet");
+
+    const data =
+      `<b>Заявка "Форма замовлення"</b>\n` +
+      `<b>Тип продукту:</b> ${productTypeText}\n` +
+      `<b>Кількість:</b> ${values.quantity}\n` +
+      `<b>Ім'я:</b> ${values.name.trim()}\n` +
+      `<b>Прізвище:</b> ${values.surname.trim()}\n` +
+      (values.patronymic.trim() ? `<b>По-батькові:</b> ${values.patronymic.trim()}\n` : "") +
+      `<b>Телефон:</b> ${values.phone.trim().replace(/(?!^)\D/g, "")}\n` +
+      `<b>Адреса доставки:</b> ${values.deliveryAddress.trim()}\n`;
+
     try {
       if (setIsError) setIsError(false);
       setIsLoading(true);
       
-      // Логіка submit буде додана пізніше
-      console.log("Order form submitted:", values);
+      await axios({
+        method: "post",
+        url: "/api/telegram",
+        data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       
-      // Тимчасово імітуємо успішну відправку
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      resetForm();
+      setProductType("sticker");
+      setQuantity(1);
       
       if (setIsModalShown) {
         setIsModalShown(false);
@@ -71,6 +101,7 @@ export default function OrderForm({
       if (setIsNotificationShown) {
         setIsNotificationShown(true);
       }
+      return error;
     } finally {
       setIsLoading(false);
     }
@@ -98,9 +129,10 @@ export default function OrderForm({
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
+        validationSchema={validationSchema}
         enableReinitialize={true}
       >
-        {({ setFieldValue, values }) => {
+        {({ setFieldValue, values, dirty, isValid }) => {
           // Синхронізуємо productType та quantity зі станом
           if (values.productType !== productType) {
             setFieldValue("productType", productType);
@@ -237,7 +269,7 @@ export default function OrderForm({
                   type="submit"
                   variant="gradient"
                   className="w-full h-[48px] lg:h-[54px]"
-                  disabled={isLoading}
+                  disabled={!(dirty && isValid) || isLoading}
                   isLoading={isLoading}
                   loadingText={t("forms.loading")}
                 >
