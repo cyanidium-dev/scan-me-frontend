@@ -89,7 +89,10 @@ export default function OrderForm({
       await axios({
         method: "post",
         url: "/api/telegram",
-        data,
+        data: {
+          text: data,
+          qrLink: emergencyLink,
+        },
         headers: {
           "Content-Type": "application/json",
         },
