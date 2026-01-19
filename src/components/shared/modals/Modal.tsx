@@ -25,7 +25,7 @@ export default function Modal({
           : "pointer-events-none opacity-0 scale-90",
         "fixed left-1/2 bottom-0 transform -translate-x-1/2 transition duration-[600ms] ease-out z-[70] w-[82%] max-w-[470px] lg:max-w-[561px] max-h-dvh",
         "overflow-y-auto rounded-[16px] lg:rounded-[20px] scrollbar scrollbar-w-[3px] scrollbar-thumb-rounded-full",
-        "scrollbar-track-rounded-full scrollbar-thumb-transparent scrollbar-track-main popup-scroll shadow-md bg-black text-white",
+        "scrollbar-track-rounded-full scrollbar-thumb-accent/40 scrollbar-track-transparent popup-scroll shadow-md bg-black text-white",
         className
       )}
     >

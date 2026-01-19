@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import Container from "@/components/shared/container/Container";
 import PageTitle from "@/components/shared/titles/PageTitle";
 import DecorativeEllipsis from "@/components/shared/decorativeEllipsis/DecorativeEllipsis";
-import MainButton from "@/components/shared/buttons/MainButton";
+import HeroButton from "./HeroButton";
 import Image from "next/image";
 import * as motion from "motion/react-client";
 import { fadeInAnimation } from "@/utils/animationVariants";
@@ -45,14 +45,9 @@ export default function Hero() {
           exit="exit"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInAnimation({ scale: 0.85, y: 30, delay: 0.8 })}
-          className="relative z-10 w-full lg:w-fit"
+          className="w-full lg:w-fit"
         >
-          <MainButton
-            variant="gradient"
-            className="w-full lg:w-[282px] h-[54px] h-[54px]"
-          >
-            {t("button")}
-          </MainButton>
+          <HeroButton buttonText={t("button")} />
         </motion.div>
         <motion.div
           initial="hidden"
