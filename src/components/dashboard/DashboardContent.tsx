@@ -9,6 +9,7 @@ import PersonalDataTab from "./PersonalDataTab";
 import MedicalDataTab from "./MedicalDataTab";
 import EmergencyDataTab from "./EmergencyDataTab";
 import Container from "../shared/container/Container";
+import Loader from "../shared/loader/Loader";
 
 type TabType = "personal" | "medical" | "emergency";
 
@@ -45,15 +46,7 @@ export default function DashboardContent() {
         fetchUserProfile();
     }, [user?.uid]);
 
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center min-h-[400px]">
-                <div className="text-center">
-                    <p className="text-lg text-gray-400">Завантаження...</p>
-                </div>
-            </div>
-        );
-    }
+
 
     if (error) {
         return (

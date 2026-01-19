@@ -173,7 +173,7 @@
     height: 24px;
     position: relative;
     border-radius: 50%;
-    color: var(--color-brown);
+    color: var(--color-accent);
     animation: fill 1s ease-in infinite alternate;
 
     @media screen and (min-width: 1024px) {

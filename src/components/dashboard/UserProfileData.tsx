@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useAuth } from "@/hooks/useAuth";
 import { getUserProfile, type UserProfileData } from "@/lib/firebase/userService";
 import { useTranslations } from "next-intl";
+import Loader from "../shared/loader/Loader";
 
 export default function UserProfileData() {
   const { user } = useAuth();
@@ -36,13 +37,6 @@ export default function UserProfileData() {
     fetchUserProfile();
   }, [user?.uid]);
 
-  if (loading) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-lg">Завантаження...</p>
-      </div>
-    );
-  }
 
   if (error) {
     return (

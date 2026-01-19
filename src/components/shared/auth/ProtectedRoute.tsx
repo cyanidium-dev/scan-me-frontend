@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "@/i18n/navigation";
 import { useAuth } from "@/hooks/useAuth";
+import Loader from "../loader/Loader";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -19,13 +20,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   }, [user, loading, router]);
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <p>Завантаження...</p>
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (!user) {
