@@ -12,7 +12,7 @@ import KeyIcon from "../../icons/KeyIcon";
 import { SignUpValidation } from "@/schemas/SignUpFormValidation";
 import * as motion from "motion/react-client";
 import { fadeInAnimation } from "@/utils/animationVariants";
-import Stepper from "../../stepper/Stepper";
+import Stepper from "./Stepper";
 import PersonalDataStep from "./PersonalDataStep";
 import MedicalDataStep from "./MedicalDataStep";
 import EmergencyDataStep from "./EmergencyDataStep";
