@@ -147,7 +147,7 @@ export default function PhotoUploadButton({
                     isDesktop
                         ? "bg-red-500 hover:bg-red-600"
                         : "bg-accent hover:bg-accent/80"
-                } rounded-full flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+                } rounded-full flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer`}
                 aria-label="Upload photo"
             >
                 {currentPhoto ? (

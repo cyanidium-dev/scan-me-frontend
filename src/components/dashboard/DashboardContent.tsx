@@ -9,7 +9,8 @@ import PersonalDataTab from "./PersonalDataTab";
 import MedicalDataTab from "./MedicalDataTab";
 import EmergencyDataTab from "./EmergencyDataTab";
 import Container from "../shared/container/Container";
-import Loader from "../shared/loader/Loader";
+import * as motion from "motion/react-client";
+import { fadeInAnimation } from "@/utils/animationVariants";
 
 type TabType = "personal" | "medical" | "emergency";
 
@@ -58,27 +59,43 @@ export default function DashboardContent() {
 
     return (
         <Container className="flex flex-col lg:flex-row gap-6">
-            <DashboardNavigation
-                activeTab={activeTab}
-                onTabChange={setActiveTab}
-                profileData={
-                    profileData
-                        ? {
-                              name: profileData.personalData.name,
-                              surname: profileData.personalData.surname,
-                              photo: profileData.personalData.photo,
-                          }
-                        : null
-                }
-                onProfileUpdate={async () => {
-                    if (user?.uid) {
-                        const data = await getUserProfile(user.uid);
-                        setProfileData(data);
+            <motion.div
+                key="navigation"
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={fadeInAnimation({ y: 30, delay: 0.2 })}
+                className="w-full lg:w-auto"
+            >
+                <DashboardNavigation
+                    activeTab={activeTab}
+                    onTabChange={setActiveTab}
+                    profileData={
+                        profileData
+                            ? {
+                                  name: profileData.personalData.name,
+                                  surname: profileData.personalData.surname,
+                                  photo: profileData.personalData.photo,
+                              }
+                            : null
                     }
-                }}
-            />
+                    onProfileUpdate={async () => {
+                        if (user?.uid) {
+                            const data = await getUserProfile(user.uid);
+                            setProfileData(data);
+                        }
+                    }}
+                />
+            </motion.div>
 
-            <div className="flex-1">
+            <motion.div
+                key={activeTab}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={fadeInAnimation({ y: 30, delay: 0.2 })}
+                className="flex-1"
+            >
                 {activeTab === "personal" && (
                     <PersonalDataTab
                         profileData={profileData}
@@ -105,7 +122,7 @@ export default function DashboardContent() {
                 {activeTab === "emergency" && (
                     <EmergencyDataTab profileData={profileData} />
                 )}
-            </div>
+            </motion.div>
         </Container>
     );
 }
