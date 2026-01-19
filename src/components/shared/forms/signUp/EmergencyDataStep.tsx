@@ -12,7 +12,6 @@ interface EmergencyDataStepProps {
     initialValues: {
         emergencyContacts: Array<{ name: string; phone: string; relationship: string }>;
         sendSMS: boolean;
-        allowGPS: boolean;
     };
     onSubmit: (values: any) => Promise<void>;
     onBack: () => void;
@@ -58,7 +57,7 @@ export default function EmergencyDataStep({
 
                     <div className="flex flex-col">
                         {/* Екстрені контакти */}
-                        <div className="flex flex-col gap-6 lg:gap-2">
+                        <div className="flex flex-col gap-6 xl:gap-2">
                             {initialValues.emergencyContacts.map((_, index) => (
                                 <EmergencyContactField
                                     key={index}
@@ -73,10 +72,6 @@ export default function EmergencyDataStep({
                             <CustomizedCheckbox
                                 fieldName="sendSMS"
                                 label={t("signUpPage.emergencyData.sendMessage")}
-                            />
-                            <CustomizedCheckbox
-                                fieldName="allowGPS"
-                                label={t("signUpPage.emergencyData.gps")}
                             />
                         </div>
                     </div>

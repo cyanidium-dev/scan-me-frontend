@@ -201,3 +201,35 @@ export async function updateMedicalData(
   }
 }
 
+/**
+ * Оновлює екстрені дані користувача в Firestore
+ * @param userId - ID користувача
+ * @param emergencyData - Оновлені екстрені дані
+ */
+export async function updateEmergencyData(
+  userId: string,
+  emergencyData: Partial<UserProfileData["emergencyData"]>
+): Promise<void> {
+  try {
+    const userRef = doc(db, "users", userId);
+    
+    // Використовуємо updateDoc з точковими шляхами для оновлення вкладених полів
+    const updateData: any = {
+      "updatedAt": serverTimestamp(),
+    };
+    
+    // Додаємо всі передані поля (включаючи порожні рядки для очищення полів)
+    Object.keys(emergencyData).forEach((key) => {
+      const value = emergencyData[key as keyof typeof emergencyData];
+      // Перевіряємо тільки на undefined та null, дозволяємо порожні рядки та порожні масиви
+      if (value !== undefined && value !== null) {
+        updateData[`emergencyData.${key}`] = value;
+      }
+    });
+    
+    await updateDoc(userRef, updateData);
+  } catch (error) {
+    console.error("Помилка оновлення екстрених даних користувача:", error);
+    throw error;
+  }
+}

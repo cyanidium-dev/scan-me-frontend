@@ -40,7 +40,6 @@ interface SignUpFormData {
   doctors: Array<{ name: string; phone: string; specialization: string }>;
   emergencyContacts: Array<{ name: string; phone: string; relationship: string }>;
   sendSMS: boolean;
-  allowGPS: boolean;
 }
 
 interface SignUpFormProps {
@@ -82,7 +81,6 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
       { name: "", phone: "", relationship: "" },
     ],
     sendSMS: false,
-    allowGPS: false,
   });
 
   const validationSchema = SignUpValidation();
@@ -153,7 +151,6 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
   const handleStep3Submit = async (values: {
     emergencyContacts: Array<{ name: string; phone: string; relationship: string }>;
     sendSMS: boolean;
-    allowGPS: boolean;
   }) => {
     setError(null);
     setLoading(true);
@@ -226,7 +223,7 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
         emergencyData: {
           emergencyContacts: filteredEmergencyContacts,
           sendSMS: updatedFormData.sendSMS,
-          allowGPS: updatedFormData.allowGPS,
+          allowGPS: false, // Поле більше не використовується, залишаємо false для сумісності
         },
       });
 
@@ -443,7 +440,6 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
                       { name: "", phone: "", relationship: "" },
                     ],
                 sendSMS: formData.sendSMS,
-                allowGPS: formData.allowGPS,
               }}
               onSubmit={handleStep3Submit}
               onBack={handleBackToStep2}

@@ -16,12 +16,12 @@ export default function EmergencyContactField({ index, onRemove, showRemove = fa
 
     return (
         <div className="flex flex-col gap-4">
-            <div className="flex flex-col lg:flex-row gap-4 lg:gap-2 relative">
+            <div className="flex flex-col xl:flex-row gap-4 lg:gap-2 relative">
                 <CustomizedInput
                     fieldName={`emergencyContacts[${index}].name`}
                     placeholder={t("signUpPage.emergencyData.emergencyContactPlaceholder")}
                     fieldClassName="h-12 lg:h-[49px]"
-                    labelClassName="lg:w-[calc(33.33%-5.33px)]"
+                    labelClassName="xl:w-[calc(33.33%-5.33px)]"
                     isLabelHidden={true}
                 />
                 <CustomizedInput
@@ -29,10 +29,10 @@ export default function EmergencyContactField({ index, onRemove, showRemove = fa
                     placeholder={t("signUpPage.emergencyData.emergencyContactPhonePlaceholder")}
                     inputType="tel"
                     fieldClassName="h-12 lg:h-[49px] py-0 lg:py-0"
-                    labelClassName="lg:w-[calc(33.33%-5.33px)]"
+                    labelClassName="xl:w-[calc(33.33%-5.33px)]"
                     isLabelHidden={true}
                 />
-                <div className="relative lg:w-[calc(33.33%-5.33px)]">
+                <div className="relative xl:w-[calc(33.33%-5.33px)]">
                     <CustomizedInput
                         fieldName={`emergencyContacts[${index}].relationship`}
                         placeholder={t("signUpPage.emergencyData.emergencyContactRelationshipPlaceholder")}
