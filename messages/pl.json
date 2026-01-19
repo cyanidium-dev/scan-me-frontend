@@ -40,11 +40,29 @@
       "max200Symbols": "Musi zawierać nie więcej niż 200 znaków"
     }
   },
+  "orderForm": {
+    "title": "GOTOWI ZŁOŻYĆ ZAMÓWIENIE?",
+    "description": "Zamów swoją spersonalizowaną naklejkę lub sprawdź swoje dane w panelu osobistym",
+    "sticker": "NAKLEJKA",
+    "bracelet": "BRANSOLETKA",
+    "surname": "Nazwisko*",
+    "surnamePlaceholder": "Twoje nazwisko",
+    "patronymic": "Drugie imię",
+    "patronymicPlaceholder": "Twoje drugie imię",
+    "deliveryAddress": "Adres dostawy*",
+    "deliveryAddressPlaceholder": "Kraj, miasto i adres dostawy",
+    "placeOrder": "ZŁÓŻ ZAMÓWIENIE",
+    "goToDashboard": "PRZEJDŹ DO PANELU OSOBISTEGO"
+  },
   "notifications": {
     "successTitle": "Dziękujemy za wiadomość",
     "successDescription": "Nasz menedżer skontaktuje się z Tobą wkrótce, aby wyjaśnić szczegóły",
     "errorTitle": "Niestety, coś poszło nie tak",
-    "errorDescription": "Spróbuj ponownie wysłać formularz lub zadzwoń do nas."
+    "errorDescription": "Spróbuj ponownie wysłać formularz lub zadzwoń do nas.",
+    "orderSuccessTitle": "Dziękujemy za zamówienie!",
+    "orderSuccessDescription": "Nasz menedżer skontaktuje się z Tobą wkrótce, aby wyjaśnić szczegóły",
+    "orderErrorTitle": "Niestety, coś poszło nie tak",
+    "orderErrorDescription": "Spróbuj wysłać formularz później lub zadzwoń do nas."
   },
   "homePage": {
     "hero": {

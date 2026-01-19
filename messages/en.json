@@ -40,11 +40,29 @@
       "max200Symbols": "Must contain no more than 200 characters"
     }
   },
+  "orderForm": {
+    "title": "READY TO PLACE AN ORDER?",
+    "description": "Order your personalized sticker or view your data in your personal account",
+    "sticker": "STICKER",
+    "bracelet": "BRACELET",
+    "surname": "Surname*",
+    "surnamePlaceholder": "Your surname",
+    "patronymic": "Patronymic",
+    "patronymicPlaceholder": "Your patronymic",
+    "deliveryAddress": "Delivery address*",
+    "deliveryAddressPlaceholder": "Country, city and delivery address",
+    "placeOrder": "PLACE ORDER",
+    "goToDashboard": "GO TO PERSONAL ACCOUNT"
+  },
   "notifications": {
     "successTitle": "Thank you for your message",
     "successDescription": "Our manager will contact you soon to clarify the information",
     "errorTitle": "Unfortunately, something went wrong",
-    "errorDescription": "Please try submitting the form again or call us."
+    "errorDescription": "Please try submitting the form again or call us.",
+    "orderSuccessTitle": "Thank you for your order!",
+    "orderSuccessDescription": "Our manager will contact you soon to clarify the information",
+    "orderErrorTitle": "Unfortunately, something went wrong",
+    "orderErrorDescription": "Please try submitting the form later or call us."
   },
   "homePage": {
     "hero": {

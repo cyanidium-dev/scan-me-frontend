@@ -20,6 +20,7 @@ interface DashboardNavigationDesktopProps {
         photo?: string;
     } | null;
     onProfileUpdate: () => void;
+    onOrderClick: () => void;
 }
 
 export default function DashboardNavigationDesktop({
@@ -27,6 +28,7 @@ export default function DashboardNavigationDesktop({
     onTabChange,
     profileData,
     onProfileUpdate,
+    onOrderClick,
 }: DashboardNavigationDesktopProps) {
     const { user } = useAuth();
     const t = useTranslations("dashboardPage");
@@ -56,7 +58,11 @@ export default function DashboardNavigationDesktop({
             </div>
 
             {/* Order Button */}
-            <MainButton variant="gradient" className="w-full h-[54px] mb-3">
+            <MainButton 
+                variant="gradient" 
+                className="w-full h-[54px] mb-3"
+                onClick={onOrderClick}
+            >
                 {t("order")}
             </MainButton>
 
