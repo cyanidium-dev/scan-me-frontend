@@ -20,6 +20,7 @@ interface DashboardNavigationMobileProps {
         photo?: string;
     } | null;
     onProfileUpdate: () => void;
+    onOrderClick: () => void;
 }
 
 export default function DashboardNavigationMobile({
@@ -27,6 +28,7 @@ export default function DashboardNavigationMobile({
     onTabChange,
     profileData,
     onProfileUpdate,
+    onOrderClick,
 }: DashboardNavigationMobileProps) {
     const { user } = useAuth();
     const t = useTranslations("dashboardPage");
@@ -53,7 +55,11 @@ export default function DashboardNavigationMobile({
 
                     <SignOutButton data-sign-out-button />
                 </div>
-                <MainButton variant="gradient" className="h-11 w-full">
+                <MainButton 
+                    variant="gradient" 
+                    className="h-11 w-full"
+                    onClick={onOrderClick}
+                >
                     {t("order")}
                 </MainButton>
             </div>

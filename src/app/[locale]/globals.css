@@ -216,4 +216,9 @@
       box-shadow: 0 0 0 10px inset;
     }
   }
+
+  .popup-scroll::-webkit-scrollbar-track {
+    margin-top: 9px;
+    margin-bottom: 9px;
+  }
 }

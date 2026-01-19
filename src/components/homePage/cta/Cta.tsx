@@ -1,6 +1,6 @@
-import MainButton from "@/components/shared/buttons/MainButton";
 import Container from "@/components/shared/container/Container";
 import SectionTitle from "@/components/shared/titles/SectionTitle";
+import CtaButton from "./CtaButton";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import * as motion from "motion/react-client";
@@ -54,12 +54,7 @@ export default function Cta() {
           <p className="lg:max-w-[420px] xl:max-w-full mb-12 lg:mb-10 whitespace-pre-line">
             {t("description")}
           </p>
-          <MainButton
-            variant="gradient"
-            className="w-full lg:max-w-[282px] h-[54px]"
-          >
-            {t("button")}
-          </MainButton>
+          <CtaButton buttonText={t("button")} />
         </motion.div>
       </Container>
       <div className="absolute top-[141px] lg:top-[187px] left-0 -z-10 w-full h-[270px] lg:h-[300px] rounded-t-[16px] bg-black" />

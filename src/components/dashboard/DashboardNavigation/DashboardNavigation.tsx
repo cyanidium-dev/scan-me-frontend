@@ -14,6 +14,7 @@ interface DashboardNavigationProps {
         photo?: string;
     } | null;
     onProfileUpdate: () => void;
+    onOrderClick: () => void;
 }
 
 export default function DashboardNavigation({
@@ -21,6 +22,7 @@ export default function DashboardNavigation({
     onTabChange,
     profileData,
     onProfileUpdate,
+    onOrderClick,
 }: DashboardNavigationProps) {
     return (
         <>
@@ -29,12 +31,14 @@ export default function DashboardNavigation({
                 onTabChange={onTabChange}
                 profileData={profileData}
                 onProfileUpdate={onProfileUpdate}
+                onOrderClick={onOrderClick}
             />
             <DashboardNavigationMobile
                 activeTab={activeTab}
                 onTabChange={onTabChange}
                 profileData={profileData}
                 onProfileUpdate={onProfileUpdate}
+                onOrderClick={onOrderClick}
             />
         </>
     );

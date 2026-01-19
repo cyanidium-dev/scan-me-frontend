@@ -9,6 +9,7 @@ import PersonalDataTab from "./PersonalDataTab";
 import MedicalDataTab from "./MedicalDataTab";
 import EmergencyDataTab from "./EmergencyDataTab";
 import Container from "../shared/container/Container";
+import Order from "../shared/order/Order";
 import * as motion from "motion/react-client";
 import { fadeInAnimation } from "@/utils/animationVariants";
 
@@ -23,6 +24,7 @@ export default function DashboardContent() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState<TabType>("personal");
+    const [isOrderModalShown, setIsOrderModalShown] = useState(false);
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -85,6 +87,7 @@ export default function DashboardContent() {
                             setProfileData(data);
                         }
                     }}
+                    onOrderClick={() => setIsOrderModalShown(true)}
                 />
             </motion.div>
 
@@ -123,6 +126,12 @@ export default function DashboardContent() {
                     <EmergencyDataTab profileData={profileData} />
                 )}
             </motion.div>
+
+            {/* Order Modal */}
+            <Order
+                isModalShown={isOrderModalShown}
+                setIsModalShown={setIsOrderModalShown}
+            />
         </Container>
     );
 }
