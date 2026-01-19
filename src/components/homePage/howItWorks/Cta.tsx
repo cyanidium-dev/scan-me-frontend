@@ -39,7 +39,7 @@ export default function Cta() {
         variants={fadeInAnimation({ scale: 0.85, delay: 0.6 })}
         className="w-full lg:w-fit"
       >
-        <Link href="/signup">
+        <Link href="/sign-up">
           <MainButton className="w-full lg:w-[282px] h-[54px]">
             {t("button")}
           </MainButton>

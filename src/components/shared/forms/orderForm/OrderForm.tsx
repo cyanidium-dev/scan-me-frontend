@@ -98,6 +98,7 @@ export default function OrderForm({
         },
       });
       
+      // Тільки при успішній відправці скидаємо форму та закриваємо модалку
       resetForm();
       setProductType("sticker");
       setQuantity(1);
@@ -109,13 +110,12 @@ export default function OrderForm({
         setIsNotificationShown(true);
       }
     } catch (error) {
+      // При помилці не закриваємо модалку та не скидаємо форму
       if (setIsError) setIsError(true);
-      if (setIsModalShown) {
-        setIsModalShown(false);
-      }
       if (setIsNotificationShown) {
         setIsNotificationShown(true);
       }
+      // Форма залишається відкритою з введеними даними
       return error;
     } finally {
       setIsLoading(false);
