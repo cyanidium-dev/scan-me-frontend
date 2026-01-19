@@ -27,7 +27,7 @@ export default function OrderModal({
       <Modal
         isModalShown={isModalShown}
         setIsModalShown={setIsModalShown}
-        className="bg-white text-black"
+        className="bg-white text-black w-full"
       >
         <OrderForm
           setIsError={setIsError}

@@ -88,10 +88,10 @@ export default function OrderForm({
 
   return (
     <div className={twMerge("px-6 lg:px-8 py-8 lg:py-12", className)}>
-      <h2 className="mb-3 lg:mb-4 font-actay text-[24px] lg:text-[32px] font-bold leading-[120%] uppercase text-center text-black">
+      <h2 className="mb-4 lg:mb-6 font-actay text-[24px] lg:text-[32px] font-bold leading-[120%] uppercase text-center text-black">
         {t("orderForm.title")}
       </h2>
-      <p className="mb-6 lg:mb-8 text-center text-black/80 text-[14px] lg:text-[16px] leading-[120%]">
+      <p className="mb-10 lg:mb-16 text-center text-[12px] lg:text-[14px] font-light leading-[120%]">
         {t("orderForm.description")}
       </p>
 
@@ -112,9 +112,17 @@ export default function OrderForm({
           return (
             <Form>
               {/* Вибір продукту та кількість */}
-              <div className="flex flex-col lg:flex-row gap-4 mb-6">
+              <div className="flex gap-2 lg:gap-3 mb-6">
                 {/* Вибір продукту */}
-                <div className="flex gap-2 flex-1">
+                <div className="relative flex flex-1 h-[49px] border border-black rounded-full p-0.5">
+                  {/* Червоний слайдер */}
+                  <div
+                    className={twMerge(
+                      "absolute top-0.5 left-0.5 w-[calc(50%-2px)] h-[calc(100%-4px)] bg-accent rounded-full transition duration-300 ease-out",
+                      productType === "bracelet" && "translate-x-full"
+                    )}
+                  />
+                  {/* Кнопки */}
                   <button
                     type="button"
                     onClick={() => {
@@ -122,10 +130,11 @@ export default function OrderForm({
                       setFieldValue("productType", "sticker");
                     }}
                     className={twMerge(
-                      "flex-1 h-12 lg:h-[49px] rounded-full text-[12px] lg:text-[14px] font-medium leading-[120%] uppercase transition duration-300",
+                      "cursor-pointer relative z-10 flex-1 h-full rounded-full font-actay text-[12px] lg:text-[16px] font-bold leading-none uppercase transition duration-300 ease-out",
                       productType === "sticker"
-                        ? "bg-accent text-white"
-                        : "bg-white text-black border border-black/40"
+                        ? "text-white"
+                        : "text-black",
+                      
                     )}
                   >
                     {t("orderForm.sticker")}
@@ -137,10 +146,10 @@ export default function OrderForm({
                       setFieldValue("productType", "bracelet");
                     }}
                     className={twMerge(
-                      "flex-1 h-12 lg:h-[49px] rounded-full text-[12px] lg:text-[14px] font-medium leading-[120%] uppercase transition duration-300",
+                      "cursor-pointer relative z-10 flex-1 h-full rounded-full font-actay text-[12px] lg:text-[16px] font-bold leading-none uppercase transition-colors duration-300",
                       productType === "bracelet"
-                        ? "bg-accent text-white"
-                        : "bg-white text-black border border-black/40"
+                        ? "text-white"
+                        : "text-black"
                     )}
                   >
                     {t("orderForm.bracelet")}
@@ -148,29 +157,29 @@ export default function OrderForm({
                 </div>
 
                 {/* Селектор кількості */}
-                <div className="flex items-center gap-3 bg-white rounded-full border border-black/40 px-4 h-12 lg:h-[49px]">
+                <div className="flex items-center gap-2 lg:gap-4 bg-white rounded-full border border-black p-2 h-[49px]">
                   <button
                     type="button"
                     onClick={handleQuantityDecrease}
                     disabled={quantity <= 1}
                     className={twMerge(
-                      "size-6 rounded-full border border-black/40 flex items-center justify-center transition duration-300",
+                      "size-8 rounded-full border border-black flex items-center justify-center transition duration-300",
                       quantity <= 1
-                        ? "opacity-50 cursor-not-allowed"
+                        ? ""
                         : "hover:bg-black/10 cursor-pointer"
                     )}
                   >
-                    <span className="text-black text-[16px] leading-none">−</span>
+                    <span className="text-black text-[20px] leading-none">−</span>
                   </button>
-                  <span className="text-black text-[14px] lg:text-[16px] font-medium min-w-[20px] text-center">
+                  <span className="font-actay text-[14px] lg:text-[16px] font-bold min-w-[20px] text-center">
                     {quantity}
                   </span>
                   <button
                     type="button"
                     onClick={handleQuantityIncrease}
-                    className="size-6 rounded-full bg-accent border border-accent flex items-center justify-center text-white hover:bg-accent/80 transition duration-300 cursor-pointer"
+                    className="size-8 rounded-full bg-accent border border-accent flex items-center justify-center text-white hover:bg-accent/80 transition duration-300 cursor-pointer"
                   >
-                    <span className="text-white text-[16px] leading-none">+</span>
+                    <span className="text-white text-[20px] leading-none">+</span>
                   </button>
                 </div>
               </div>
@@ -182,19 +191,17 @@ export default function OrderForm({
                   <div className="flex-1">
                     <CustomizedInput
                       fieldName="name"
-                      label={t("forms.name")}
                       placeholder={t("forms.namePlaceholder")}
                       fieldClassName="bg-white"
-                      labelClassName="text-black"
+                      isLabelHidden={true}
                     />
                   </div>
                   <div className="flex-1">
                     <CustomizedInput
                       fieldName="surname"
-                      label={t("orderForm.surname")}
                       placeholder={t("orderForm.surnamePlaceholder")}
                       fieldClassName="bg-white"
-                      labelClassName="text-black"
+                      isLabelHidden={true}
                     />
                   </div>
                 </div>
@@ -202,28 +209,25 @@ export default function OrderForm({
                 {/* По-батькові */}
                 <CustomizedInput
                   fieldName="patronymic"
-                  label={t("orderForm.patronymic")}
                   placeholder={t("orderForm.patronymicPlaceholder")}
                   fieldClassName="bg-white"
-                  labelClassName="text-white"
+                  isLabelHidden={true}
                 />
 
                 {/* Телефон */}
                 <CustomizedInput
                   fieldName="phone"
-                  label={t("forms.phone")}
                   inputType="tel"
                   fieldClassName="bg-white px-6 py-0 lg:py-0"
-                  labelClassName="text-white"
+                  isLabelHidden={true}
                 />
 
                 {/* Адреса доставки */}
                 <CustomizedInput
                   fieldName="deliveryAddress"
-                  label={t("orderForm.deliveryAddress")}
                   placeholder={t("orderForm.deliveryAddressPlaceholder")}
                   fieldClassName="bg-white"
-                  labelClassName="text-white"
+                  isLabelHidden={true}
                 />
               </div>
 
@@ -239,7 +243,15 @@ export default function OrderForm({
                 >
                   {t("orderForm.placeOrder")}
                 </MainButton>
-                <Link href="/dashboard" className="w-full">
+                <Link 
+                  href="/dashboard" 
+                  className="w-full"
+                  onClick={() => {
+                    if (setIsModalShown) {
+                      setIsModalShown(false);
+                    }
+                  }}
+                >
                   <MainButton
                     type="button"
                     variant="outlineBlack"
