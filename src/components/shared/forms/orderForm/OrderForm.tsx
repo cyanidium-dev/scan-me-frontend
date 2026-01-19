@@ -5,6 +5,7 @@ import { Form, Formik, FormikHelpers } from "formik";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import axios from "axios";
+import { useAuth } from "@/hooks/useAuth";
 import CustomizedInput from "../../formComponents/CustomizedInput";
 import MainButton from "../../buttons/MainButton";
 import { OrderFormValidation } from "@/schemas/OrderFormValidation";
@@ -36,6 +37,7 @@ export default function OrderForm({
   setIsModalShown,
 }: OrderFormProps) {
   const t = useTranslations();
+  const { user } = useAuth();
   const [productType, setProductType] = useState<"sticker" | "bracelet">("sticker");
   const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -62,15 +64,23 @@ export default function OrderForm({
       ? t("orderForm.sticker") 
       : t("orderForm.bracelet");
 
+    const userId = user?.uid || "Не авторизовано";
+    const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
+    const emergencyLink = user?.uid 
+      ? `${baseUrl}/emergency-info/${user.uid}`
+      : "Не доступно";
+
     const data =
       `<b>Заявка "Форма замовлення"</b>\n` +
+      `<b>ID користувача:</b> ${userId}\n` +
       `<b>Тип продукту:</b> ${productTypeText}\n` +
       `<b>Кількість:</b> ${values.quantity}\n` +
       `<b>Ім'я:</b> ${values.name.trim()}\n` +
       `<b>Прізвище:</b> ${values.surname.trim()}\n` +
       (values.patronymic.trim() ? `<b>По-батькові:</b> ${values.patronymic.trim()}\n` : "") +
       `<b>Телефон:</b> ${values.phone.trim().replace(/(?!^)\D/g, "")}\n` +
-      `<b>Адреса доставки:</b> ${values.deliveryAddress.trim()}\n`;
+      `<b>Адреса доставки:</b> ${values.deliveryAddress.trim()}\n` +
+      `<b>Посилання на екстренну сторінку:</b> ${emergencyLink}\n`;
 
     try {
       if (setIsError) setIsError(false);
