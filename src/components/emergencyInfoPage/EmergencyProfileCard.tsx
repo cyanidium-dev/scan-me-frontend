@@ -9,6 +9,7 @@ import { UserProfileData } from "@/lib/firebase/userService";
 interface EmergencyProfileCardProps {
   profileData: UserProfileData;
   qrId: string;
+  emergencyPhone?: string | null;
   onCallEmergency: () => void;
   onSendSMS: () => void;
   className?: string;
@@ -30,6 +31,7 @@ function formatDate(dateString: string): string {
 export default function EmergencyProfileCard({
   profileData,
   qrId,
+  emergencyPhone,
   onCallEmergency,
   onSendSMS,
   className = "",
@@ -125,13 +127,25 @@ export default function EmergencyProfileCard({
             >
               {t("sendSMSButton")}
             </MainButton>
-            <MainButton
-              variant="gradient"
-              className="w-full lg:w-auto h-[54px] lg:px-7"
-              onClick={onCallEmergency}
-            >
-              {t("callEmergencyButton")}
-            </MainButton>
+            {emergencyPhone ? (
+              <a href={`tel:${emergencyPhone}`} className="w-full lg:w-auto">
+                <MainButton
+                  variant="gradient"
+                  className="w-full lg:w-auto h-[54px] lg:px-7"
+                  onClick={onCallEmergency}
+                >
+                  {t("callEmergencyButton")}
+                </MainButton>
+              </a>
+            ) : (
+              <MainButton
+                variant="gradient"
+                className="w-full lg:w-auto h-[54px] lg:px-7"
+                onClick={onCallEmergency}
+              >
+                {t("callEmergencyButton")}
+              </MainButton>
+            )}
           </div>
     </div>
   );

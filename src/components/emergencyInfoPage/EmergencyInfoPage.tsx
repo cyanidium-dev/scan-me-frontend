@@ -109,12 +109,16 @@ export default function EmergencyInfoPage() {
   }
 
   const qrIdFromProfile = profileData?.qrId || qrId;
+  const emergencyPhone = getFirstEmergencyContactPhone(
+    profileData.emergencyData.emergencyContacts
+  );
 
   return (
     <div className="pb-15 lg:py-15">
       <EmergencyProfileCard
             profileData={profileData}
             qrId={qrIdFromProfile}
+            emergencyPhone={emergencyPhone}
             onCallEmergency={handleCallEmergency}
             onSendSMS={handleSendSMS}
                className="block lg:hidden"
@@ -126,6 +130,7 @@ export default function EmergencyInfoPage() {
           <EmergencyProfileCard
             profileData={profileData}
             qrId={qrIdFromProfile}
+            emergencyPhone={emergencyPhone}
             onCallEmergency={handleCallEmergency}
             onSendSMS={handleSendSMS}
             className="hidden lg:block"
