@@ -29,7 +29,7 @@ export default function Team() {
           />
         </motion.div>
         <div className="relative mb-8 xl:mb-6">
-          <SectionTitle className="max-w-[320px] md:max-w-full xl:text-[70px]">
+          <SectionTitle className="max-w-[320px] md:max-w-full xl:max-w-[900px] xl:text-[70px]">
             {t.rich("title", {
               accent: (chunks) => <span className="text-accent">{chunks}</span>,
             })}
@@ -44,7 +44,7 @@ export default function Team() {
             exit="exit"
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInAnimation({ scale: 0.85, x: 70, delay: 0.3 })}
-            className="xl:absolute bottom-5 left-[410px] max-w-[400px] mt-6 xl:mt-0 xl:leading-[130%]"
+            className="xl:absolute bottom-5 left-[490px] max-w-[400px] mt-6 xl:mt-0 xl:leading-[130%]"
           >
             {t("description")}
           </motion.p>
