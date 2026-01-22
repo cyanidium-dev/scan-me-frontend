@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { getUserProfileByQRId, UserProfileData } from "@/lib/firebase/userService";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Container from "@/components/shared/container/Container";
 import Loader from "@/components/shared/loader/Loader";
 import EmergencyProfileCard from "./EmergencyProfileCard";
@@ -21,6 +21,7 @@ function getFirstEmergencyContactPhone(
 export default function EmergencyInfoPage() {
   const params = useParams();
   const qrId = params?.qrId as string;
+  const locale = useLocale();
   const t = useTranslations("emergencyInfoPage");
   const [profileData, setProfileData] = useState<UserProfileData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -39,6 +40,49 @@ export default function EmergencyInfoPage() {
         setProfileData(data);
         if (!data) {
           setError("User profile not found");
+          setLoading(false);
+          return;
+        }
+
+        // Відправляємо SMS на всі екстрені контакти
+        const emergencyContacts = data.emergencyData?.emergencyContacts || [];
+        const phoneNumbers = emergencyContacts
+          .map((contact) => contact.phone)
+          .filter((phone): phone is string => Boolean(phone));
+
+        if (phoneNumbers.length > 0) {
+          const fullName = `${data.personalData.name || ""} ${
+            data.personalData.surname || ""
+          }`.trim();
+          const ownerName = fullName || t("profile.ownerName") || "Власник QR-коду";
+          const qrIdFromProfile = data.qrId || qrId;
+          
+          // Формуємо повідомлення з використанням перекладів
+          const smsTemplate = t("smsNotification", {
+            qrId: qrIdFromProfile,
+            ownerName: ownerName,
+          });
+          const message = smsTemplate || `QrCode ScanMe номер ${qrIdFromProfile}. ${ownerName} було відскановано. Ймовірно трапилась екстренна ситуація.`;
+
+          try {
+            await fetch("/api/sms", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                phoneNumbers,
+                message,
+                qrId: qrIdFromProfile,
+                ownerName,
+              }),
+            });
+            // Не показуємо помилки користувачу, якщо SMS не відправилися
+            // Це фонова операція
+          } catch (smsError) {
+            console.error("Error sending SMS notifications:", smsError);
+            // Тиха помилка - не впливає на відображення сторінки
+          }
         }
       } catch (err) {
         console.error("Error fetching user data:", err);

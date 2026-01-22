@@ -331,6 +331,8 @@
       "emergencyContactsDesktopColumn4": "Akcja",
       "rhPositive": "Rh +",
       "rhNegative": "Rh -",
+      "smsNotification": "QrCode ScanMe numer {qrId}. {ownerName} zostało zeskanowane. Prawdopodobnie wystąpiła sytuacja awaryjna.",
+      "ownerName": "Właściciel kodu QR",
       "profile": {
         "qrId": "QR-ID",
         "fullName": "Imię i nazwisko",
