@@ -49,7 +49,7 @@ export default function WhyUs() {
   return (
     <section className="pt-12 lg:pt-30 pb-12 lg:pb-0">
       <Container className="relative">
-        <SectionTitle className="mb-6 xl:max-w-[1024px]">
+        <SectionTitle className="mb-6 xl:max-w-[904px]">
           {t.rich("title", {
             accent: (chunks) => <span className="text-accent">{chunks}</span>,
           })}
