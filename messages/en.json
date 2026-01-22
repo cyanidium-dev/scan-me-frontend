@@ -331,6 +331,9 @@
       "emergencyContactsDesktopColumn4": "Action",
       "rhPositive": "Rh +",
       "rhNegative": "Rh -",
+      "smsNotification": "QrCode ScanMe number {qrId}. {ownerName} has been scanned. An emergency situation may have occurred.",
+      "smsLocation": "Location: {location}",
+      "ownerName": "QR code owner",
       "profile": {
         "qrId": "QR-ID",
         "fullName": "Full name",

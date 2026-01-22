@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 interface BackdropProps {
@@ -16,7 +16,15 @@ export default function Backdrop({
   className = "",
   transparent = false,
 }: BackdropProps) {
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isVisible) {
         onClick();
@@ -28,9 +36,9 @@ export default function Backdrop({
     return () => {
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [isVisible, onClick]);
+  }, [mounted, isVisible, onClick]);
 
-  if (typeof window === "undefined") {
+  if (!mounted) {
     return null;
   }
 
