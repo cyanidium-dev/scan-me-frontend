@@ -325,10 +325,17 @@
       "value": "Value",
       "emergencyContactsColumn1": "Who/Name",
       "emergencyContactsColumn2": "Phone / Action",
+      "emergencyContactsDesktopColumn1": "Who",
+      "emergencyContactsDesktopColumn2": "Name",
+      "emergencyContactsDesktopColumn3": "Phone",
+      "emergencyContactsDesktopColumn4": "Action",
       "rhPositive": "Rh +",
       "rhNegative": "Rh -",
       "profile": {
         "qrId": "QR-ID",
+        "fullName": "Full name",
+        "dateOfBirth": "Date of birth",
+        "gender": "Gender",
         "callEmergencyButton": "CALL EMERGENCY CONTACT",
         "sendSMSButton": "SEND EMERGENCY SMS"
       },

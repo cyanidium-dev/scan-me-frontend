@@ -324,10 +324,17 @@
         "value": "Значення",
         "emergencyContactsColumn1": "Хто/Ім'я",
         "emergencyContactsColumn2": "Телефон / Дія",
+        "emergencyContactsDesktopColumn1": "Хто",
+        "emergencyContactsDesktopColumn2": "Ім'я",
+        "emergencyContactsDesktopColumn3": "Телефон",
+        "emergencyContactsDesktopColumn4": "Дія",
         "rhPositive": "резус +",
         "rhNegative": "резус -",
         "profile": {
             "qrId": "QR-ID",
+            "fullName": "Ім'я та прізвище",
+            "dateOfBirth": "Дата народження",
+            "gender": "Стать",
             "callEmergencyButton": "ПОДЗВОНИТИ ЕКСТРЕНОМУ КОНТАКТУ",
             "sendSMSButton": "ВІДПРАВИТИ ЕКСТРЕННЕ СМС"
         },

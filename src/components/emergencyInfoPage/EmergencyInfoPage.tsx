@@ -121,7 +121,7 @@ export default function EmergencyInfoPage() {
           />
 
       <Container>
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 pt-[252px] lg:pt-0">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-6 pt-[252px] lg:pt-0">
           {/* Profile Card */}
           <EmergencyProfileCard
             profileData={profileData}
@@ -131,7 +131,8 @@ export default function EmergencyInfoPage() {
             className="hidden lg:block"
           />
 
-        <div>  {/* Personal Data */}
+        <div className="flex-1">  {/* Personal Data */}
+   
           <PersonalDataSection personalData={profileData.personalData} />
 
           {/* Medical Data */}

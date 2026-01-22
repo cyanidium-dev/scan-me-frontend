@@ -325,10 +325,17 @@
       "value": "Wartość",
       "emergencyContactsColumn1": "Kto/Imię",
       "emergencyContactsColumn2": "Telefon / Akcja",
+      "emergencyContactsDesktopColumn1": "Kto",
+      "emergencyContactsDesktopColumn2": "Imię",
+      "emergencyContactsDesktopColumn3": "Telefon",
+      "emergencyContactsDesktopColumn4": "Akcja",
       "rhPositive": "Rh +",
       "rhNegative": "Rh -",
       "profile": {
         "qrId": "QR-ID",
+        "fullName": "Imię i nazwisko",
+        "dateOfBirth": "Data urodzenia",
+        "gender": "Płeć",
         "callEmergencyButton": "ZADZWOŃ DO KONTAKTU AWARYJNEGO",
         "sendSMSButton": "WYŚLIJ AWARYJNĄ SMS"
       },

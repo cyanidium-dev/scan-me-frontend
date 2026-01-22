@@ -14,6 +14,18 @@ interface EmergencyProfileCardProps {
   className?: string;
 }
 
+function formatDate(dateString: string): string {
+  if (!dateString) return "";
+  try {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  } catch {
+    return dateString;
+  }
+}
 
 export default function EmergencyProfileCard({
   profileData,
@@ -23,12 +35,13 @@ export default function EmergencyProfileCard({
   className = "",
 }: EmergencyProfileCardProps) {
   const t = useTranslations("emergencyInfoPage.profile");
+  const tPersonalData = useTranslations("emergencyInfoPage.personalData");
   const { personalData } = profileData;
 
   const fullName = `${personalData.name || ""} ${personalData.surname || ""}`.trim();
 
   return (
-    <div className={twMerge("fixed lg:sticky top-0 left-0 w-dvw lg:w-auto h-fit bg-white rounded-b-[16px] lg:rounded-[16px] shadow-[0px_4px_14px_0px_rgba(0,0,0,0.1)] p-4 lg:p-6", className)}>
+    <div className={twMerge("fixed lg:sticky top-0 left-0 w-dvw lg:w-[289px] bg-white rounded-b-[16px] lg:rounded-[16px] shadow-[0px_4px_14px_0px_rgba(0,0,0,0.1)] p-4 lg:px-6 lg:py-8", className)}>
       <div className="flex flex-row lg:flex-col gap-4 lg:gap-6 items-center mb-4">
         {/* Фото */}
         {personalData.photo && (
@@ -45,8 +58,48 @@ export default function EmergencyProfileCard({
           </div>
         )}
 
+        {/* Дані під фото (тільки для lg+) */}
+        <div className="hidden lg:flex flex-col gap-4 w-full">
+          <div className="flex flex-col gap-1">
+            <p className="text-[14px] font-medium">
+              {t("fullName")}:
+            </p>
+            <p className="text-[14px] font-light">
+              {fullName || "-"}
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-[14px] font-medium">
+              {t("dateOfBirth")}:
+            </p>
+            <p className="text-[14px] font-light">
+              {personalData.dateOfBirth
+                ? formatDate(personalData.dateOfBirth)
+                : "-"}
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-[14px] font-medium">
+              {t("gender")}:
+            </p>
+            <p className="text-[14px] font-light">
+              {personalData.gender === "male"
+                ? tPersonalData("male")
+                : personalData.gender === "female"
+                ? tPersonalData("female")
+                : "-"}
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-[14px] font-medium">
+              {t("qrId")}:
+            </p>
+            <p className="text-[14px] font-light">{qrId}</p>
+          </div>
+        </div>
+
         {/* Інформація */}
-        <div className="flex-1 flex flex-col gap-4">
+        <div className="lg:hidden flex-1 flex flex-col gap-4">
           {/* Ім'я та ID */}
           <div className="flex flex-col justify-center">
             <h2 className="text-[12px] lg:text-[24px] font-medium leading-[120%] mb-2">
@@ -67,14 +120,14 @@ export default function EmergencyProfileCard({
         <div className="flex flex-col sm:flex-row lg:flex-col-reverse gap-4 mt-auto">
             <MainButton
               variant="outlineBlack"
-              className="w-full lg:w-auto lg:flex-1 h-[54px] text-[12px] lg:text-[14px] font-actay font-bold uppercase bg-white border-black text-black hover:bg-black/5"
+              className="w-full lg:w-auto h-[54px] lg:px-9"
               onClick={onSendSMS}
             >
               {t("sendSMSButton")}
             </MainButton>
             <MainButton
               variant="gradient"
-              className="w-full lg:w-auto lg:flex-1 h-[54px] text-[12px] lg:text-[14px] font-actay font-bold uppercase"
+              className="w-full lg:w-auto h-[54px] lg:px-7"
               onClick={onCallEmergency}
             >
               {t("callEmergencyButton")}

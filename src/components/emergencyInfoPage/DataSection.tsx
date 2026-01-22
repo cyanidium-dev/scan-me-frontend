@@ -13,9 +13,9 @@ export default function DataSection({
 }: DataSectionProps) {
   return (
     <section
-      className={`bg-white rounded-[16px] lg:shadow-[0px_4px_14px_0px_rgba(0,0,0,0.1)] lg:p-6 ${isLast ? "" : "mb-12"} ${className}`}
+      className={`bg-white rounded-[16px] lg:shadow-[0px_4px_14px_0px_rgba(0,0,0,0.1)] lg:px-6 lg:py-8 ${isLast ? "" : "mb-12 lg:mb-6"} ${className}`}
     >
-      <h2 className="text-[24px] lg:text-[24px] font-semibold leading-[120%] uppercase mb-6">
+      <h2 className="text-[24px] lg:text-[32px] font-semibold leading-[120%] uppercase mb-6 lg:mb-8">
         {title}
       </h2>
       {children}
