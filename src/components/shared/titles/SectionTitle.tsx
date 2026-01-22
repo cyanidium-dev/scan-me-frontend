@@ -13,7 +13,7 @@ export default function SectionTitle({
   className = "",
 }: SectionTitleProps) {
   return (
-    <motion.h1
+    <motion.h2
       initial="hidden"
       whileInView="visible"
       exit="exit"
@@ -25,6 +25,6 @@ export default function SectionTitle({
       )}
     >
       {children}
-    </motion.h1>
+    </motion.h2>
   );
 }

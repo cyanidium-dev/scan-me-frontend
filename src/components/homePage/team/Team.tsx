@@ -29,7 +29,7 @@ export default function Team() {
           />
         </motion.div>
         <div className="relative mb-8 xl:mb-6">
-          <SectionTitle className="max-w-[360px] md:max-w-full xl:text-[70px]">
+          <SectionTitle className="max-w-[320px] md:max-w-full xl:text-[70px]">
             {t.rich("title", {
               accent: (chunks) => <span className="text-accent">{chunks}</span>,
             })}
