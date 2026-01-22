@@ -10,8 +10,8 @@ interface EmergencyProfileCardProps {
   profileData: UserProfileData;
   qrId: string;
   emergencyPhone?: string | null;
+  smsLink?: string | null;
   onCallEmergency: () => void;
-  onSendSMS: () => void;
   className?: string;
 }
 
@@ -32,8 +32,8 @@ export default function EmergencyProfileCard({
   profileData,
   qrId,
   emergencyPhone,
+  smsLink,
   onCallEmergency,
-  onSendSMS,
   className = "",
 }: EmergencyProfileCardProps) {
   const t = useTranslations("emergencyInfoPage.profile");
@@ -110,23 +110,30 @@ export default function EmergencyProfileCard({
             <p className="text-[12px] lg:text-[14px] font-light leading-[120%]">
               <span className="hidden lg:inline">{t("qrId")}: </span><span >{qrId}</span>
             </p>
-          </div>
-
-         
-
-        
+          </div>      
         </div>
         
       </div>
         {/* Кнопки */}
         <div className="flex flex-col sm:flex-row lg:flex-col-reverse gap-4 mt-auto">
-            <MainButton
-              variant="outlineBlack"
-              className="w-full lg:w-auto h-[54px] lg:px-9"
-              onClick={onSendSMS}
-            >
-              {t("sendSMSButton")}
-            </MainButton>
+            {smsLink ? (
+              <a href={smsLink} className="w-full lg:w-auto">
+                <MainButton
+                  variant="outlineBlack"
+                  className="w-full lg:w-auto h-[54px] lg:px-9"
+                >
+                  {t("sendSMSButton")}
+                </MainButton>
+              </a>
+            ) : (
+              <MainButton
+                variant="outlineBlack"
+                className="w-full lg:w-auto h-[54px] lg:px-9"
+                disabled
+              >
+                {t("sendSMSButton")}
+              </MainButton>
+            )}
             {emergencyPhone ? (
               <a href={`tel:${emergencyPhone}`} className="w-full lg:w-auto">
                 <MainButton

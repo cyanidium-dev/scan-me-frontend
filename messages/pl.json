@@ -332,6 +332,7 @@
       "rhPositive": "Rh +",
       "rhNegative": "Rh -",
       "smsNotification": "QrCode ScanMe numer {qrId}. {ownerName} zostało zeskanowane. Prawdopodobnie wystąpiła sytuacja awaryjna.",
+      "smsLocation": "Lokalizacja: {location}",
       "ownerName": "Właściciel kodu QR",
       "profile": {
         "qrId": "QR-ID",

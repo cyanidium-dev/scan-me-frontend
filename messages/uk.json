@@ -323,6 +323,7 @@
         "field": "Поле",
         "value": "Значення",
         "smsNotification": "QrCode ScanMe номер {qrId}. {ownerName} було відскановано. Ймовірно трапилась екстренна ситуація.",
+        "smsLocation": "Геолокація: {location}",
         "ownerName": "Власник QR-коду",
         "emergencyContactsColumn1": "Хто/Ім'я",
         "emergencyContactsColumn2": "Телефон / Дія",
@@ -338,7 +339,7 @@
             "dateOfBirth": "Дата народження",
             "gender": "Стать",
             "callEmergencyButton": "ПОДЗВОНИТИ ЕКСТРЕНОМУ КОНТАКТУ",
-            "sendSMSButton": "ВІДПРАВИТИ ЕКСТРЕННЕ СМС"
+            "sendSMSButton": "ВІДПРАВИТИ ЕКСТРЕНЕ СМС"
         },
         "personalData": {
             "name": "Ім'я",

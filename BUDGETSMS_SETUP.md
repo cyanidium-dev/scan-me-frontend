@@ -15,28 +15,87 @@
 
 ### 1. Отримати облікові дані BudgetSMS
 
-Зайдіть на https://www.budgetsms.net/ та:
-- Зареєструйтеся або увійдіть у свій акаунт
-- Отримайте наступні дані з вашого профілю:
-  - **Username** (ім'я користувача)
-  - **UserID** (ID користувача)
-  - **Handle** (токен/ключ API)
+#### Крок 1: Реєстрація/Вхід
+1. Зайдіть на https://www.budgetsms.net/
+2. Натисніть **"Sign Up"** для реєстрації або **"Client login"** для входу в існуючий акаунт
+
+#### Крок 2: Отримання API credentials
+Після входу в акаунт:
+
+1. **Username** (ім'я користувача):
+   - Зазвичай це ваше ім'я користувача для входу
+   - Можна знайти в профілі акаунту або в налаштуваннях
+
+2. **UserID** (ID користувача):
+   - Знаходиться в профілі акаунту
+   - Може бути в розділі "Account Settings" або "API Settings"
+   - Зазвичай це числовий ID
+
+3. **Handle** (токен/ключ API):
+   - Це ваш API ключ/токен для автентифікації
+   - Знаходиться в розділі **"SMS HTTP API"** → **"API Settings"** або **"API Credentials"**
+   - Може називатися "API Handle", "API Token", "API Key" або просто "Handle"
+   - Якщо його немає, можливо потрібно згенерувати новий ключ
+
+4. **API URL** (зазвичай не потрібно змінювати):
+   - Стандартний URL: `https://api.budgetsms.net/sendsms`
+   - Може бути вказаний в документації API
+
+**Де шукати в панелі BudgetSMS:**
+- Перейдіть в розділ **"SMS HTTP API"** → **"HTTP API"**
+- Або в **"Account Settings"** / **"API Settings"**
+- Перевірте документацію в розділі **"SMS HTTP API"** → **"HTTP API"** → **"Send SMS"**
+
+**Примітка:** Якщо ви не можете знайти ці дані, зверніться до підтримки BudgetSMS або перевірте документацію API на їхньому сайті.
 
 ### 2. Додати змінні оточення
 
-Додайте наступні змінні у ваш файл `.env.local` (або `.env`):
+#### Для локальної розробки:
+
+Створіть або відредагуйте файл `.env.local` в корені проекту (поруч з `package.json`):
 
 ```env
 # BudgetSMS API Credentials
-BUDGETSMS_USERNAME=ваш_username
-BUDGETSMS_USERID=ваш_userid
-BUDGETSMS_HANDLE=ваш_handle
+BUDGETSMS_USERNAME=ваш_username_з_budgetsms
+BUDGETSMS_USERID=ваш_userid_з_budgetsms
+BUDGETSMS_HANDLE=ваш_handle_з_budgetsms
+BUDGETSMS_FROM=ScanMe
+BUDGETSMS_API_URL=https://api.budgetsms.net/sendsms/
+```
+
+**Примітка про BUDGETSMS_FROM:**
+- Це Sender ID (ім'я відправника), яке буде відображатися в SMS
+- Може бути алфавітно-цифровим або числовим
+- Максимальна довжина зазвичай 11 символів
+- Приклад: "ScanMe", "Emergency", або ваш номер телефону
+
+**Приклад:**
+```env
+BUDGETSMS_USERNAME=myusername
+BUDGETSMS_USERID=12345
+BUDGETSMS_HANDLE=abc123def456ghi789
 BUDGETSMS_API_URL=https://api.budgetsms.net/sendsms
 ```
 
 **Важливо:** 
-- Не комітьте файл `.env.local` у git (він має бути в `.gitignore`)
-- Для production додайте ці змінні у налаштування вашого хостингу (Vercel, Netlify тощо)
+- Файл `.env.local` має бути в `.gitignore` (не комітиться в git)
+- Після додавання змінних перезапустіть dev сервер (`npm run dev`)
+
+#### Для production (Vercel, Netlify, тощо):
+
+1. **Vercel:**
+   - Зайдіть в налаштування проекту
+   - Розділ **"Settings"** → **"Environment Variables"**
+   - Додайте всі 4 змінні
+
+2. **Netlify:**
+   - Зайдіть в налаштування сайту
+   - Розділ **"Site settings"** → **"Environment variables"**
+   - Додайте всі 4 змінні
+
+3. **Інші хостинги:**
+   - Знайдіть розділ "Environment Variables" або "Config Vars"
+   - Додайте всі 4 змінні
 
 ### 3. Формат повідомлення
 
