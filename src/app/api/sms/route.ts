@@ -149,10 +149,6 @@ export async function POST(request: NextRequest) {
         params.append("from", BUDGETSMS_FROM);
         params.append("to", formattedPhone);
         
-        // Діагностика для проблемних номерів
-        if (formattedPhone.startsWith("380")) {
-          console.log(`Sending SMS to Ukrainian number ${formattedPhone}, message length: ${smsMessage.length}, first 50 chars: ${smsMessage.substring(0, 50)}`);
-        }
 
         // Переконаємося, що URL закінчується на /
         // Формуємо повний URL з параметрами
