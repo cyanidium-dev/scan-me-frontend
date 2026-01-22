@@ -4,13 +4,19 @@ import {
   setDoc,
   updateDoc,
   serverTimestamp,
-  FieldValue
+  FieldValue,
+  collection,
+  query,
+  where,
+  getDocs
 } from "firebase/firestore";
 import { db } from "./config";
 import { User } from "firebase/auth";
 import { cloudinaryConfig, isCloudinaryConfigured } from "../cloudinary/config";
 
 export interface UserProfileData {
+  // QR-ID для публічного доступу до екстреної інформації
+  qrId?: string;
   // Особисті дані
   personalData: {
     name: string;
@@ -230,6 +236,52 @@ export async function updateEmergencyData(
     await updateDoc(userRef, updateData);
   } catch (error) {
     console.error("Помилка оновлення екстрених даних користувача:", error);
+    throw error;
+  }
+}
+
+/**
+ * Отримує профіль користувача з Firestore по QR-ID
+ * @param qrId - QR-ID користувача
+ * @returns Дані профілю користувача або null, якщо профіль не знайдено
+ */
+export async function getUserProfileByQRId(
+  qrId: string
+): Promise<UserProfileData | null> {
+  try {
+    const usersRef = collection(db, "users");
+    const q = query(usersRef, where("qrId", "==", qrId));
+    const querySnapshot = await getDocs(q);
+    
+    if (querySnapshot.empty) {
+      return null;
+    }
+    
+    const userDoc = querySnapshot.docs[0];
+    return userDoc.data() as UserProfileData;
+  } catch (error) {
+    console.error("Помилка отримання профілю користувача по QR-ID:", error);
+    throw error;
+  }
+}
+
+/**
+ * Оновлює QR-ID користувача в Firestore
+ * @param userId - ID користувача
+ * @param qrId - QR-ID для збереження
+ */
+export async function updateQRId(
+  userId: string,
+  qrId: string
+): Promise<void> {
+  try {
+    const userRef = doc(db, "users", userId);
+    await updateDoc(userRef, {
+      qrId: qrId,
+      updatedAt: serverTimestamp(),
+    });
+  } catch (error) {
+    console.error("Помилка оновлення QR-ID користувача:", error);
     throw error;
   }
 }

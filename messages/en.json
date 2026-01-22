@@ -258,7 +258,7 @@
     "medicalData": {
       "title": "Medical information",
       "description": "This data will help medics provide quick and proper assistance if needed.",
-      "bloodType": "Blood type*",
+      "bloodType": "Blood type",
       "bloodTypePlaceholder": "Select your blood type",
       "rhFactor": "Rh factor*",
       "rhPositive": "+",
@@ -276,8 +276,12 @@
       "medicationsPlaceholder": "For example: insulin, antihistamines…",
       "addMedication": "Add medication",
       "doctorContact": "Doctor contacts",
+      "doctors": "Doctor contacts",
+      "doctorName": "Doctor's name",
       "doctorNamePlaceholder": "Doctor's name",
+      "doctorPhone": "Phone number",
       "doctorPhonePlaceholder": "Doctor's phone number",
+      "doctorSpecialization": "Specialization",
       "doctorSpecializationPlaceholder": "Specify doctor's specialization",
       "addDoctor": "Add doctor"
     },
@@ -285,25 +289,57 @@
       "title": "Emergency data",
       "description": "Add a contact of a close person or doctor so they can be contacted in a critical situation.",
       "emergencyContact": "Emergency contact",
+      "name": "Name",
       "emergencyContactPlaceholder": "Name",
+      "phone": "Phone number",
       "emergencyContactPhonePlaceholder": "Phone number",
+      "relationship": "Relationship",
       "emergencyContactRelationshipPlaceholder": "Relationship",
       "sendMessage": "Send SMS when scanning my QR",
       "gps": "Allow sharing location when scanning"
     }
   },
-  "dashboardPage": {
-    "signOut": "Sign out",
-    "order": "Order sticker",
-    "personalData": {
-      "title": "Personal data",
-      "saveButton": "Save data"
+    "dashboardPage": {
+      "signOut": "Sign out",
+      "order": "Order sticker",
+      "personalData": {
+        "title": "Personal data",
+        "saveButton": "Save data"
+      },
+      "medicalData": {
+        "title": "Medical information"
+      },
+      "emergencyData": {
+        "title": "Emergency data"
+      }
     },
-    "medicalData": {
-      "title": "Medical information"
-    },
-    "emergencyData": {
-      "title": "Emergency data"
+    "emergencyInfoPage": {
+      "title": "Emergency Information",
+      "personalDataTitle": "PERSONAL DATA",
+      "medicalData": "MEDICAL INFORMATION",
+      "emergencyContacts": "EMERGENCY CONTACTS",
+      "notFound": "Profile not found",
+      "errorDescription": "User profile not found or unavailable",
+      "callButton": "CALL",
+      "field": "Field",
+      "value": "Value",
+      "emergencyContactsColumn1": "Who/Name",
+      "emergencyContactsColumn2": "Phone / Action",
+      "rhPositive": "Rh +",
+      "rhNegative": "Rh -",
+      "profile": {
+        "qrId": "QR-ID",
+        "callEmergencyButton": "CALL EMERGENCY CONTACT",
+        "sendSMSButton": "SEND EMERGENCY SMS"
+      },
+      "personalData": {
+        "name": "Name",
+        "surname": "Surname",
+        "dateOfBirth": "Date of birth",
+        "gender": "Gender",
+        "male": "Male",
+        "female": "Female",
+        "address": "Address"
+      }
     }
   }
-}

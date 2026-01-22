@@ -2,7 +2,7 @@
 
 import { useState, Dispatch, SetStateAction } from "react";
 import { Form, Formik, FormikHelpers } from "formik";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import axios from "axios";
 import { useAuth } from "@/hooks/useAuth";
@@ -12,6 +12,8 @@ import { OrderFormValidation } from "@/schemas/OrderFormValidation";
 import ProductTypeSelector from "./ProductTypeSelector";
 import QuantitySelector from "./QuantitySelector";
 import { twMerge } from "tailwind-merge";
+import { generateQRId } from "@/utils/generateQRId";
+import { updateQRId } from "@/lib/firebase/userService";
 
 interface OrderFormValues {
   productType: "sticker" | "bracelet";
@@ -37,6 +39,7 @@ export default function OrderForm({
   setIsModalShown,
 }: OrderFormProps) {
   const t = useTranslations();
+  const locale = useLocale();
   const { user } = useAuth();
   const [productType, setProductType] = useState<"sticker" | "bracelet">("sticker");
   const [quantity, setQuantity] = useState(1);
@@ -64,15 +67,33 @@ export default function OrderForm({
       ? t("orderForm.sticker") 
       : t("orderForm.bracelet");
 
-    const userId = user?.uid || "Не авторизовано";
+    if (!user?.uid) {
+      if (setIsError) setIsError(true);
+      if (setIsNotificationShown) {
+        setIsNotificationShown(true);
+      }
+      return;
+    }
+
+    // Генеруємо QR-ID
+    const qrId = generateQRId(user.uid);
+    
+    // Зберігаємо QR-ID в профіль користувача
+    try {
+      await updateQRId(user.uid, qrId);
+    } catch (error) {
+      console.error("Помилка збереження QR-ID:", error);
+      // Продовжуємо виконання, навіть якщо не вдалося зберегти QR-ID
+    }
+
+    const userId = user.uid;
     const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
-    const emergencyLink = user?.uid 
-      ? `${baseUrl}/emergency-info/${user.uid}`
-      : "Не доступно";
+    const emergencyLink = `${baseUrl}/${locale}/emergency-info/${qrId}`;
 
     const data =
       `<b>Заявка "Форма замовлення"</b>\n` +
       `<b>ID користувача:</b> ${userId}\n` +
+      `<b>QR-ID:</b> ${qrId}\n` +
       `<b>Тип продукту:</b> ${productTypeText}\n` +
       `<b>Кількість:</b> ${values.quantity}\n` +
       `<b>Ім'я:</b> ${values.name.trim()}\n` +

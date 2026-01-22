@@ -258,7 +258,7 @@
     "medicalData": {
       "title": "Informacje medyczne",
       "description": "Te dane pomogą medykom udzielić szybkiej i właściwej pomocy w razie potrzeby.",
-      "bloodType": "Grupa krwi*",
+      "bloodType": "Grupa krwi",
       "bloodTypePlaceholder": "Wybierz swoją grupę krwi",
       "rhFactor": "Czynnik Rh*",
       "rhPositive": "+",
@@ -276,8 +276,12 @@
       "medicationsPlaceholder": "Na przykład: insulina, leki przeciwhistaminowe…",
       "addMedication": "Dodaj lek",
       "doctorContact": "Kontakty lekarzy",
+      "doctors": "Kontakty lekarzy",
+      "doctorName": "Imię lekarza",
       "doctorNamePlaceholder": "Imię lekarza",
+      "doctorPhone": "Numer telefonu",
       "doctorPhonePlaceholder": "Numer telefonu lekarza",
+      "doctorSpecialization": "Specjalizacja",
       "doctorSpecializationPlaceholder": "Wskaż specjalizację lekarza",
       "addDoctor": "Dodaj lekarza"
     },
@@ -285,25 +289,57 @@
       "title": "Dane awaryjne",
       "description": "Dodaj kontakt bliskiej osoby lub lekarza, aby można było się z Tobą skontaktować w sytuacji krytycznej.",
       "emergencyContact": "Kontakt awaryjny",
+      "name": "Imię",
       "emergencyContactPlaceholder": "Imię",
+      "phone": "Numer telefonu",
       "emergencyContactPhonePlaceholder": "Numer telefonu",
+      "relationship": "Relacja",
       "emergencyContactRelationshipPlaceholder": "Relacja",
       "sendMessage": "Wyślij SMS podczas skanowania mojego QR",
       "gps": "Zezwól na udostępnianie lokalizacji podczas skanowania"
     }
   },
-  "dashboardPage": {
-    "signOut": "Wyloguj się",
-    "order": "Zamów naklejkę",
-    "personalData": {
-      "title": "Dane osobowe",
-      "saveButton": "Zapisz dane"
+    "dashboardPage": {
+      "signOut": "Wyloguj się",
+      "order": "Zamów naklejkę",
+      "personalData": {
+        "title": "Dane osobowe",
+        "saveButton": "Zapisz dane"
+      },
+      "medicalData": {
+        "title": "Informacje medyczne"
+      },
+      "emergencyData": {
+        "title": "Dane awaryjne"
+      }
     },
-    "medicalData": {
-      "title": "Informacje medyczne"
-    },
-    "emergencyData": {
-      "title": "Dane awaryjne"
+    "emergencyInfoPage": {
+      "title": "Informacje awaryjne",
+      "personalDataTitle": "DANE OSOBOWE",
+      "medicalData": "INFORMACJE MEDYCZNE",
+      "emergencyContacts": "KONTAKTY AWARYJNE",
+      "notFound": "Profil nie znaleziony",
+      "errorDescription": "Profil użytkownika nie został znaleziony lub jest niedostępny",
+      "callButton": "ZADZWOŃ",
+      "field": "Pole",
+      "value": "Wartość",
+      "emergencyContactsColumn1": "Kto/Imię",
+      "emergencyContactsColumn2": "Telefon / Akcja",
+      "rhPositive": "Rh +",
+      "rhNegative": "Rh -",
+      "profile": {
+        "qrId": "QR-ID",
+        "callEmergencyButton": "ZADZWOŃ DO KONTAKTU AWARYJNEGO",
+        "sendSMSButton": "WYŚLIJ AWARYJNĄ SMS"
+      },
+      "personalData": {
+        "name": "Imię",
+        "surname": "Nazwisko",
+        "dateOfBirth": "Data urodzenia",
+        "gender": "Płeć",
+        "male": "Męska",
+        "female": "Żeńska",
+        "address": "Adres"
+      }
     }
   }
-}

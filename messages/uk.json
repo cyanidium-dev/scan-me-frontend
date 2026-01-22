@@ -257,7 +257,7 @@
         "medicalData": {
             "title": "Медична інформація",
             "description": "Ці дані допоможуть медикам надати швидку та правильну допомогу у разі потреби.",
-            "bloodType": "Група крові*",
+            "bloodType": "Група крові",
             "bloodTypePlaceholder": "Оберіть вашу групу крові",
             "rhFactor": "Резус-фактор*",
             "rhPositive": "+",
@@ -275,8 +275,12 @@
             "medicationsPlaceholder": "Наприклад: інсулін, антигістамінні…",
             "addMedication": "Додати ліки",
             "doctorContact": "Контакти лікарів",
-            "doctorNamePlaceholder": "Ім’я лікаря",
+            "doctors": "Контакти лікарів",
+            "doctorName": "Ім'я лікаря",
+            "doctorNamePlaceholder": "Ім'я лікаря",
+            "doctorPhone": "Номер телефону",
             "doctorPhonePlaceholder": "Номер лікаря",
+            "doctorSpecialization": "Спеціалізація",
             "doctorSpecializationPlaceholder": "Вкажіть спеціалізацію лікаря",
             "addDoctor": "Додати лікаря"
         },
@@ -284,8 +288,11 @@
             "title": "Екстрені дані",
             "description": "Додайте контакт близької людини або лікаря, щоб з вами могли зв’язатися у критичній ситуації.",
             "emergencyContact": "Екстрений контакт",
-            "emergencyContactPlaceholder": "Ім’я",
+            "name": "Ім'я",
+            "emergencyContactPlaceholder": "Ім'я",
+            "phone": "Номер телефону",
             "emergencyContactPhonePlaceholder": "Номер телефону",
+            "relationship": "Ким доводиться",
             "emergencyContactRelationshipPlaceholder": "Ким доводиться",
             "sendMessage": "Відправити SMS при скануванні мого QR",
             "gps": "Дозволити передавати геопозицію при скануванні"
@@ -303,6 +310,35 @@
         },
         "emergencyData": {
             "title": "Екстрені дані"
+        }
+    },
+    "emergencyInfoPage": {
+        "title": "Екстрена інформація",
+        "personalDataTitle": "ОСОБИСТІ ДАНІ",
+        "medicalData": "МЕДИЧНА ІНФОРМАЦІЯ",
+        "emergencyContacts": "ЕКСТРЕНІ КОНТАКТИ",
+        "notFound": "Профіль не знайдено",
+        "errorDescription": "Профіль користувача не знайдено або недоступний",
+        "callButton": "ПОДЗВОНИТИ",
+        "field": "Поле",
+        "value": "Значення",
+        "emergencyContactsColumn1": "Хто/Ім'я",
+        "emergencyContactsColumn2": "Телефон / Дія",
+        "rhPositive": "резус +",
+        "rhNegative": "резус -",
+        "profile": {
+            "qrId": "QR-ID",
+            "callEmergencyButton": "ПОДЗВОНИТИ ЕКСТРЕНОМУ КОНТАКТУ",
+            "sendSMSButton": "ВІДПРАВИТИ ЕКСТРЕННЕ СМС"
+        },
+        "personalData": {
+            "name": "Ім'я",
+            "surname": "Прізвище",
+            "dateOfBirth": "Дата народження",
+            "gender": "Стать",
+            "male": "Чоловіча",
+            "female": "Жіноча",
+            "address": "Адреса"
         }
     }
 }
