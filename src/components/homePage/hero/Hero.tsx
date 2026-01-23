@@ -45,7 +45,7 @@ export default function Hero() {
           exit="exit"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInAnimation({ scale: 0.85, y: 30, delay: 0.8, opacity: 0.01 })}
-          className="w-full lg:w-fit"
+          className="relative z-10 w-full lg:w-fit"
         >
           <HeroButton buttonText={t("button")} />
         </motion.div>
