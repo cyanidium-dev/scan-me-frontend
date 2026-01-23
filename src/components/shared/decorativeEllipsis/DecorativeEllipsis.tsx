@@ -25,7 +25,7 @@ export default function DecorativeEllipsis({
         whileInView="visible"
         exit="exit"
         viewport={{ once: true, amount: 0.1 }}
-        variants={fadeInAnimation({ scale: 0.85, delay: delay })}
+        variants={fadeInAnimation({ scale: 0.85, delay: delay, opacity: 0.01 })}
         className={`size-3 lg:size-4.5 rounded-full ${
           variant === "white" ? "bg-white" : "bg-black"
         }`}
@@ -39,6 +39,7 @@ export default function DecorativeEllipsis({
         variants={fadeInAnimation({
           scale: 0.85,
           delay: delay + staggerDelay,
+          opacity: 0.01
         })}
         className={`size-3 lg:size-4.5 rounded-full ${
           variant === "white"
@@ -55,6 +56,7 @@ export default function DecorativeEllipsis({
         variants={fadeInAnimation({
           scale: 0.85,
           delay: delay + staggerDelay * 2,
+          opacity: 0.01
         })}
         className={`size-3 lg:size-4.5 rounded-full ${
           variant === "white" ? "bg-white" : "bg-black"
