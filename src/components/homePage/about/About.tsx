@@ -45,7 +45,7 @@ export default function About() {
             whileInView="visible"
             exit="exit"
             viewport={{ once: true, amount: 0.3 }}
-            variants={fadeInAnimation({ scale: 0.85, delay: 0.3 })}
+            variants={fadeInAnimation({ scale: 0.85, delay: 0.3, opacity: 0.01 })}
             className="lg:hidden"
           >
             {t("descriptionOne")}

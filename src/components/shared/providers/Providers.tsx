@@ -14,7 +14,7 @@ export default function Providers({ children, messages, locale }: ProvidersProps
   return (
     <HeroUIProvider>
       <AuthProvider>
-        <NextIntlClientProvider messages={messages} locale={locale}>
+        <NextIntlClientProvider messages={messages} locale={locale} timeZone="Europe/Kyiv">
           {children}
         </NextIntlClientProvider>
       </AuthProvider>

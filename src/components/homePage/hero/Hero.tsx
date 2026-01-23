@@ -23,7 +23,7 @@ export default function Hero() {
           whileInView="visible"
           exit="exit"
           viewport={{ once: true, amount: 0.3 }}
-          variants={fadeInAnimation({ scale: 0.85, y: 30, x: 70 })}
+          variants={fadeInAnimation({ scale: 0.85, y: 30, x: 70, opacity: 0.01 })}
           className="relative lg:absolute lg:top-[220px] xl:top-[252px] lg:right-15 z-10 text-[10px] lg:text-[14px] font-semibold leading-[120%] uppercase lg:text-right max-w-[132px] lg:max-w-[325px] mb-[76px] lg:mb-0"
         >
           {t("descriptionOne")}
@@ -34,7 +34,7 @@ export default function Hero() {
           whileInView="visible"
           exit="exit"
           viewport={{ once: true, amount: 0.3 }}
-          variants={fadeInAnimation({ scale: 0.85, y: 30, x: -70, delay: 0.4 })}
+          variants={fadeInAnimation({ scale: 0.85, y: 30, x: -70, delay: 0.4, opacity: 0.01 })}
           className="relative z-10 max-w-[313px] lg:max-w-[415px] mb-4 lg:mb-16 text-[10px] lg:text-[12px] xl:text-[14px] font-light leading-[120%]"
         >
           {t("descriptionTwo")}
@@ -44,7 +44,7 @@ export default function Hero() {
           whileInView="visible"
           exit="exit"
           viewport={{ once: true, amount: 0.3 }}
-          variants={fadeInAnimation({ scale: 0.85, y: 30, delay: 0.8 })}
+          variants={fadeInAnimation({ scale: 0.85, y: 30, delay: 0.8, opacity: 0.01 })}
           className="w-full lg:w-fit"
         >
           <HeroButton buttonText={t("button")} />
@@ -54,7 +54,7 @@ export default function Hero() {
           whileInView="visible"
           exit="exit"
           viewport={{ once: true, amount: 0.3 }}
-          variants={fadeInAnimation({ scale: 0.95, delay: 0.2 })}
+          variants={fadeInAnimation({ scale: 0.95, delay: 0.2, opacity: 0.01 })}
           className="absolute top-[77px] lg:top-[113px] left-6 sm:left-36 md:left-50 lg:left-[409px] w-[475px] h-[542px] lg:w-[885px] lg:h-[708px] overflow-hidden"
         >
           <Image
@@ -63,6 +63,8 @@ export default function Hero() {
             fill
             priority
             fetchPriority="high"
+            sizes="(max-width: 1023px) 475px, 0px"
+            quality={100}
             className="lg:hidden object-cover"
           />
           <Image
@@ -72,6 +74,7 @@ export default function Hero() {
             priority
             fetchPriority="high"
             quality={100}
+            sizes="(min-width: 1024px) 885px, 0px"
             className="hidden lg:block object-cover"
           />
           <div className="absolute bottom-0 lg:bottom-[-190px] left-[-50px] lg:left-[-297px] w-[671px] lg:w-[575px] h-[175px] lg:h-[478px] lg:-rotate-14 bg-black rounded-full supports-[backdrop-filter]:blur-[39px] lg:supports-[backdrop-filter]:blur-[109px] will-change-transform" />

@@ -13,6 +13,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const locales = routing.locales;
   const defaultLocale = routing.defaultLocale;
 
+  // Нормалізуємо SITE_URL: видаляємо завершальний слеш, якщо він є
+  const normalizedSiteUrl = SITE_URL?.replace(/\/$/, "") || "";
+
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
   // Генеруємо записи для кожної сторінки та кожної мови
@@ -25,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       } else {
         path = locale === defaultLocale ? "" : `/${locale}`;
       }
-      const url = `${SITE_URL}${path}`;
+      const url = `${normalizedSiteUrl}${path}`;
 
       // Додаємо альтернативні мови для кожної сторінки
       const alternates: Record<string, string> = {};
@@ -37,7 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         } else {
           altPath = altLocale === defaultLocale ? "" : `/${altLocale}`;
         }
-        alternates[altLocale] = `${SITE_URL}${altPath}`;
+        alternates[altLocale] = `${normalizedSiteUrl}${altPath}`;
       });
 
       sitemapEntries.push({

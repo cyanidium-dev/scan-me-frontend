@@ -18,7 +18,7 @@ export default function PageTitle({
       whileInView="visible"
       exit="exit"
       viewport={{ once: true, amount: 0.3 }}
-      variants={fadeInAnimation({ scale: 0.85, y: 30, x: -70 })}
+      variants={fadeInAnimation({ scale: 0.85, y: 30, x: -70, opacity: 0.01 })}
       className={twMerge(
         "font-actay text-[26px] lg:text-[50px] xl:text-[70px] font-bold leading-[120%] uppercase text-white",
         className
