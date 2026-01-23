@@ -12,7 +12,7 @@ export default function About() {
   return (
     <section id="about" className="pt-12 lg:pt-30 overflow-hidden scroll-mt-20">
       <Container className="relative">
-        <SectionTitle className="mb-6">
+        <SectionTitle className="mb-6 lg:min-h-[110px] lg:text-[44px] xl:text-[72px]">
           {t.rich("title", {
             accent: (chunks) => <span className="text-accent">{chunks}</span>,
           })}
