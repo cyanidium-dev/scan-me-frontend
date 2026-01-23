@@ -34,13 +34,19 @@ export default function AuthButtons({ setIsOpenBurgerMenu }: AuthButtonsProps) {
     }
   };
 
+  // Показуємо placeholder під час завантаження, щоб уникнути стрибка контенту
   if (loading) {
-    return null; // або показати loader
+    return (
+      <div className="flex items-center gap-3 min-w-[200px]">
+        <div className="h-11 w-20 bg-white/10 rounded-full" />
+        <div className="h-11 w-24 bg-white/10 rounded-full" />
+      </div>
+    );
   }
 
   if (user) {
     return (
-      <>
+      <div className="flex items-center gap-3 min-w-[140px]">
         <Link
           href="/dashboard"
           onClick={
@@ -61,12 +67,12 @@ export default function AuthButtons({ setIsOpenBurgerMenu }: AuthButtonsProps) {
         >
           Вийти
         </MainButton> */}
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="flex items-center gap-3 min-w-[200px]">
       <Link
         href="/sign-in"
         onClick={
@@ -93,6 +99,6 @@ export default function AuthButtons({ setIsOpenBurgerMenu }: AuthButtonsProps) {
           {t("signUp")}
         </MainButton>
       </Link>
-    </>
+    </div>
   );
 }
