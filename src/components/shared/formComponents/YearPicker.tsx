@@ -48,7 +48,7 @@ export default function YearPicker({ fieldName, placeholder, className }: YearPi
                 classNames={{
                     base: "w-full",
                     trigger: twMerge(
-                        "relative w-full px-4 py-3 lg:p-4 h-12 rounded-full text-[12px] lg:text-[14px] leading-[120%] text-black/40 font-normal outline-none border transition duration-300 ease-out shadow-none bg-transparent",
+                        "relative w-full px-4 py-3 lg:p-4 h-12 rounded-full text-[12px] lg:text-[14px] leading-[120%] text-black/40 font-normal outline-none border transition duration-300 ease-out shadow-none bg-transparent cursor-pointer",
                         hasError
                             ? "!border-accent data-[hover=true]:!border-accent group-data-[focus=true]:!border-accent"
                             : "border-black/40 data-[hover=true]:border-black/60 group-data-[focus=true]:border-black/60 [&[data-placeholder=true]]:text-black/40"
