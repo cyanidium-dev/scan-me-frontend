@@ -3,6 +3,9 @@ import { MetadataRoute } from "next";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 export default function robots(): MetadataRoute.Robots {
+  // Нормалізуємо SITE_URL: видаляємо завершальний слеш, якщо він є
+  const normalizedSiteUrl = SITE_URL?.replace(/\/$/, "") || "";
+
   return {
     rules: [
       {
@@ -19,6 +22,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    sitemap: `${normalizedSiteUrl}/sitemap.xml`,
   };
 }

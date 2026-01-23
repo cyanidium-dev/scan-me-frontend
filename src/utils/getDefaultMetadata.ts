@@ -10,6 +10,8 @@ export function getDefaultMetadata(
 ): Metadata {
   // Формуємо канонічний URL
   const defaultLocale = routing.defaultLocale;
+  // Нормалізуємо SITE_URL: видаляємо завершальний слеш, якщо він є
+  const normalizedSiteUrl = SITE_URL?.replace(/\/$/, "") || "";
   // Нормалізуємо pathname: видаляємо початковий слеш, якщо він є
   const normalizedPath = pathname?.replace(/^\//, "") || "";
   
@@ -23,7 +25,7 @@ export function getDefaultMetadata(
     canonicalPath = locale === defaultLocale ? "" : `/${locale}`;
   }
   
-  const canonicalUrl = `${SITE_URL}${canonicalPath}`;
+  const canonicalUrl = `${normalizedSiteUrl}${canonicalPath}`;
 
   // Формуємо альтернативні мови
   const alternates: Record<string, string> = {};
@@ -36,15 +38,15 @@ export function getDefaultMetadata(
     } else {
       altPath = altLocale === defaultLocale ? "" : `/${altLocale}`;
     }
-    alternates[altLocale] = `${SITE_URL}${altPath}`;
+    alternates[altLocale] = `${normalizedSiteUrl}${altPath}`;
   });
 
   // Формуємо абсолютний URL для Open Graph зображення
   // Використовуємо абсолютний URL для правильного відображення в соціальних мережах
-  const ogImageUrl = `${SITE_URL}/opengraph-image.jpg`;
+  const ogImageUrl = `${normalizedSiteUrl}/opengraph-image.jpg`;
 
   return {
-    metadataBase: new URL(SITE_URL || ""),
+    metadataBase: new URL(normalizedSiteUrl || "https://example.com"),
     title: t("title"),
     description: t("description"),
     alternates: {
