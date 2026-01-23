@@ -1,28 +1,81 @@
 import { Metadata } from "next";
+import { routing } from "@/i18n/routing";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 export function getDefaultMetadata(
   t: (key: string) => string,
-  locale: string
+  locale: string,
+  pathname?: string
 ): Metadata {
+  // Формуємо канонічний URL
+  const defaultLocale = routing.defaultLocale;
+  // Нормалізуємо pathname: видаляємо початковий слеш, якщо він є
+  const normalizedPath = pathname?.replace(/^\//, "") || "";
+  
+  // Для дефолтної мови (uk) не додаємо префікс
+  let canonicalPath = "";
+  if (normalizedPath) {
+    canonicalPath = locale === defaultLocale 
+      ? `/${normalizedPath}` 
+      : `/${locale}/${normalizedPath}`;
+  } else {
+    canonicalPath = locale === defaultLocale ? "" : `/${locale}`;
+  }
+  
+  const canonicalUrl = `${SITE_URL}${canonicalPath}`;
+
+  // Формуємо альтернативні мови
+  const alternates: Record<string, string> = {};
+  routing.locales.forEach((altLocale) => {
+    let altPath = "";
+    if (normalizedPath) {
+      altPath = altLocale === defaultLocale 
+        ? `/${normalizedPath}` 
+        : `/${altLocale}/${normalizedPath}`;
+    } else {
+      altPath = altLocale === defaultLocale ? "" : `/${altLocale}`;
+    }
+    alternates[altLocale] = `${SITE_URL}${altPath}`;
+  });
+
+  // Формуємо абсолютний URL для Open Graph зображення
+  // Використовуємо абсолютний URL для правильного відображення в соціальних мережах
+  const ogImageUrl = `${SITE_URL}/opengraph-image.jpg`;
+
   return {
+    metadataBase: new URL(SITE_URL || ""),
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: canonicalUrl,
+      languages: alternates,
+    },
     openGraph: {
       title: t("title"),
       description: t("description"),
+      url: canonicalUrl,
+      siteName: "Scan me",
       images: [
         {
-          url: `${SITE_URL}/opengraph-image.jpg`,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: "Scan me",
+          type: "image/jpeg",
         },
       ],
-      type: "website",
       locale: locale === "uk" ? "uk_UA" : locale === "pl" ? "pl_PL" : "en_US",
-      siteName: "Scan me",
+      alternateLocale: routing.locales
+        .filter((l) => l !== locale)
+        .map((l) => (l === "uk" ? "uk_UA" : l === "pl" ? "pl_PL" : "en_US")),
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+      images: [ogImageUrl],
     },
   };
 }
