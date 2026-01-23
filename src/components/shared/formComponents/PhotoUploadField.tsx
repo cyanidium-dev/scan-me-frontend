@@ -93,22 +93,24 @@ export default function PhotoUploadField({ fieldName, label, className }: PhotoU
         />
         
         {preview ? (
-          <div className="relative size-[97px] lg:size-[147px] rounded-full overflow-hidden border-2 border-accent cursor-pointer">
-            <Image
-              src={preview}
-              alt="Preview"
-              fill
-              className="w-full h-full object-cover"
-            />
-            <button
-              type="button"
-              onClick={handleRemove}
-              className="absolute top-2 right-2 w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white hover:bg-accent/80 transition-colors cursor-pointer"
-              aria-label="Remove photo"
-            >
-              <CrossIcon className="w-4 h-4" />
-            </button>
-          </div>
+       <div className="relative">  
+        <div className="relative size-[97px] lg:size-[147px] rounded-full overflow-hidden cursor-pointer">
+       <Image
+         src={preview}
+         alt="Preview"
+         fill
+         className="w-full h-full object-cover"
+       />
+       
+     </div>
+     <button
+         type="button"
+         onClick={handleRemove}
+         className="absolute top-2 right-2 w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white hover:bg-accent/80 transition-colors cursor-pointer"
+         aria-label="Remove photo"
+       >
+         <CrossIcon className="w-4 h-4" />
+       </button></div>
         ) : (
           <div className="relative w-full flex flex-col items-center">
             <div className="size-[97px] lg:size-[147px] rounded-full bg-accent flex items-center justify-center">
