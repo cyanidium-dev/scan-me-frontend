@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { getTranslations, getLocale, getMessages } from "next-intl/server";
 import { getDefaultMetadata } from "@/utils/getDefaultMetadata";
 import Providers from "@/components/shared/providers/Providers";
+import { headers } from "next/headers";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -31,11 +32,37 @@ const actay = localFont({
   fallback: ["Arial", "sans-serif"],
 });
 
-export async function generateMetadata() {
-  const locale = await getLocale();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations("metadata");
+  const headersList = await headers();
+  
+  // Отримуємо pathname з заголовків або referer
+  let pathname = "";
+  const referer = headersList.get("referer");
+  if (referer) {
+    try {
+      const urlObj = new URL(referer);
+      pathname = urlObj.pathname;
+      // Видаляємо префікс локалі, якщо він є
+      const localePrefix = `/${locale}`;
+      if (pathname.startsWith(localePrefix)) {
+        pathname = pathname.slice(localePrefix.length);
+      }
+      // Якщо pathname порожній після видалення префіксу, це головна сторінка
+      if (pathname === "/" || pathname === "") {
+        pathname = "";
+      }
+    } catch {
+      // Якщо не вдалося розпарсити URL, використовуємо порожній рядок
+    }
+  }
 
-  return getDefaultMetadata(t, locale);
+  return getDefaultMetadata(t, locale, pathname);
 }
 
 export default async function LocaleLayout({
