@@ -8,7 +8,4 @@ export const routing = defineRouting({
   defaultLocale: "uk",
   localeDetection: false,
   localePrefix: "as-needed",
-  
-  // Global timeZone configuration
-  timeZone: "Europe/Kyiv",
 });
