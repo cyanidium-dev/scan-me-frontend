@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
                 hostname: "res.cloudinary.com",
             },
         ],
+        qualities: [100, 75],
     },
     serverExternalPackages: ["qrcode", "form-data"],
     webpack: (config, { isServer }) => {
