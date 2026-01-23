@@ -121,6 +121,30 @@ export async function getUserProfile(
  * @param user - Firebase User об'єкт
  * @param profileData - Дані профілю користувача
  */
+/**
+ * Рекурсивно видаляє undefined значення з об'єкта
+ */
+function removeUndefinedValues(obj: any): any {
+  if (obj === null || typeof obj !== "object") {
+    return obj;
+  }
+  
+  if (Array.isArray(obj)) {
+    return obj.map(removeUndefinedValues);
+  }
+  
+  const cleaned: any = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const value = obj[key];
+      if (value !== undefined) {
+        cleaned[key] = removeUndefinedValues(value);
+      }
+    }
+  }
+  return cleaned;
+}
+
 export async function saveUserProfile(
   user: User,
   profileData: Omit<UserProfileData, "createdAt" | "updatedAt">
@@ -134,7 +158,18 @@ export async function saveUserProfile(
       updatedAt: serverTimestamp(),
     };
     
-    await setDoc(userRef, dataToSave, { merge: true });
+    // Видаляємо undefined значення, оскільки Firestore їх не підтримує
+    const cleanedData = removeUndefinedValues(dataToSave);
+    
+    await setDoc(userRef, cleanedData, { merge: true });
+    
+    // Перевіряємо, чи дані дійсно збереглися
+    const savedDoc = await getDoc(userRef);
+    if (savedDoc.exists()) {
+    
+    } else {
+      console.error("ПОМИЛКА: Документ не знайдено після збереження!");
+    }
   } catch (error) {
     console.error("Помилка збереження профілю користувача:", error);
     throw error;
