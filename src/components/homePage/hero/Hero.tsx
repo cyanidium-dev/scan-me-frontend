@@ -63,6 +63,8 @@ export default function Hero() {
             fill
             priority
             fetchPriority="high"
+            sizes="(max-width: 1023px) 475px, 0px"
+            quality={100}
             className="lg:hidden object-cover"
           />
           <Image
@@ -72,6 +74,7 @@ export default function Hero() {
             priority
             fetchPriority="high"
             quality={100}
+            sizes="(min-width: 1024px) 885px, 0px"
             className="hidden lg:block object-cover"
           />
           <div className="absolute bottom-0 lg:bottom-[-190px] left-[-50px] lg:left-[-297px] w-[671px] lg:w-[575px] h-[175px] lg:h-[478px] lg:-rotate-14 bg-black rounded-full supports-[backdrop-filter]:blur-[39px] lg:supports-[backdrop-filter]:blur-[109px] will-change-transform" />
