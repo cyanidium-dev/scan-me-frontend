@@ -18,6 +18,7 @@ import {
   verifyPasswordResetCode,
   confirmPasswordReset,
   deleteUser,
+  ActionCodeSettings,
 } from "firebase/auth";
 import { auth } from "@/lib/firebase/config";
 import { AuthContextType } from "@/types/auth";
@@ -59,8 +60,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const resetPassword = (email: string, languageCode?: string) => {
     // Встановлюємо мову для Firebase Auth
     // Firebase використає шаблон email для цієї мови, якщо він налаштований в Console
+    // Мапінг локалей на формат Firebase (uk -> uk-UA, en -> en-US, pl -> pl-PL)
+    const localeMap: Record<string, string> = {
+      uk: "uk-UA",
+      en: "en-US",
+      pl: "pl-PL",
+    };
+    
     if (languageCode) {
-      auth.languageCode = languageCode;
+      // Використовуємо мапінг, якщо він є, інакше використовуємо оригінальний код
+      auth.languageCode = localeMap[languageCode] || languageCode;
     }
     
     return sendPasswordResetEmail(auth, email);
