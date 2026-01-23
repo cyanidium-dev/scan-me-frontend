@@ -17,7 +17,7 @@ export const SignUpValidation = () => {
       .matches(/[a-z]/, t("passwordRequireLowercase"))
       .matches(/[A-Z]/, t("passwordRequireUppercase"))
       .matches(/\d/, t("passwordRequireNumeric"))
-      .matches(/[@$!%*?&]/, t("passwordRequireSpecial")),
+      .matches(/[@$!%*?&«»()]/, t("passwordRequireSpecial")),
   });
 
   return signUpFormValidationSchema;

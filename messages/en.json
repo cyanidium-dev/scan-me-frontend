@@ -38,7 +38,7 @@
             "passwordRequireUppercase": "Password must contain at least one uppercase letter",
             "passwordRequireLowercase": "Password must contain at least one lowercase letter",
             "passwordRequireNumeric": "Password must contain at least one number",
-            "passwordRequireSpecial": "Password must contain at least one special character (@$!%*?&)",
+            "passwordRequireSpecial": "Password must contain at least one special character (@$!%*?&«»())",
       "nameMinMaxSymbols": "Must contain 2 to 30 characters",
       "nameAllowedSymbols": "Allowed letters, hyphen, apostrophe, quotes",
       "max200Symbols": "Must contain no more than 200 characters"
