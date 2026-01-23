@@ -49,7 +49,7 @@ interface SignUpFormProps {
 
 export default function SignUpForm({ currentStep: externalStep, onStepChange }: SignUpFormProps) {
   const t = useTranslations();
-  const { signUp, checkEmailExists } = useAuth();
+  const { signUp } = useAuth();
   const router = useRouter();
   const [internalStep, setInternalStep] = useState<SignUpStep>(0);
   
@@ -162,19 +162,11 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
       };
       setFormData(updatedFormData);
 
-      // 1. Перевіряємо, чи email вже зареєстрований
-      const emailExists = await checkEmailExists(updatedFormData.email, updatedFormData.password);
-      if (emailExists) {
-        setError(t("signUpPage.errors.emailAlreadyExists"));
-        setLoading(false);
-        return;
-      }
-
-      // 2. Створюємо користувача в Firebase Authentication
+      // 1. Створюємо користувача в Firebase Authentication
       const userCredential = await signUp(updatedFormData.email, updatedFormData.password);
       const user = userCredential.user;
 
-      // 3. Завантажуємо фото (якщо є) в Cloudinary
+      // 2. Завантажуємо фото (якщо є) в Cloudinary
       let photoURL: string | undefined;
       if (updatedFormData.photo) {
         try {
@@ -186,7 +178,7 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
         }
       }
 
-      // 4. Фільтруємо порожні значення з масивів
+      // 3. Фільтруємо порожні значення з масивів
       const filteredAllergies = updatedFormData.allergies.filter((a) => a.trim() !== "");
       const filteredMedications = updatedFormData.medications.filter((m) => m.trim() !== "");
       const filteredOperations = updatedFormData.operations.filter(
@@ -199,37 +191,45 @@ export default function SignUpForm({ currentStep: externalStep, onStepChange }: 
         (ec) => ec.name.trim() !== "" || ec.phone.trim() !== "" || ec.relationship.trim() !== ""
       );
 
-      // 5. Зберігаємо профіль користувача в Firestore
-      await saveUserProfile(user, {
-        personalData: {
-          name: updatedFormData.name,
-          surname: updatedFormData.surname,
-          dateOfBirth: updatedFormData.dateOfBirth,
-          gender: updatedFormData.gender,
-          photo: photoURL,
-          country: updatedFormData.country,
-          city: updatedFormData.city,
-          address: updatedFormData.address,
-        },
-        medicalData: {
-          bloodType: updatedFormData.bloodType,
-          rhFactor: updatedFormData.rhFactor,
-          allergies: filteredAllergies,
-          chronicDiseases: updatedFormData.chronicDiseases,
-          operations: filteredOperations,
-          medications: filteredMedications,
-          doctors: filteredDoctors,
-        },
-        emergencyData: {
-          emergencyContacts: filteredEmergencyContacts,
-          sendSMS: updatedFormData.sendSMS,
-          allowGPS: false, // Поле більше не використовується, залишаємо false для сумісності
-        },
-      });
+      // 4. Зберігаємо профіль користувача в Firestore
 
-      // 6. Після успішної реєстрації перенаправляємо на сторінку успіху або головну
-      // TODO: Замініть на потрібну сторінку
-      router.push("/");
+      try {
+        await saveUserProfile(user, {
+          personalData: {
+            name: updatedFormData.name,
+            surname: updatedFormData.surname,
+            dateOfBirth: updatedFormData.dateOfBirth,
+            gender: updatedFormData.gender,
+            photo: photoURL,
+            country: updatedFormData.country,
+            city: updatedFormData.city,
+            address: updatedFormData.address,
+          },
+          medicalData: {
+            bloodType: updatedFormData.bloodType,
+            rhFactor: updatedFormData.rhFactor,
+            allergies: filteredAllergies,
+            chronicDiseases: updatedFormData.chronicDiseases,
+            operations: filteredOperations,
+            medications: filteredMedications,
+            doctors: filteredDoctors,
+          },
+          emergencyData: {
+            emergencyContacts: filteredEmergencyContacts,
+            sendSMS: updatedFormData.sendSMS,
+            allowGPS: false, // Поле більше не використовується, залишаємо false для сумісності
+          },
+        });
+      
+      } catch (profileError: any) {
+        console.error("Помилка збереження профілю користувача:", profileError);
+        setError("Помилка збереження профілю. Спробуйте пізніше або зверніться до підтримки.");
+        setLoading(false);
+        return;
+      }
+
+      // 5. Після успішної реєстрації перенаправляємо на dashboard
+      router.replace("/dashboard");
     } catch (err: any) {
       // Обробка помилок Firebase
       if (err?.code === "auth/email-already-in-use") {

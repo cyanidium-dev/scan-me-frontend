@@ -41,7 +41,7 @@ export default function Header() {
         <div className="flex items-center lg:gap-5 xl:gap-12.5">
           <NavMenu className="hidden lg:block relative z-60" />
           <LocaleSwitcher />
-          <div className="relative z-60 hidden lg:flex items-center gap-3">
+          <div className="relative z-60 hidden lg:flex items-center gap-3 min-w-[200px] justify-end">
             <AuthButtons />
           </div>
           <BurgerMenu

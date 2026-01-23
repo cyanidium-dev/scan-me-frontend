@@ -19,7 +19,7 @@ export default function AuthRedirect({
 
   useEffect(() => {
     if (!loading && user) {
-      router.push(redirectTo);
+      router.replace(redirectTo);
     }
   }, [user, loading, router, redirectTo]);
 

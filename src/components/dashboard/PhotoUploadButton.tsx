@@ -124,15 +124,7 @@ export default function PhotoUploadButton({
                         className="object-cover"
                     />
                 ) : (
-                    <div
-                        className={`w-full h-full flex items-center justify-center ${
-                            isDesktop ? "text-white text-2xl" : "text-gray-500"
-                        }`}
-                    >
-                        {userName?.[0]?.toUpperCase() ||
-                            userEmail?.[0]?.toUpperCase() ||
-                            "U"}
-                    </div>
+                 null
                 )}
                 {uploading && (
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -155,7 +147,7 @@ export default function PhotoUploadButton({
                 ) : (
                     <CameraPlusIcon
                         className={`text-white ${iconSize}`}
-                        strokeWidth={0.7}
+                        strokeWidth={1.5}
                     />
                 )}
             </button>
