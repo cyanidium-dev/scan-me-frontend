@@ -5,8 +5,16 @@ import { NextRequest, NextResponse } from "next/server";
 const intlMiddleware = createMiddleware(routing);
 
 export default function middleware(request: NextRequest) {
-  // Обробляємо /reset-password з параметром lang
-  if (request.nextUrl.pathname === "/reset-password") {
+  const pathname = request.nextUrl.pathname;
+  
+  // Обробляємо /reset-password з параметром lang (для Firebase password reset)
+  const isResetPassword = pathname === "/reset-password";
+  const isLocalizedResetPassword = pathname === "/uk/reset-password" || 
+                                   pathname === "/en/reset-password" || 
+                                   pathname === "/pl/reset-password";
+  
+  // Якщо це /reset-password без локалі, редіректимо на локалізовану версію
+  if (isResetPassword && !isLocalizedResetPassword) {
     const lang = request.nextUrl.searchParams.get("lang");
     
     // Перевіряємо, чи lang є валідною локаллю
@@ -23,16 +31,28 @@ export default function middleware(request: NextRequest) {
     });
     
     const queryString = newSearchParams.toString();
-    const redirectUrl = `/${locale}/reset-password${queryString ? `?${queryString}` : ""}`;
     
-    return NextResponse.redirect(new URL(redirectUrl, request.url));
+    // Використовуємо повний URL з origin для уникнення циклів редіректів
+    const baseUrl = new URL(request.url);
+    const redirectUrl = `${baseUrl.origin}/${locale}/reset-password${queryString ? `?${queryString}` : ""}`;
+    
+    return NextResponse.redirect(redirectUrl, { status: 307 });
+  }
+  
+  // Якщо це вже локалізований /reset-password, пропускаємо next-intl middleware
+  // щоб уникнути циклів редіректів (оскільки localePrefix: "as-needed" може
+  // перенаправляти /uk/reset-password на /reset-password)
+  if (isLocalizedResetPassword) {
+    // Просто додаємо pathname в заголовки і пропускаємо далі
+    const response = NextResponse.next();
+    response.headers.set("x-pathname", pathname);
+    return response;
   }
 
   // Використовуємо стандартний next-intl middleware для інших маршрутів
   const response = intlMiddleware(request);
   
   // Додаємо pathname в заголовки для використання в метаданих
-  const pathname = request.nextUrl.pathname;
   response.headers.set("x-pathname", pathname);
   
   return response;

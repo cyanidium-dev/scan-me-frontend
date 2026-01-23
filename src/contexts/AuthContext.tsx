@@ -72,7 +72,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
       auth.languageCode = localeMap[languageCode] || languageCode;
     }
     
-    return sendPasswordResetEmail(auth, email);
+    // Формуємо URL для скидання пароля з урахуванням локалі
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || 
+      (typeof window !== "undefined" ? window.location.origin : "");
+    
+    // Визначаємо локаль для URL (якщо не передана, використовуємо 'uk' за замовчуванням)
+    const localeForUrl = languageCode || "uk";
+    
+    // Формуємо continueUrl з локалью в шляху
+    const continueUrl = `${siteUrl}/${localeForUrl}/reset-password`;
+    
+    const actionCodeSettings: ActionCodeSettings = {
+      url: continueUrl,
+      handleCodeInApp: false,
+    };
+    
+    return sendPasswordResetEmail(auth, email, actionCodeSettings);
   };
 
   const verifyResetCode = (code: string) => {
