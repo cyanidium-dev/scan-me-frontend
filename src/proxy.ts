@@ -29,7 +29,13 @@ export default function middleware(request: NextRequest) {
   }
 
   // Використовуємо стандартний next-intl middleware для інших маршрутів
-  return intlMiddleware(request);
+  const response = intlMiddleware(request);
+  
+  // Додаємо pathname в заголовки для використання в метаданих
+  const pathname = request.nextUrl.pathname;
+  response.headers.set("x-pathname", pathname);
+  
+  return response;
 }
 
 export const config = {

@@ -39,7 +39,13 @@ export function getDefaultMetadata(
     alternates[altLocale] = `${SITE_URL}${altPath}`;
   });
 
+  // Формуємо абсолютний URL для Open Graph зображення
+  // Next.js автоматично обробляє opengraph-image.jpg з app директорії
+  // Але для правильного відображення в соціальних мережах потрібен абсолютний URL
+  const ogImageUrl = new URL("/opengraph-image.jpg", SITE_URL).toString();
+
   return {
+    metadataBase: new URL(SITE_URL),
     title: t("title"),
     description: t("description"),
     alternates: {
@@ -50,20 +56,27 @@ export function getDefaultMetadata(
       title: t("title"),
       description: t("description"),
       url: canonicalUrl,
+      siteName: "Scan me",
       images: [
         {
-          url: `${SITE_URL}/opengraph-image.jpg`,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: "Scan me",
+          type: "image/jpeg",
         },
       ],
-      type: "website",
       locale: locale === "uk" ? "uk_UA" : locale === "pl" ? "pl_PL" : "en_US",
-      siteName: "Scan me",
       alternateLocale: routing.locales
         .filter((l) => l !== locale)
         .map((l) => (l === "uk" ? "uk_UA" : l === "pl" ? "pl_PL" : "en_US")),
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+      images: [ogImageUrl],
     },
   };
 }

@@ -41,24 +41,19 @@ export async function generateMetadata({
   const t = await getTranslations("metadata");
   const headersList = await headers();
   
-  // Отримуємо pathname з заголовків або referer
+  // Отримуємо pathname з заголовків
   let pathname = "";
-  const referer = headersList.get("referer");
-  if (referer) {
-    try {
-      const urlObj = new URL(referer);
-      pathname = urlObj.pathname;
-      // Видаляємо префікс локалі, якщо він є
-      const localePrefix = `/${locale}`;
-      if (pathname.startsWith(localePrefix)) {
-        pathname = pathname.slice(localePrefix.length);
-      }
-      // Якщо pathname порожній після видалення префіксу, це головна сторінка
-      if (pathname === "/" || pathname === "") {
-        pathname = "";
-      }
-    } catch {
-      // Якщо не вдалося розпарсити URL, використовуємо порожній рядок
+  const pathnameHeader = headersList.get("x-pathname");
+  if (pathnameHeader) {
+    pathname = pathnameHeader;
+    // Видаляємо префікс локалі, якщо він є
+    const localePrefix = `/${locale}`;
+    if (pathname.startsWith(localePrefix)) {
+      pathname = pathname.slice(localePrefix.length);
+    }
+    // Якщо pathname порожній після видалення префіксу, це головна сторінка
+    if (pathname === "/" || pathname === "") {
+      pathname = "";
     }
   }
 
