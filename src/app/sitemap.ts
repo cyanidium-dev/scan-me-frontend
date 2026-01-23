@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://scan-me.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 // Список статичних сторінок (без динамічних параметрів)
 // Виключаємо сторінки, які заборонені для індексації в robots.txt

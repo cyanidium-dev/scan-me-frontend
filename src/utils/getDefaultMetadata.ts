@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { routing } from "@/i18n/routing";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://scan-me.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 export function getDefaultMetadata(
   t: (key: string) => string,
@@ -40,12 +40,11 @@ export function getDefaultMetadata(
   });
 
   // Формуємо абсолютний URL для Open Graph зображення
-  // Next.js автоматично обробляє opengraph-image.jpg з app директорії
-  // Але для правильного відображення в соціальних мережах потрібен абсолютний URL
-  const ogImageUrl = new URL("/opengraph-image.jpg", SITE_URL).toString();
+  // Використовуємо абсолютний URL для правильного відображення в соціальних мережах
+  const ogImageUrl = `${SITE_URL}/opengraph-image.jpg`;
 
   return {
-    metadataBase: new URL(SITE_URL),
+    metadataBase: new URL(SITE_URL || ""),
     title: t("title"),
     description: t("description"),
     alternates: {
