@@ -43,7 +43,7 @@ export default function ContactForm({
   ) => {
     const { resetForm } = formikHelpers;
 
-    const data =
+    const text =
       `<b>Заявка "Форма зворотнього зв'язку"</b>\n` +
       `<b>Ім'я:</b> ${values.name.trim()}\n` +
       `<b>Телефон:</b> ${values.phone.trim().replace(/(?!^)\D/g, "")}\n`;
@@ -54,7 +54,7 @@ export default function ContactForm({
       await axios({
         method: "post",
         url: "/api/telegram",
-        data,
+        data: { text },
         headers: {
           "Content-Type": "application/json",
         },
