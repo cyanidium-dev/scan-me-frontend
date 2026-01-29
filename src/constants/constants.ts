@@ -4,7 +4,7 @@ export const PHONE = "+380671234567";
 
 export const LINKEDIN_URL = "";
 
-export const INSTAGRAM_URL = "";
+export const INSTAGRAM_URL = "https://www.instagram.com/scanme.global";
 
 export const TELEGRAM_URL = "";
 
