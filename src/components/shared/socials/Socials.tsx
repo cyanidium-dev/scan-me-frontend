@@ -6,8 +6,6 @@ import {
 } from "@/constants/constants";
 import InstagramIcon from "../icons/InstagramIcon";
 import LinkedinIcon from "../icons/LinkedinIcon";
-import TelegramIcon from "../icons/TelegramIcon";
-import TikTokIcon from "../icons/TikTokIcon";
 import { twMerge } from "tailwind-merge";
 
 interface SocialsProps {

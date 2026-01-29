@@ -1,359 +1,359 @@
 {
-  "metadata": {
-    "title": "ScanMe QR Sticker — Your Personal Lifesaving Code",
-    "description": "In a critical situation, every second matters. The ScanMe QR sticker provides medics with vital information immediately after scanning."
-  },
-  "header": {
-    "logo": "scan me",
-    "navMenu": {
-      "about": "about us",
-      "howItWorks": "how it works",
-      "contacts": "contacts"
+    "metadata": {
+        "title": "ScanMe QR Sticker — Your Personal Lifesaving Code",
+        "description": "In a critical situation, every second matters. The ScanMe QR sticker provides medics with vital information immediately after scanning."
     },
-    "signIn": "Sign in",
-    "signUp": "Sign up",
-    "dashboard": "My data"
-  },
-  "footer": {
-    "title": "QR sticker that can <accent>save lives</accent>",
-    "callUs": "Call us",
-    "writeUs": "Or write to us:"
-  },
-  "forms": {
-    "name": "Name*",
-    "namePlaceholder": "Your name",
-    "phone": "Phone number*",
-    "sendMessage": "Leave a message",
-    "loading": "Sending...",
-    "emailPlaceholder": "Enter email",
-    "passwordPlaceholder": "Enter password",
-    "newPasswordPlaceholder": "Enter new password",
-    "confirmPasswordPlaceholder": "Confirm password",
-    "errors": {
-      "required": "This field is required",
-      "wrongEmail": "Enter a valid email",
-      "wrongPhone": "Enter a valid phone number",
+    "header": {
+        "logo": "scan me",
+        "navMenu": {
+            "about": "about us",
+            "howItWorks": "how it works",
+            "contacts": "contacts"
+        },
+        "signIn": "Sign in",
+        "signUp": "Sign up",
+        "dashboard": "My data"
+    },
+    "footer": {
+        "title": "QR sticker that can <accent>save lives</accent>",
+        "callUs": "Call us",
+        "writeUs": "Write to us:"
+    },
+    "forms": {
+        "name": "Name*",
+        "namePlaceholder": "Your name",
+        "phone": "Phone number*",
+        "sendMessage": "Leave a message",
+        "loading": "Sending...",
+        "emailPlaceholder": "Enter email",
+        "passwordPlaceholder": "Enter password",
+        "newPasswordPlaceholder": "Enter new password",
+        "confirmPasswordPlaceholder": "Confirm password",
+        "errors": {
+            "required": "This field is required",
+            "wrongEmail": "Enter a valid email",
+            "wrongPhone": "Enter a valid phone number",
             "wrongPassword": "Password must be at least 6 characters",
             "passwordsDoNotMatch": "Passwords do not match",
             "passwordRequireUppercase": "Password must contain at least one uppercase letter",
             "passwordRequireLowercase": "Password must contain at least one lowercase letter",
             "passwordRequireNumeric": "Password must contain at least one number",
             "passwordRequireSpecial": "Password must contain at least one special character (@$!%*?&«»())",
-      "nameMinMaxSymbols": "Must contain 2 to 30 characters",
-      "nameAllowedSymbols": "Allowed letters, hyphen, apostrophe, quotes",
-      "max200Symbols": "Must contain no more than 200 characters"
-    }
-  },
-  "orderForm": {
-    "title": "READY TO PLACE AN ORDER?",
-    "description": "Order your personalized sticker or view your data in your personal account",
-    "sticker": "STICKER",
-    "bracelet": "BRACELET",
-    "surname": "Surname*",
-    "surnamePlaceholder": "Your surname",
-    "patronymic": "Patronymic",
-    "patronymicPlaceholder": "Your patronymic",
-    "deliveryAddress": "Delivery address*",
-    "deliveryAddressPlaceholder": "Country, city and delivery address",
-    "placeOrder": "PLACE ORDER",
-    "goToDashboard": "GO TO PERSONAL ACCOUNT"
-  },
-  "notifications": {
-    "successTitle": "Thank you for your message",
-    "successDescription": "Our manager will contact you soon to clarify the information",
-    "errorTitle": "Unfortunately, something went wrong",
-    "errorDescription": "Please try submitting the form again or call us.",
-    "orderSuccessTitle": "Thank you for your order!",
-    "orderSuccessDescription": "Our manager will contact you soon to clarify the information",
-    "orderErrorTitle": "Unfortunately, something went wrong",
-    "orderErrorDescription": "Please try submitting the form later or call us."
-  },
-  "homePage": {
-    "hero": {
-      "title": "QR sticker that can <accent>save lives</accent>",
-      "descriptionOne": "In a critical moment, every second matters — ScanMe helps medics act faster.",
-      "descriptionTwo": "Medical QR sticker is your personal lifesaving code. It instantly provides medics or rescuers with important information: blood type, allergies, chronic conditions, or emergency contacts",
-      "button": "Order your QR sticker"
+            "nameMinMaxSymbols": "Must contain 2 to 30 characters",
+            "nameAllowedSymbols": "Allowed letters, hyphen, apostrophe, quotes",
+            "max200Symbols": "Must contain no more than 200 characters"
+        }
     },
-    "about": {
-      "title": "what is <accent>scan me</accent> and our idea",
-      "descriptionOne": "ScanMe is an initiative that unites people who care about others' fate. The project's goal is to help when every second matters.",
-      "descriptionTwo": "The ScanMe QR code instantly provides medics or rescuers with key information about a person — even if they cannot speak.",
-      "company": "scan me",
-      "benefits": {
-        "titleOne": "No apps",
-        "valueOne": "No complex setup",
-        "titleTwo": "100%",
-        "valueTwo": "Personal data protection",
-        "titleThree": "just QR",
-        "valueThree": "That can save lives"
-      }
+    "orderForm": {
+        "title": "READY TO PLACE AN ORDER?",
+        "description": "Order your personalized sticker or view your data in your personal account",
+        "sticker": "STICKER",
+        "bracelet": "BRACELET",
+        "surname": "Surname*",
+        "surnamePlaceholder": "Your surname",
+        "patronymic": "Patronymic",
+        "patronymicPlaceholder": "Your patronymic",
+        "deliveryAddress": "Delivery address*",
+        "deliveryAddressPlaceholder": "Country, city and delivery address",
+        "placeOrder": "PLACE ORDER",
+        "goToDashboard": "GO TO PERSONAL ACCOUNT"
     },
-    "team": {
-      "title": "<accent>team</accent> of our project",
-      "description": "We are united by one goal — to make the world safer. Each of us contributes to creating a system that can save lives.",
-      "personOne": {
-        "name": "Andrii",
-        "role": "founder and CEO of the project",
-        "description": "defines strategy and development direction"
-      },
-      "personTwo": {
-        "name": "Victoria",
-        "role": "CCO",
-        "description": "responsible for communications and brand building"
-      }
+    "notifications": {
+        "successTitle": "Thank you for your message",
+        "successDescription": "Our manager will contact you soon to clarify the information",
+        "errorTitle": "Unfortunately, something went wrong",
+        "errorDescription": "Please try submitting the form again or call us.",
+        "orderSuccessTitle": "Thank you for your order!",
+        "orderSuccessDescription": "Our manager will contact you soon to clarify the information",
+        "orderErrorTitle": "Unfortunately, something went wrong",
+        "orderErrorDescription": "Please try submitting the form later or call us."
     },
-    "mission": {
-      "title": "We strive for everyone — athletes, children, or elderly people — to feel safe in any conditions.",
-      "description": "Saving lives by providing quick access to information when it matters most."
+    "homePage": {
+        "hero": {
+            "title": "QR sticker that can <accent>save lives</accent>",
+            "descriptionOne": "In a critical moment, every second matters — ScanMe helps medics act faster.",
+            "descriptionTwo": "Medical QR sticker is your personal lifesaving code. It instantly provides medics or rescuers with important information: blood type, allergies, chronic conditions, or emergency contacts",
+            "button": "Order your QR sticker"
+        },
+        "about": {
+            "title": "what is <accent>scan me</accent> and our idea",
+            "descriptionOne": "ScanMe is an initiative that unites people who care about others' fate. The project's goal is to help when every second matters.",
+            "descriptionTwo": "The ScanMe QR code instantly provides medics or rescuers with key information about a person — even if they cannot speak.",
+            "company": "scan me",
+            "benefits": {
+                "titleOne": "No apps",
+                "valueOne": "No complex setup",
+                "titleTwo": "100%",
+                "valueTwo": "Personal data protection",
+                "titleThree": "just QR",
+                "valueThree": "That can save lives"
+            }
+        },
+        "team": {
+            "title": "<accent>team</accent> of our project",
+            "description": "We are united by one goal — to make the world safer. Each of us contributes to creating a system that can save lives.",
+            "personOne": {
+                "name": "Andrii",
+                "role": "founder and CEO of the project",
+                "description": "defines strategy and development direction"
+            },
+            "personTwo": {
+                "name": "Victoria",
+                "role": "CCO",
+                "description": "responsible for communications and brand building"
+            }
+        },
+        "mission": {
+            "title": "We strive for everyone — athletes, children, or elderly people — to feel safe in any conditions.",
+            "description": "Saving lives by providing quick access to information when it matters most."
+        },
+        "howItWorks": {
+            "title": "How the <accent>Scan Me</accent> system works",
+            "descriptionOne": "A simple algorithm that can save lives.",
+            "steps": {
+                "titleOne": "Sign up",
+                "valueOne": "Create a personal profile and fill out a short medical questionnaire. It takes less than two minutes.",
+                "titleTwo": "Get your QR",
+                "valueTwo": "We will prepare a unique sticker or bracelet with your personal code for you.",
+                "titleThree": "Place QR",
+                "valueThree": "Attach it to a helmet, protective clothing, bracelet, or other visible place — so rescuers can easily find it.",
+                "titleFour": "Get help on time",
+                "valueFour": "When scanned, the system will instantly display your medical data and notify the contact specified for emergencies."
+            },
+            "subtitle": "Ready to take care of your safety?",
+            "descriptionTwo": "Your safety is in your hands. A small sticker can save a priceless life.",
+            "button": "Sign up"
+        },
+        "whyUs": {
+            "title": "Why choose <accent>Scan Me</accent>",
+            "description": "We created ScanMe to make help faster and life safer. It's a simple solution that can save in a critical moment.",
+            "advantages": {
+                "titleOne": "Instant access to information",
+                "descriptionOne": "Everything you need to know about yourself — in a QR code: contacts, medical data, allergies, blood type. Rescuers will get the needed information in seconds.",
+                "titleTwo": "Works without apps",
+                "descriptionTwo": "Just scan the QR with your smartphone camera.\n\nNo registrations, downloads, or setup.",
+                "titleThree": "Privacy protection",
+                "descriptionThree": "Your data is stored in a secure environment. Access is only via QR code.\n\nYou decide what to show.",
+                "titleFour": "Convenient format",
+                "descriptionFour": "ScanMe is available as bracelets and stickers — choose what suits you best.",
+                "titleFive": "Reliable and durable",
+                "descriptionFive": "Resistant to water, dirt, and UV.\n\nWon't fade even after active training or rain.",
+                "titleSix": "Suitable for everyone",
+                "descriptionSix": "Athletes, children, elderly people — anyone can wear ScanMe and feel confident about their safety."
+            }
+        },
+        "faq": {
+            "title": "frequently asked \n<accent>questions</accent>",
+            "description": "We've collected answers to the most common questions to help you better understand how ScanMe works.",
+            "list": {
+                "questionOne": "How does Scan Me work?",
+                "answerOne": "After registration, you receive a personal QR code containing essential medical information.\nIn case of an emergency, rescuers can scan the code and instantly get the data needed to provide assistance.",
+                "questionTwo": "Do I need to install an app?",
+                "answerTwo": "No. ScanMe doesn't require downloading any apps.\nA smartphone camera is enough to scan the code.",
+                "questionThree": "Is it safe to store my data?",
+                "answerThree": "Yes. All your data is stored in a secure environment.\nAccess is only possible through your unique QR code.",
+                "questionFour": "Where can I place the sticker or bracelet?",
+                "answerFour": "You can attach the QR to a helmet, clothing, phone, bracelet, or other convenient place where rescuers can easily spot it.",
+                "questionFive": "Who is Scan Me suitable for?",
+                "answerFive": "ScanMe is suitable for everyone: athletes, children, elderly people — anyone can use it for their safety.",
+                "questionSix": "How to order Scan Me?",
+                "answerSix": "Simply click the \"Order\" button on our website, fill out a short form, and we will make your personal QR set."
+            }
+        },
+        "contactUs": {
+            "title": "Contact us",
+            "description": "Our team will be happy to call you soon and answer your questions.",
+            "writeUs": "Write to us",
+            "email": "Our contact email",
+            "callUs": "Call us",
+            "schedule": "Mon–Fri, 9:00–18:00"
+        },
+        "cta": {
+            "title": "Ready to take care of <accent>your safety?</accent>",
+            "description": "Join the ScanMe community — a solution that cares for you and your loved ones.\nA small QR can make a big difference — save a life.",
+            "button": "Order sticker"
+        }
     },
-    "howItWorks": {
-      "title": "How the <accent>Scan Me</accent> system works",
-      "descriptionOne": "A simple algorithm that can save lives.",
-      "steps": {
-        "titleOne": "Sign up",
-        "valueOne": "Create a personal profile and fill out a short medical questionnaire. It takes less than two minutes.",
-        "titleTwo": "Get your QR",
-        "valueTwo": "We will prepare a unique sticker or bracelet with your personal code for you.",
-        "titleThree": "Place QR",
-        "valueThree": "Attach it to a helmet, protective clothing, bracelet, or other visible place — so rescuers can easily find it.",
-        "titleFour": "Get help on time",
-        "valueFour": "When scanned, the system will instantly display your medical data and notify the contact specified for emergencies."
-      },
-      "subtitle": "Ready to take care of your safety?",
-      "descriptionTwo": "Your safety is in your hands. A small sticker can save a priceless life.",
-      "button": "Sign up"
+    "signInPage": {
+        "title": "Account login",
+        "description": "Sign in to your Scan Me account using your email.",
+        "forgotPassword": "Forgot password?",
+        "login": "Sign in",
+        "noAccount": "Don't have an account?",
+        "signUp": "Sign up",
+        "qr": "QR sticker that can <accent>save lives</accent>",
+        "errors": {
+            "wrongCredentials": "Invalid email or password",
+            "invalidEmail": "Invalid email format",
+            "accountDisabled": "Account disabled",
+            "networkError": "Network error. Check your internet connection",
+            "manyRequests": "Too many attempts. Please try again later",
+            "signInError": "Sign in error: ",
+            "unknownError": "Unknown error. Please try again later"
+        }
     },
-    "whyUs": {
-      "title": "Why choose <accent>Scan Me</accent>",
-      "description": "We created ScanMe to make help faster and life safer. It's a simple solution that can save in a critical moment.",
-      "advantages": {
-        "titleOne": "Instant access to information",
-        "descriptionOne": "Everything you need to know about yourself — in a QR code: contacts, medical data, allergies, blood type. Rescuers will get the needed information in seconds.",
-        "titleTwo": "Works without apps",
-        "descriptionTwo": "Just scan the QR with your smartphone camera.\n\nNo registrations, downloads, or setup.",
-        "titleThree": "Privacy protection",
-        "descriptionThree": "Your data is stored in a secure environment. Access is only via QR code.\n\nYou decide what to show.",
-        "titleFour": "Convenient format",
-        "descriptionFour": "ScanMe is available as bracelets and stickers — choose what suits you best.",
-        "titleFive": "Reliable and durable",
-        "descriptionFive": "Resistant to water, dirt, and UV.\n\nWon't fade even after active training or rain.",
-        "titleSix": "Suitable for everyone",
-        "descriptionSix": "Athletes, children, elderly people — anyone can wear ScanMe and feel confident about their safety."
-      }
+    "forgotPasswordPage": {
+        "title": "Password recovery",
+        "description": "Enter the email address associated with your account, and we will send you a link to create a new password.",
+        "send": "Send link",
+        "changeAccount": "Change account",
+        "success": "Password recovery link has been sent to your email. Please check your email and follow the link.",
+        "errors": {
+            "invalidEmail": "Invalid email format",
+            "accountDisabled": "Account disabled",
+            "networkError": "Network error. Check your internet connection",
+            "manyRequests": "Too many attempts. Please try again later",
+            "invalidUrl": "Link configuration error. Please contact support",
+            "resetError": "Password recovery error: ",
+            "unknownError": "Unknown error. Please try again later"
+        }
     },
-    "faq": {
-      "title": "frequently asked \n<accent>questions</accent>",
-      "description": "We've collected answers to the most common questions to help you better understand how ScanMe works.",
-      "list": {
-        "questionOne": "How does Scan Me work?",
-        "answerOne": "After registration, you receive a personal QR code containing essential medical information.\nIn case of an emergency, rescuers can scan the code and instantly get the data needed to provide assistance.",
-        "questionTwo": "Do I need to install an app?",
-        "answerTwo": "No. ScanMe doesn't require downloading any apps.\nA smartphone camera is enough to scan the code.",
-        "questionThree": "Is it safe to store my data?",
-        "answerThree": "Yes. All your data is stored in a secure environment.\nAccess is only possible through your unique QR code.",
-        "questionFour": "Where can I place the sticker or bracelet?",
-        "answerFour": "You can attach the QR to a helmet, clothing, phone, bracelet, or other convenient place where rescuers can easily spot it.",
-        "questionFive": "Who is Scan Me suitable for?",
-        "answerFive": "ScanMe is suitable for everyone: athletes, children, elderly people — anyone can use it for their safety.",
-        "questionSix": "How to order Scan Me?",
-        "answerSix": "Simply click the \"Order\" button on our website, fill out a short form, and we will make your personal QR set."
-      }
+    "resetPasswordPage": {
+        "title": "Create new password",
+        "description": "Enter a new password that you want to set for your account.",
+        "verifying": "Verifying code...",
+        "confirmPasswordPlaceholder": "Confirm password",
+        "submit": "Set new password",
+        "login": "Sign in",
+        "success": "Password successfully changed! Redirecting to sign in page...",
+        "passwordSetSuccess": "Password successfully set! Redirecting...",
+        "errors": {
+            "noCode": "Password reset code is missing or invalid",
+            "expiredCode": "Password reset code has expired. Please request a new email",
+            "invalidCode": "Invalid password reset code",
+            "weakPassword": "Password is too weak. Minimum 6 characters",
+            "verifyError": "Error verifying code. Please try again",
+            "resetError": "Error setting password: ",
+            "unknownError": "Unknown error. Please try again later"
+        }
     },
-    "contactUs": {
-      "title": "Contact us",
-      "description": "Our team will be happy to call you soon and answer your questions.",
-      "writeUs": "Write to us",
-      "email": "Our contact email",
-      "callUs": "Call us",
-      "schedule": "Mon–Fri, 9:00–18:00"
+    "signUpPage": {
+        "title": "Registration",
+        "description": "By registering with your email, you will be able to sign in to your Scan Me account",
+        "signUp": "Sign up",
+        "haveAccount": "Already have an account?",
+        "signIn": "Sign in",
+        "errors": {
+            "emailAlreadyExists": "User with this email is already registered",
+            "unknownError": "Unknown error. Please try again later"
+        },
+        "nextButton": "Continue",
+        "finishSignUp": "Complete registration",
+        "backButton": "Back",
+        "personalData": {
+            "title": "Personal data",
+            "description": "Provide basic information about yourself.",
+            "name": "Name*",
+            "namePlaceholder": "Enter name",
+            "surname": "Surname*",
+            "surnamePlaceholder": "Enter surname",
+            "dateOfBirth": "Date of birth*",
+            "dateOfBirthPlaceholder": "Enter date of birth",
+            "dateOfBirthFutureError": "Date cannot be in the future",
+            "gender": "Gender*",
+            "male": "Male",
+            "female": "Female",
+            "address": "Address",
+            "countryPlaceholder": "Country",
+            "cityPlaceholder": "City",
+            "addressPlaceholder": "Address",
+            "addPhoto": "Add photo"
+        },
+        "medicalData": {
+            "title": "Medical information",
+            "description": "This data will help medics provide quick and proper assistance if needed.",
+            "bloodType": "Blood type",
+            "bloodTypePlaceholder": "Select your blood type",
+            "rhFactor": "Rh factor*",
+            "rhPositive": "+",
+            "rhNegative": "-",
+            "allergies": "Allergies",
+            "allergiesPlaceholder": "Specify allergies, if any",
+            "allergiesAdd": "Add allergy",
+            "chronicDiseases": "Chronic diseases",
+            "chronicDiseasesPlaceholder": "Describe chronic diseases...",
+            "operations": "Past surgeries",
+            "yearPlaceholder": "Specify year",
+            "operationsPlaceholder": "Specify surgeries",
+            "addOperation": "Add surgery",
+            "medications": "Medications taken",
+            "medicationsPlaceholder": "For example: insulin, antihistamines…",
+            "addMedication": "Add medication",
+            "doctorContact": "Doctor contacts",
+            "doctors": "Doctor contacts",
+            "doctorName": "Doctor's name",
+            "doctorNamePlaceholder": "Doctor's name",
+            "doctorPhone": "Phone number",
+            "doctorPhonePlaceholder": "Doctor's phone number",
+            "doctorSpecialization": "Specialization",
+            "doctorSpecializationPlaceholder": "Specify doctor's specialization",
+            "addDoctor": "Add doctor"
+        },
+        "emergencyData": {
+            "title": "Emergency data",
+            "description": "Add a contact of a close person or doctor so they can be contacted in a critical situation.",
+            "emergencyContact": "Emergency contact",
+            "name": "Name",
+            "emergencyContactPlaceholder": "Name",
+            "phone": "Phone number",
+            "emergencyContactPhonePlaceholder": "Phone number",
+            "relationship": "Relationship",
+            "emergencyContactRelationshipPlaceholder": "Relationship",
+            "sendMessage": "Send SMS when scanning my QR",
+            "gps": "Allow sharing location when scanning"
+        }
     },
-    "cta": {
-      "title": "Ready to take care of <accent>your safety?</accent>",
-      "description": "Join the ScanMe community — a solution that cares for you and your loved ones.\nA small QR can make a big difference — save a life.",
-      "button": "Order sticker"
-    }
-  },
-  "signInPage": {
-    "title": "Account login",
-    "description": "Sign in to your Scan Me account using your email.",
-    "forgotPassword": "Forgot password?",
-    "login": "Sign in",
-    "noAccount": "Don't have an account?",
-    "signUp": "Sign up",
-    "qr": "QR sticker that can <accent>save lives</accent>",
-    "errors": {
-      "wrongCredentials": "Invalid email or password",
-      "invalidEmail": "Invalid email format",
-      "accountDisabled": "Account disabled",
-      "networkError": "Network error. Check your internet connection",
-      "manyRequests": "Too many attempts. Please try again later",
-      "signInError": "Sign in error: ",
-      "unknownError": "Unknown error. Please try again later"
-    }
-  },
-  "forgotPasswordPage": {
-    "title": "Password recovery",
-    "description": "Enter the email address associated with your account, and we will send you a link to create a new password.",
-    "send": "Send link",
-    "changeAccount": "Change account",
-    "success": "Password recovery link has been sent to your email. Please check your email and follow the link.",
-    "errors": {
-      "invalidEmail": "Invalid email format",
-      "accountDisabled": "Account disabled",
-      "networkError": "Network error. Check your internet connection",
-      "manyRequests": "Too many attempts. Please try again later",
-      "invalidUrl": "Link configuration error. Please contact support",
-      "resetError": "Password recovery error: ",
-      "unknownError": "Unknown error. Please try again later"
-    }
-  },
-  "resetPasswordPage": {
-    "title": "Create new password",
-    "description": "Enter a new password that you want to set for your account.",
-    "verifying": "Verifying code...",
-    "confirmPasswordPlaceholder": "Confirm password",
-    "submit": "Set new password",
-    "login": "Sign in",
-    "success": "Password successfully changed! Redirecting to sign in page...",
-    "passwordSetSuccess": "Password successfully set! Redirecting...",
-    "errors": {
-      "noCode": "Password reset code is missing or invalid",
-      "expiredCode": "Password reset code has expired. Please request a new email",
-      "invalidCode": "Invalid password reset code",
-      "weakPassword": "Password is too weak. Minimum 6 characters",
-      "verifyError": "Error verifying code. Please try again",
-      "resetError": "Error setting password: ",
-      "unknownError": "Unknown error. Please try again later"
-    }
-  },
-  "signUpPage": {
-    "title": "Registration",
-    "description": "By registering with your email, you will be able to sign in to your Scan Me account",
-    "signUp": "Sign up",
-    "haveAccount": "Already have an account?",
-    "signIn": "Sign in",
-    "errors": {
-      "emailAlreadyExists": "User with this email is already registered",
-      "unknownError": "Unknown error. Please try again later"
-    },
-    "nextButton": "Continue",
-    "finishSignUp": "Complete registration",
-    "backButton": "Back",
-    "personalData": {
-      "title": "Personal data",
-      "description": "Provide basic information about yourself.",
-      "name": "Name*",
-      "namePlaceholder": "Enter name",
-      "surname": "Surname*",
-      "surnamePlaceholder": "Enter surname",
-      "dateOfBirth": "Date of birth*",
-      "dateOfBirthPlaceholder": "Enter date of birth",
-      "dateOfBirthFutureError": "Date cannot be in the future",
-      "gender": "Gender*",
-      "male": "Male",
-      "female": "Female",
-      "address": "Address",
-      "countryPlaceholder": "Country",
-      "cityPlaceholder": "City",
-      "addressPlaceholder": "Address",
-      "addPhoto": "Add photo"
-    },
-    "medicalData": {
-      "title": "Medical information",
-      "description": "This data will help medics provide quick and proper assistance if needed.",
-      "bloodType": "Blood type",
-      "bloodTypePlaceholder": "Select your blood type",
-      "rhFactor": "Rh factor*",
-      "rhPositive": "+",
-      "rhNegative": "-",
-      "allergies": "Allergies",
-      "allergiesPlaceholder": "Specify allergies, if any",
-      "allergiesAdd": "Add allergy",
-      "chronicDiseases": "Chronic diseases",
-      "chronicDiseasesPlaceholder": "Describe chronic diseases...",
-      "operations": "Past surgeries",
-      "yearPlaceholder": "Specify year",
-      "operationsPlaceholder": "Specify surgeries",
-      "addOperation": "Add surgery",
-      "medications": "Medications taken",
-      "medicationsPlaceholder": "For example: insulin, antihistamines…",
-      "addMedication": "Add medication",
-      "doctorContact": "Doctor contacts",
-      "doctors": "Doctor contacts",
-      "doctorName": "Doctor's name",
-      "doctorNamePlaceholder": "Doctor's name",
-      "doctorPhone": "Phone number",
-      "doctorPhonePlaceholder": "Doctor's phone number",
-      "doctorSpecialization": "Specialization",
-      "doctorSpecializationPlaceholder": "Specify doctor's specialization",
-      "addDoctor": "Add doctor"
-    },
-    "emergencyData": {
-      "title": "Emergency data",
-      "description": "Add a contact of a close person or doctor so they can be contacted in a critical situation.",
-      "emergencyContact": "Emergency contact",
-      "name": "Name",
-      "emergencyContactPlaceholder": "Name",
-      "phone": "Phone number",
-      "emergencyContactPhonePlaceholder": "Phone number",
-      "relationship": "Relationship",
-      "emergencyContactRelationshipPlaceholder": "Relationship",
-      "sendMessage": "Send SMS when scanning my QR",
-      "gps": "Allow sharing location when scanning"
-    }
-  },
     "dashboardPage": {
-      "signOut": "Sign out",
-      "order": "Order sticker",
-      "personalData": {
-        "title": "Personal data",
-        "saveButton": "Save data"
-      },
-      "medicalData": {
-        "title": "Medical information"
-      },
-      "emergencyData": {
-        "title": "Emergency data"
-      }
+        "signOut": "Sign out",
+        "order": "Order sticker",
+        "personalData": {
+            "title": "Personal data",
+            "saveButton": "Save data"
+        },
+        "medicalData": {
+            "title": "Medical information"
+        },
+        "emergencyData": {
+            "title": "Emergency data"
+        }
     },
     "emergencyInfoPage": {
-      "title": "Emergency Information",
-      "personalDataTitle": "PERSONAL DATA",
-      "medicalData": "MEDICAL INFORMATION",
-      "emergencyContacts": "EMERGENCY CONTACTS",
-      "notFound": "Profile not found",
-      "errorDescription": "User profile not found or unavailable",
-      "callButton": "CALL",
-      "field": "Field",
-      "value": "Value",
-      "emergencyContactsColumn1": "Who/Name",
-      "emergencyContactsColumn2": "Phone / Action",
-      "emergencyContactsDesktopColumn1": "Who",
-      "emergencyContactsDesktopColumn2": "Name",
-      "emergencyContactsDesktopColumn3": "Phone",
-      "emergencyContactsDesktopColumn4": "Action",
-      "rhPositive": "Rh +",
-      "rhNegative": "Rh -",
-      "smsNotification": "QrCode ScanMe number {qrId}. {ownerName} has been scanned. An emergency situation may have occurred.",
-      "smsLocation": "Location: {location}",
-      "ownerName": "QR code owner",
-      "profile": {
-        "qrId": "QR-ID",
-        "fullName": "Full name",
-        "dateOfBirth": "Date of birth",
-        "gender": "Gender",
-        "callEmergencyButton": "CALL EMERGENCY CONTACT",
-        "sendSMSButton": "SEND EMERGENCY SMS"
-      },
-      "personalData": {
-        "name": "Name",
-        "surname": "Surname",
-        "dateOfBirth": "Date of birth",
-        "gender": "Gender",
-        "male": "Male",
-        "female": "Female",
-        "address": "Address"
-      }
+        "title": "Emergency Information",
+        "personalDataTitle": "PERSONAL DATA",
+        "medicalData": "MEDICAL INFORMATION",
+        "emergencyContacts": "EMERGENCY CONTACTS",
+        "notFound": "Profile not found",
+        "errorDescription": "User profile not found or unavailable",
+        "callButton": "CALL",
+        "field": "Field",
+        "value": "Value",
+        "emergencyContactsColumn1": "Who/Name",
+        "emergencyContactsColumn2": "Phone / Action",
+        "emergencyContactsDesktopColumn1": "Who",
+        "emergencyContactsDesktopColumn2": "Name",
+        "emergencyContactsDesktopColumn3": "Phone",
+        "emergencyContactsDesktopColumn4": "Action",
+        "rhPositive": "Rh +",
+        "rhNegative": "Rh -",
+        "smsNotification": "QrCode ScanMe number {qrId}. {ownerName} has been scanned. An emergency situation may have occurred.",
+        "smsLocation": "Location: {location}",
+        "ownerName": "QR code owner",
+        "profile": {
+            "qrId": "QR-ID",
+            "fullName": "Full name",
+            "dateOfBirth": "Date of birth",
+            "gender": "Gender",
+            "callEmergencyButton": "CALL EMERGENCY CONTACT",
+            "sendSMSButton": "SEND EMERGENCY SMS"
+        },
+        "personalData": {
+            "name": "Name",
+            "surname": "Surname",
+            "dateOfBirth": "Date of birth",
+            "gender": "Gender",
+            "male": "Male",
+            "female": "Female",
+            "address": "Address"
+        }
     }
-  }
+}
